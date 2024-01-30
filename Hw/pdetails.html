@@ -1,0 +1,63 @@
+<html>
+    <head></head>
+    <body>
+        <header>
+            <a href="index.html">Cricket Player Database</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="players.html">Players</a></li>
+                    <li><a href="reprt.html">Report</a></li>
+                </ul>
+            </nav>
+            <h1>Player Details</h1>
+        </header>
+        <main>
+            <section id="show">
+
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; Company Name.All rights reserved</p>
+        </footer>
+
+        <script>
+            let data = [
+                {id:"1",name:"Player 1",country:"India",role:"Batsman"},
+                {id:"2",name:"Player 2",country:"Australia",role:"Bowler"}   
+            ]
+            function getstuffbyid(id)
+            {
+                let url = new URL(window.location.href)
+                return url.searchParams.get(id)
+            }
+
+            let stuffId = getstuffbyid("id")
+            let player
+            for(let i=0;i<data.length;i++)
+            {
+                if(data[i].id === stuffId)
+                {
+                    player = data[i]
+                }
+            }
+            let datadetail = document.getElementById("show")
+            if(player)
+            {
+                let playerDetail = document.getElementById("show")
+
+                playerDetail.innerHTML = `
+                 <h2>${player.name}</h2>
+                 <ul>
+                    <li>Country:${player.country}</li>   
+                    <li>Role:${player.role}</li>   
+                 </ul>
+                `
+            }
+            else{
+               playerDetail.innerHTML = `NOT FOUND` 
+            }
+        </script>
+    </body>
+</html>
