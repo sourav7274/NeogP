@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Employee Details</title>
+    </head>
+    <body>
+        <header>
+            <a href="index.html">Company Logo</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="employee.html">Employee</a></li>
+                </ul>
+            </nav>
+            <h1>Employee Details</h1>
+        </header>
+        <main>
+            <section id="employeedeatil">
+
+            </section>
+        </main>
+        <script>
+             let employees = [
+                {id:"1",name:"John Doe",title:"Software Dev",department:"IT"},
+                {id:"2",name:"Jame Smith",title:"Designer",department:"Design"},
+                {id:"3",name:"Bob Johnson",title:"Project Manager",department:"Management"}    
+            ]
+        function getParameterById(id){
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+          } 
+        let employeeId = getParameterById("id")  
+        let employee;     
+        for(let i=0;i<employees.length;i++)
+        {
+            if(employees[i].id === employeeId)
+            {
+                employee = employees[i]
+            }
+        }
+        let employeedeatilElement = document.getElementById("employeedetil")
+        if(employee){
+            let employeedeatilElement = document.getElementById("employeedeatil")
+            
+            employeedeatilElement.innerHTML =`
+            <h2>${employee.name}</h2>
+            <ul>
+                <li>Name: ${employee.name}</li>    
+                <li>Designation: ${employee.title}</li>    
+                <li>Department: ${employee.department}</li>        
+            </ul>
+            `
+        }
+        else{
+            employeedeatilElement.innerHTML=
+            `Employee not Found.`
+        }
+
+        </script>
+
+    </body>
+</html>
