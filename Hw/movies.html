@@ -12,7 +12,7 @@
         <div class="">
          <nav class="navbar navbar-expand-lg bg-body-tertiary">
              <div class="container-fluid">
-               <a class="navbar-brand" href="index.html">Cricket Players Database</a>
+               <a class="navbar-brand" href="index.html">Movie Database</a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
                </button>
@@ -22,7 +22,7 @@
                      <a class="nav-link active" aria-current="page" href="index.html">Home</a>
                    </li>
                    <li class="nav-item">
-                     <a class="nav-link" href="players.html">Players</a>
+                     <a class="nav-link" href="movies.html">Movies</a>
                    </li>
                    <li class="nav-item">
                      <a class="nav-link" href="report.html">Report</a>
@@ -33,48 +33,45 @@
            </nav>
         </div>          
      </header>
-    <main class="container">
-        <section id="show">
-
-        </section>
-    </main>
-     <script>
-        pdata = [
-            {id:1,name:"Player 1",country:"India",role:"Batsman"},
-            {id:2,name:"Player 2",country:"Australia",role:"Bowler"}
-        ]
-
-        function getid(id)
-        {
-            let url = new URL(window.location.href)
-            return url.searchParams.get(id)
-        }
-        let iddetials = getid("id")
-        let data
-        for (let i=0;i<pdata.length;i++)
-        {
-            if(pdata[i].id == iddetials)
-            {
-                data = pdata[i]
-            }
-        }
-        
-        if(pdata)
-        {
-            let visual = document.getElementById("show")
-            visual.innerHTML = 
-            `
-              <div class="card">
-                <div class="card-header">
-                    <h1>${data.name}</h1>
-                </div>
-                <div class="card-body">
-                    <p><strong>Country: </strong>${data.country}</p>
-                    <p><strong>Role: </strong>${data.role}</p>
-                </div>
-              </div>  
-            `
-        }
-     </script>
+     <main class="container">
+        <h1 class="pt-4">List of Movies</h1>
+        <div class="row">
+          <div class="col-6 mb-3">
+            <div class="card">
+              <div class="card-header">
+                <h2>Movie 1</h2>
+              </div>
+              <div class="card-body">
+                <p><strong>Genre:</strong>Action</p>
+                <a class="btn btn-primary" href="moviedetails.html?id=1">Details</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <div class="card-header">
+                <h2>Movie 2</h2>
+              </div>
+              <div class="card-body">
+                <p><strong>Genre:</strong>Drama</p>
+                <a class="btn btn-primary" href="moviedetails.html?id=2">Details</a>
+              </div>
+            </div>      
+          </div>
+          <div class="col-6">
+            <div class="card">
+              <div class="card-header">
+                <h2>Movie 3</h2>
+              </div>
+              <div class="card-body">
+                <p><strong>Genre:</strong>Comedy</p>
+                <a class="btn btn-primary" href="moviedetails.html?id=3">Details</a>
+              </div>
+            </div>      
+          </div>
+        </div>
+          
+          
+     </main>
 </body>
 </html>
