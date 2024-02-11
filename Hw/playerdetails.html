@@ -12,7 +12,7 @@
         <div class="">
          <nav class="navbar navbar-expand-lg bg-body-tertiary">
              <div class="container-fluid">
-               <a class="navbar-brand" href="index.html">Cricket Player Database</a>
+               <a class="navbar-brand" href="index.html">Cricket Players Database</a>
                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                  <span class="navbar-toggler-icon"></span>
                </button>
@@ -33,33 +33,48 @@
            </nav>
         </div>          
      </header>
-     <main class="container">
-        <h1 class="pt-4">Player Report</h1>
-        <hr>
-        <div class="row">
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                       <h2>Top Scorer</h2> 
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Name: </strong>Player 1</p>
-                        <p><strong>Total Runs: </strong>12000</p>
-                    </div>
+    <main class="container">
+        <section id="show">
+
+        </section>
+    </main>
+     <script>
+        pdata = [
+            {id:1,name:"Player 1",country:"India",role:"Batsman"},
+            {id:2,name:"Player 2",country:"Australia",role:"Bowler"}
+        ]
+
+        function getid(id)
+        {
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+        }
+        let iddetials = getid("id")
+        let data
+        for (let i=0;i<pdata.length;i++)
+        {
+            if(pdata[i].id == iddetials)
+            {
+                data = pdata[i]
+            }
+        }
+        
+        if(pdata)
+        {
+            let visual = document.getElementById("show")
+            visual.innerHTML = 
+            `
+              <div class="card">
+                <div class="card-header">
+                    <h1>${data.name}</h1>
                 </div>
-            </div>            
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                       <h2>Best Bowler</h2> 
-                    </div>
-                    <div class="card-body">
-                        <p><strong>Name: </strong>Players 2</p>
-                        <p><strong>Total Wickets: </strong>500</p>
-                    </div>
+                <div class="card-body">
+                    <p><strong>Country: </strong>${data.country}</p>
+                    <p><strong>Role: </strong>${data.role}</p>
                 </div>
-            </div>           
-        </div>
-     </main>
+              </div>  
+            `
+        }
+     </script>
 </body>
 </html>
