@@ -11,12 +11,12 @@
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="destinations.html">Destinations</a></li>
-                <li><a href="report.html">Travel Report</a></li>
-                <li><a href="tips.html">Travel Tips</a></li>
+                <li><a href="dishes.html">Dishes</a></li>
+                <li><a href="report.html">Food Report</a></li>
+                <li><a href="tips.html">Cooking Tips</a></li>
             </ul>
         </nav>
-        <h1>Travel Destinations</h1>
+        <h1>Dishes</h1>
     </header>
     <main>
         <section id="show">
@@ -26,12 +26,12 @@
     
     <script>
         data=[
-          {id:1,name:"Paris",duration:"7 days",high:"Eiffel Tower, Louvre Museum",more:"A wonderful trip to the romantic city of Paris."}, 
-          {id:2,name:"Tokyo",duration:"5 days",high:"Tokyo Tower, Meiji Shrine",more:"Ancient Japan"},  
-          {id:3,name:"Rome",duration:"4 days",high:"Colosseum, Vatican City",more:"This is Sparta"},  
-          {id:4,name:"New York",duration:"8 days",high:"Statue of Liberty,Central Park",more:"City of Oppourtunities"},  
-          {id:5,name:"Cape Town",duration:"9 days",high:"Table Mountain, Robben Island",more:"Africa"},  
-          {id:6,name:"Sydney",duration:"6 days",high:"Sydney Opera House, Bondi Beach",more:"inverted spiders"}  
+          {id:1,name:"Pizza",ingredients:"Dough,tomato sauce,cheese,toppings",details:"Italian dish with a variety of toppings."}, 
+          {id:2,name:"Shushi",ingredients:"Rice,fish,seaweed,vegetables",details:"Japanese dish"},  
+          {id:3,name:"Tacos",ingredients:"Tortillas,meat,salsa,toppings",details:"Mexican Dish"},  
+          {id:4,name:"Pasta Carbonara",ingredients:"Pasta,eggs,cheese,bacon",details:"Italian Dish"},  
+          {id:5,name:"Chocolate Cake",ingredients:"Flour,sugar,cocoa,eggs,chocolate",details:"Sweet Dish"},  
+          {id:6,name:"Biryani",ingredients:"Rice,meat,spices,vegetables",details:"Veg Biryani is not pulao"}  
         ]
 
         function getid(id)
@@ -57,8 +57,8 @@
             showa.innerHTML =`
             <h1>${desti.name}</h1>
             <p><strong>Duration:</strong> ${desti.duration}</p>
-            <p><strong>Highlights:</strong> ${desti.high}</p>
-            <p><strong>Details:</strong> ${desti.more}</p>
+            <p><strong>Ingredients:</strong> ${desti.ingredients}</p>
+            <p><strong>Details:</strong> ${desti.details}</p>
             `
         }
     </script>
