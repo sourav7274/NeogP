@@ -13,7 +13,7 @@
         <div class="container">
             <nav class="navbar navbar-expand-lg bg-dark">
                 <div class="container-fluid">
-                  <a class="navbar-brand text-light fs-3" href="index.html">Travel Database</a> 
+                  <a class="navbar-brand text-light fs-3" href="index.html">Food Database</a> 
                   <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -23,13 +23,13 @@
                         <a class="nav-link active text-secondary fs-4" aria-current="page" href="index.html">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link text-secondary fs-4" href="destinations.html">Destinations</a>
+                        <a class="nav-link text-secondary fs-4" href="dishes.html">Dishes</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link text-secondary fs-4" href="report.html">Travel Report</a>
+                        <a class="nav-link text-secondary fs-4" href="report.html">Food Report</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link text-secondary fs-4" href="tips.html">Travel Tips</a>
+                        <a class="nav-link text-secondary fs-4" href="tips.html">Cooking Tips</a>
                       </li>                  
                     </ul>
                   </div>
@@ -39,9 +39,9 @@
        
     </header>   
     <main class="container">
-        <h1 class="py-3">Travel Details</h1>
-            <div class="container text-center">
-                <section id="show" style="display: inline-block; text-align: left;">
+        <h1 class="py-3">Food Details</h1>
+            <div class="container">
+                <section id="show">
     
                 </section>  
             </div>        
@@ -50,12 +50,12 @@
     
     <script>
         data=[
-          {id:1,name:"Paris",duration:"7 days",high:"Eiffel Tower, Louvre Museum",more:"A wonderful trip to the romantic city of Paris."}, 
-          {id:2,name:"Tokyo",duration:"5 days",high:"Tokyo Tower, Meiji Shrine",more:"Ancient Japan"},  
-          {id:3,name:"Rome",duration:"4 days",high:"Colosseum, Vatican City",more:"This is Sparta"},  
-          {id:4,name:"New York",duration:"8 days",high:"Statue of Liberty,Central Park",more:"City of Oppourtunities"},  
-          {id:5,name:"Cape Town",duration:"9 days",high:"Table Mountain, Robben Island",more:"Africa"},  
-          {id:6,name:"Sydney",duration:"6 days",high:"Sydney Opera House, Bondi Beach",more:"inverted spiders"}  
+        {id:1,name:"Pizza",cuisine:"Italian",ingredients:"Dough,tomato sauce,cheese,toppings",details:"Italian dish with a variety of toppings."}, 
+          {id:2,name:"Shushi",cuisine:"Japanese",ingredients:"Rice,fish,seaweed,vegetables",details:"Japanese dish"},  
+          {id:3,name:"Tacos",cuisine:"Mexican",ingredients:"Tortillas,meat,salsa,toppings",details:"Mexican Dish"},  
+          {id:4,name:"Pasta Carbonara",cuisine:"Italian",ingredients:"Pasta,eggs,cheese,bacon",details:"Italian Dish"},  
+          {id:5,name:"Chocolate Cake",cuisine:"Dessert",ingredients:"Flour,sugar,cocoa,eggs,chocolate",details:"Sweet Dish"},  
+          {id:6,name:"Biryani",cuisine:"Indian",ingredients:"Rice,meat,spices,vegetables",details:"Veg Biryani is not pulao"}  
         ]
 
         function getid(id)
@@ -79,12 +79,12 @@
         {
             let showa = document.getElementById("show")
             showa.innerHTML =`
-            <div class="card">
+            <div class="card col-6">
                 <div class = "card-body">
                     <h2>${desti.name}</h2>
-                    <p><strong>Duration:</strong> ${desti.duration}</p>
-                    <p><strong>Highlights:</strong> ${desti.high}</p>
-                    <p><strong>Details:</strong> ${desti.more}</p>
+                    <p><strong>Cusine: </strong>${desti.cuisine}</p>
+                    <p><strong>Ingredients: </strong> ${desti.ingredients}</p>
+                    <p><strong>Details: </strong> ${desti.details}</p>
                 </div>
             </div>
             `
