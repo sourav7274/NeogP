@@ -6,82 +6,74 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="numI">Enter your age</label>
-    <input type="number" id="numI">
-    <button id="numB">Validate Age</button>
-    <p id="validate"></p>
-
-    <label for="animalI">Enter your favourite animal</label>
-    <input type="text" id="animalI">
-    <button id="checkA">Display animal</button>
+    <label for="countryI">Enter your country</label>
+    <input type="text" id="countryI">
+    <button id="checkA">Display country</button>
     <p id="showA"></p>
 
-    <label for="colorI">Enter your favourite colour:</label>
-    <input type="text" id="colorI">
-    <button id="colorS">Display Color</button>
-    <p id="showCol"></p>
-
-    <label for="urlI">Yes/No Question</label>
+    <label for="urlI">Enter a website name</label>
     <input type="text" id="urlI">
-    <button id="urlB">Show link</button>
+    <button id="urlB">Display Heading</button>
     <p id="linkR"></p>
 
-    <label for="number">Enter a number</label>
-    <input type="number" id="numberI">
-    <button id="numberB">Check Number</button>
-    <p id="numberR"></p>
-    <script>        
-        const numI = document.getElementById("numI")
-        const numB = document.getElementById("numB")
-        const numM = document.getElementById("showG")
-        numB.addEventListener("click",function(){
-            const userN = numI.value
-            if (userN >=18 && userN <=100)
-            {
-                validate.innerHTML = `It is a valid age`
-            }
-            else{
-                validate.innerHTML = `Not a valid age`
-            }
-        })
+    <label for="textI">Are you a student</label>
+    <input type="text" id="textI">
+    <button id="textB">Display Response</button>
+    <p id="textR"></p>
 
-        const animalI = document.getElementById("animalI")
+    <label for="numI">Enter your age</label>
+    <input type="number" id="numI">
+    <button id="numB">Check Age</button>
+    <p id="validate"></p>
+
+    <script>
+        const countryI = document.getElementById("countryI")
         const checkA = document.getElementById("checkA")
         const checkM = document.getElementById("showA")
         checkA.addEventListener("click",function(){
-         const animal = animalI.value
-         showA.textContent = `${animal}`
+         const country = countryI.value
+         showA.textContent = `Your country is: ${country}`
         })
-
-
-        const colorI = document.getElementById("colorI")
-        const colorS = document.getElementById("colorS")
-        const colorCol = document.getElementById("showCol")
-        colorS.addEventListener("click",function(){
-            const col = colorI.value
-            showCol.textContent = `${col}`
-        })
-
+        
         const urlI = document.getElementById("urlI")
         const urlB = document.getElementById("urlB")
         const linkR = document.getElementById("linkR")
         urlB.addEventListener("click",function(){
             const url = urlI.value
-            linkR.innerHTML = `You said '${url}'`
+            linkR.innerHTML = `<h1>${url}</h1>`
         })
         
-        const numberI = document.getElementById("numberI")
-        const numberB = document.getElementById("numberB")
-        const numberR = document.getElementById("numberR")
-        numberB.addEventListener("click",function(){
-            const number = numberI.value
-            if(number % 2 ==0)
+        const textI = document.getElementById("textI")
+        const textB = document.getElementById("textB")
+        const textR = document.getElementById("textR")
+        textB.addEventListener("click",function(){
+            const text = textI.value
+            if(text.toLowerCase() == "yes" )
             {
-                numberR.innerHTML = `${number} is even`
+                textR.innerHTML = `You are a student`
+            }
+            else if(text.toLowerCase() == "no")
+            {
+                textR.innerHTML = `You are not a student`
             }
             else
             {
-                numberR.innerHTML = `${number} is odd`
+                textR.innerHTML = `Invalid Response`
+            }
+        })
+
+
+        const numI = document.getElementById("numI")
+        const numB = document.getElementById("numB")
+        const numM = document.getElementById("showG")
+        numB.addEventListener("click",function(){
+            const userN = numI.value
+            if (userN >=18)
+            {
+                validate.innerHTML = `You are an adult`
+            }
+            else{
+                validate.innerHTML = `You are a minor`
             }
         })
     </script>
