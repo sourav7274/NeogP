@@ -6,51 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="book">Enter your book review</label>
-    <textarea id="book" cols="50" rows="5"></textarea>
-    <button id="bookB">Display Book Review</button>
-    <p id="bookR"></p>
+    <label for="nameInput">Enter your name</label>
+    <input id="nameInput"/>
+    <button id="showName">Show Name</button>
+    <p id="nameR"></p>
+    <button id="styleB">Change Style</button>
 
-    <label for="bio">Enter your personal bio</label>
-    <textarea id="bio" cols="50" rows="5"></textarea>
-    <button id="bioB">Display Bio</button>
-    <p id="bioR"></p>
-    
-    <label for="diary">Enter your personal diary entry</label>
-    <textarea id="diary" cols="50" rows="5"></textarea>
-    <button id="diaryB">Display Diary Entry</button>
-    <p id="diaryR"></p>   
 
     <script>
-        const book = document.getElementById("book")
-        const bookB = document.getElementById("bookB")
-        const bookR = document.getElementById("bookR")
-        bookB.addEventListener("click",function(){
-            const boo = book.value
-            bookR.innerHTML = `Your book review: ${boo}`
+       const nameInput = document.querySelector("#nameInput")
+       const showName = document.querySelector("#showName")
+       const nameR = document.querySelector("#nameR")
+       const styleB = document.querySelector("#styleB")       
+       
+       showName.addEventListener("click",function(){
+        const name = nameInput.value
+        nameR.innerHTML = `Your Name: ${name}`
         })
 
-        const bio = document.getElementById("bio")
-        const bioB = document.getElementById("bioB")
-        const bioR = document.getElementById("bioR")
-        bioB.addEventListener("click",function(){
-            const boos = bio.value
-            bioR.innerHTML = `<i>${boos}</i>`
+        styleB.addEventListener("click",function(){
+            nameR.style.color = "green"
+            nameR.style.backgroundColor = "yellow"
         })
-
-        const diary = document.getElementById("diary")
-        const diaryB = document.getElementById("diaryB")
-        const diaryR = document.getElementById("diaryR")
-        diaryB.addEventListener("click",function(){
-            const entry = diary.value
-            const time = new Date().toLocaleString()
-            diaryR.innerHTML = `
-            <b>${time}</b>
-            <p>${entry}</p>
-            `
-        })
-        
-        
     </script>
 </body>
 </html>
