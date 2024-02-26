@@ -6,80 +6,51 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="books">Enter your favourite book list:</label>
-    <textarea  id="books" cols="50" rows="5"></textarea>
-    <button id="bookD">Display Book list</button>
+    <label for="book">Enter your book review</label>
+    <textarea id="book" cols="50" rows="5"></textarea>
+    <button id="bookB">Display Book Review</button>
     <p id="bookR"></p>
 
-    <label for="recipe">Enter a recipe:</label>
-    <textarea  id="recipe" cols="50" rows="5"></textarea>
-    <button id="recipeB">Display Recipie</button>
-    <p id="recipeR"></p>
-
-    <label for="bio">Enter your personal bio:</label>
-    <textarea  id="bio" cols="50" rows="5"></textarea>
-    <button id="bioD">Display Bio</button>
+    <label for="bio">Enter your personal bio</label>
+    <textarea id="bio" cols="50" rows="5"></textarea>
+    <button id="bioB">Display Bio</button>
     <p id="bioR"></p>
-
-    <label for="goal">Enter your list of goals:</label>
-    <textarea  id="goal" cols="50" rows="5"></textarea>
-    <button id="goalD">Display Goals</button>
-    <p id="goalR"></p>
-
-    <label for="story">Enter a story or anecdote:</label>
-    <textarea  id="story" cols="50" rows="5"></textarea>
-    <button id="storyD">Display Goals</button>
-    <p id="storyR"></p>
-
+    
+    <label for="diary">Enter your personal diary entry</label>
+    <textarea id="diary" cols="50" rows="5"></textarea>
+    <button id="diaryB">Display Diary Entry</button>
+    <p id="diaryR"></p>   
 
     <script>
-        const books = document.getElementById("books")
-        const bookD = document.getElementById("bookD")
+        const book = document.getElementById("book")
+        const bookB = document.getElementById("bookB")
         const bookR = document.getElementById("bookR")
-        bookD.addEventListener("click",function(){
-            const boo = books.value
-            bookR.textContent =  `Your favourite book list:${boo}`
-        })
-
-        const recipe = document.getElementById("recipe")
-        const recipeB = document.getElementById("recipeB")
-        const recipeR = document.getElementById("recipeR")
-        recipeB.addEventListener("click",function(){
-            const recipes = recipe.value
-            const stuff = recipes.split(/\n\s*\n/)
-            const ingredients = stuff [0]
-            const instructions = stuff[1]
-            recipeR.innerHTML = `
-            <b>Ingredients:</b>
-            <p>${ingredients}</p><br>
-            <b>Instructions</b>
-            <p>${instructions}</p>
-            `
+        bookB.addEventListener("click",function(){
+            const boo = book.value
+            bookR.innerHTML = `Your book review: ${boo}`
         })
 
         const bio = document.getElementById("bio")
-        const bioD = document.getElementById("bioD")
+        const bioB = document.getElementById("bioB")
         const bioR = document.getElementById("bioR")
-        bioD.addEventListener("click",function(){
-            const bios = bio.value
-            bioR.textContent =  `Your bio:${bios}`
+        bioB.addEventListener("click",function(){
+            const boos = bio.value
+            bioR.innerHTML = `<i>${boos}</i>`
         })
 
-        const goal = document.getElementById("goal")
-        const goalD = document.getElementById("goalD")
-        const goalR = document.getElementById("goalR")
-        goalD.addEventListener("click",function(){
-            const goals = goal.value
-            goalR.textContent =  `Your bio:${goals}`
+        const diary = document.getElementById("diary")
+        const diaryB = document.getElementById("diaryB")
+        const diaryR = document.getElementById("diaryR")
+        diaryB.addEventListener("click",function(){
+            const entry = diary.value
+            const time = new Date().toLocaleString()
+            diaryR.innerHTML = `
+            <b>${time}</b>
+            <p>${entry}</p>
+            `
         })
-
-        const story = document.getElementById("story")
-        const storyD = document.getElementById("storyD")
-        const storyR = document.getElementById("storyR")
-        storyD.addEventListener("click",function(){
-            const storys = story.value
-            storyR.textContent =  `Your story or anecdote:${storys}`
-        })
+        
+        
     </script>
 </body>
 </html>
