@@ -6,28 +6,94 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="nameInput">Enter your name</label>
-    <input id="nameInput"/>
-    <button id="showName">Show Name</button>
-    <p id="nameR"></p>
-    <button id="styleB">Change Style</button>
+    <label for="ageI">Enter your age</label>
+    <input type="number" id="ageI"/>
+    <button id="ageDb">Display Age</button>
+    <button id="ageEb">Check Eligibility</button>
+    <p id="ageR"></p>
 
+    <label for="ansI">Are you a student?</label>
+    <input type="text" id="ansI"/>
+    <button id="ansDb">Display Answer</button>
+    <button id="ansEb">Check Eligibility</button>
+    <p id="ansR"></p>
+
+    <label for="passI">Enter password</label>
+    <input type="text" id="passI"/>
+    <button id="passDb">Display Password</button>
+    <button id="passEb">Check Password</button>
+    <p id="passR"></p>
 
     <script>
-       const nameInput = document.querySelector("#nameInput")
-       const showName = document.querySelector("#showName")
-       const nameR = document.querySelector("#nameR")
-       const styleB = document.querySelector("#styleB")       
-       
-       showName.addEventListener("click",function(){
-        const name = nameInput.value
-        nameR.innerHTML = `Your Name: ${name}`
-        })
+        const ageI = document.querySelector("#ageI");
+        const ageDb = document.querySelector("#ageDb");
+        const ageEb = document.querySelector("#ageEb");
+        const ageR = document.querySelector("#ageR");
 
-        styleB.addEventListener("click",function(){
-            nameR.style.color = "green"
-            nameR.style.backgroundColor = "yellow"
-        })
+        ageDb.addEventListener("click", function () {
+            const age = ageI.value;
+            ageR.innerHTML = `Your Age: ${age}`;
+        });
+
+        ageEb.addEventListener("click", function () {
+            if (ageI.value >= 18) {
+                ageR.style.color = "green";
+            } else {
+                ageR.style.color = "red";
+            }
+        });
+
+        const ansI = document.querySelector("#ansI");
+        const ansDb = document.querySelector("#ansDb");
+        const ansEb = document.querySelector("#ansEb");
+        const ansR = document.querySelector("#ansR");
+
+        ansDb.addEventListener("click", function () {
+            const ans = ansI.value;
+            if (ans.toLowerCase() === "yes") {
+                ansR.innerHTML = `You are eligible`;
+            } else {
+                ansR.innerHTML = `You are not eligible`;
+            }
+        });
+
+        ansEb.addEventListener("click", function () {
+            const ans = ansI.value;
+            if (ans.toLowerCase() === "yes") {
+                ansR.style.color = "green";
+            } else {
+                ansR.style.color = "red";
+            }
+        });
+
+        const passI = document.querySelector("#passI");
+        const passDb = document.querySelector("#passDb");
+        const passEb = document.querySelector("#passEb");
+        const passR = document.querySelector("#passR");
+
+        passDb.addEventListener("click", function () {
+            const pass = passI.value;
+            passR.innerHTML = `Your password: ${pass}`;
+        });
+
+        passEb.addEventListener("click", function () {
+            const pass = passI.value;
+            let val = false;
+            for (let i = 0; i < pass.length; i++) {
+                if (pass[i] === "@") {
+                    val = true;
+                    break;
+                }
+            }
+
+            if (val) {
+                passR.innerHTML = `Password Accepted`;
+                passR.style.color = "green";
+            } else {
+                passR.innerHTML = `Invalid password, missing @`;
+                passR.style.color = "red";
+            }
+        });
     </script>
 </body>
 </html>
