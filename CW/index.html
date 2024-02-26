@@ -6,76 +6,45 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="countryI">Enter your country</label>
-    <input type="text" id="countryI">
-    <button id="checkA">Display country</button>
-    <p id="showA"></p>
+    <label for="feedbackTextArea">Give your feedback</label>
+    <textarea id="feedbackTextArea" rows="4" cols="50"></textarea>
+    <button id="feedbackSubmit">Submit</button>
+    <p id="feedback"></p>
 
-    <label for="urlI">Enter a website name</label>
-    <input type="text" id="urlI">
-    <button id="urlB">Display Heading</button>
-    <p id="linkR"></p>
+    <label for="addressInput">Enter your address</label>
+    <textarea id="addressInput" rows="5" cols="50"></textarea>
+    <button id="addressUpdate">Display Address</button>
+    <p id="addressResult"></p>
 
-    <label for="textI">Are you a student</label>
-    <input type="text" id="textI">
-    <button id="textB">Display Response</button>
-    <p id="textR"></p>
-
-    <label for="numI">Enter your age</label>
-    <input type="number" id="numI">
-    <button id="numB">Check Age</button>
-    <p id="validate"></p>
+    <label for="descriptionText">Enter a description</label>
+    <textarea id="descriptionText" cols="50" rows="5"></textarea>
+    <button id="descriptionBtn">Display Description</button>
+    <p id="descriptionResult"></p>
 
     <script>
-        const countryI = document.getElementById("countryI")
-        const checkA = document.getElementById("checkA")
-        const checkM = document.getElementById("showA")
-        checkA.addEventListener("click",function(){
-         const country = countryI.value
-         showA.textContent = `Your country is: ${country}`
-        })
-        
-        const urlI = document.getElementById("urlI")
-        const urlB = document.getElementById("urlB")
-        const linkR = document.getElementById("linkR")
-        urlB.addEventListener("click",function(){
-            const url = urlI.value
-            linkR.innerHTML = `<h1>${url}</h1>`
-        })
-        
-        const textI = document.getElementById("textI")
-        const textB = document.getElementById("textB")
-        const textR = document.getElementById("textR")
-        textB.addEventListener("click",function(){
-            const text = textI.value
-            if(text.toLowerCase() == "yes" )
-            {
-                textR.innerHTML = `You are a student`
-            }
-            else if(text.toLowerCase() == "no")
-            {
-                textR.innerHTML = `You are not a student`
-            }
-            else
-            {
-                textR.innerHTML = `Invalid Response`
-            }
-        })
+        const feedback = document.getElementById("feedbackTextArea");
+        const submit = document.getElementById("feedbackSubmit");
+        const result = document.getElementById("feedback");
+        submit.addEventListener("click", function() {
+            const words = feedback.value;
+            result.textContent = `Feedback: ${words}`;
+        });
 
+        const address = document.getElementById("addressInput");
+        const addressBtn = document.getElementById("addressUpdate");
+        const addressResult = document.getElementById("addressResult");
+        addressBtn.addEventListener("click", function() {
+            const add = address.value;
+            addressResult.textContent = `Your address: ${add}`;
+        });
 
-        const numI = document.getElementById("numI")
-        const numB = document.getElementById("numB")
-        const numM = document.getElementById("showG")
-        numB.addEventListener("click",function(){
-            const userN = numI.value
-            if (userN >=18)
-            {
-                validate.innerHTML = `You are an adult`
-            }
-            else{
-                validate.innerHTML = `You are a minor`
-            }
-        })
+        const description = document.getElementById("descriptionText");
+        const descriptionBtn = document.getElementById("descriptionBtn");
+        const descriptionResult = document.getElementById("descriptionResult");
+        descriptionBtn.addEventListener("click", function() {
+            const descrip = description.value;
+            descriptionResult.textContent = `Description: ${descrip}`;
+        });
     </script>
 </body>
 </html>
