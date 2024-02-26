@@ -6,45 +6,80 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="feedbackTextArea">Give your feedback</label>
-    <textarea id="feedbackTextArea" rows="4" cols="50"></textarea>
-    <button id="feedbackSubmit">Submit</button>
-    <p id="feedback"></p>
+    <label for="books">Enter your favourite book list:</label>
+    <textarea  id="books" cols="50" rows="5"></textarea>
+    <button id="bookD">Display Book list</button>
+    <p id="bookR"></p>
 
-    <label for="addressInput">Enter your address</label>
-    <textarea id="addressInput" rows="5" cols="50"></textarea>
-    <button id="addressUpdate">Display Address</button>
-    <p id="addressResult"></p>
+    <label for="recipe">Enter a recipe:</label>
+    <textarea  id="recipe" cols="50" rows="5"></textarea>
+    <button id="recipeB">Display Recipie</button>
+    <p id="recipeR"></p>
 
-    <label for="descriptionText">Enter a description</label>
-    <textarea id="descriptionText" cols="50" rows="5"></textarea>
-    <button id="descriptionBtn">Display Description</button>
-    <p id="descriptionResult"></p>
+    <label for="bio">Enter your personal bio:</label>
+    <textarea  id="bio" cols="50" rows="5"></textarea>
+    <button id="bioD">Display Bio</button>
+    <p id="bioR"></p>
+
+    <label for="goal">Enter your list of goals:</label>
+    <textarea  id="goal" cols="50" rows="5"></textarea>
+    <button id="goalD">Display Goals</button>
+    <p id="goalR"></p>
+
+    <label for="story">Enter a story or anecdote:</label>
+    <textarea  id="story" cols="50" rows="5"></textarea>
+    <button id="storyD">Display Goals</button>
+    <p id="storyR"></p>
+
 
     <script>
-        const feedback = document.getElementById("feedbackTextArea");
-        const submit = document.getElementById("feedbackSubmit");
-        const result = document.getElementById("feedback");
-        submit.addEventListener("click", function() {
-            const words = feedback.value;
-            result.textContent = `Feedback: ${words}`;
-        });
+        const books = document.getElementById("books")
+        const bookD = document.getElementById("bookD")
+        const bookR = document.getElementById("bookR")
+        bookD.addEventListener("click",function(){
+            const boo = books.value
+            bookR.textContent =  `Your favourite book list:${boo}`
+        })
 
-        const address = document.getElementById("addressInput");
-        const addressBtn = document.getElementById("addressUpdate");
-        const addressResult = document.getElementById("addressResult");
-        addressBtn.addEventListener("click", function() {
-            const add = address.value;
-            addressResult.textContent = `Your address: ${add}`;
-        });
+        const recipe = document.getElementById("recipe")
+        const recipeB = document.getElementById("recipeB")
+        const recipeR = document.getElementById("recipeR")
+        recipeB.addEventListener("click",function(){
+            const recipes = recipe.value
+            const stuff = recipes.split(/\n\s*\n/)
+            const ingredients = stuff [0]
+            const instructions = stuff[1]
+            recipeR.innerHTML = `
+            <b>Ingredients:</b>
+            <p>${ingredients}</p><br>
+            <b>Instructions</b>
+            <p>${instructions}</p>
+            `
+        })
 
-        const description = document.getElementById("descriptionText");
-        const descriptionBtn = document.getElementById("descriptionBtn");
-        const descriptionResult = document.getElementById("descriptionResult");
-        descriptionBtn.addEventListener("click", function() {
-            const descrip = description.value;
-            descriptionResult.textContent = `Description: ${descrip}`;
-        });
+        const bio = document.getElementById("bio")
+        const bioD = document.getElementById("bioD")
+        const bioR = document.getElementById("bioR")
+        bioD.addEventListener("click",function(){
+            const bios = bio.value
+            bioR.textContent =  `Your bio:${bios}`
+        })
+
+        const goal = document.getElementById("goal")
+        const goalD = document.getElementById("goalD")
+        const goalR = document.getElementById("goalR")
+        goalD.addEventListener("click",function(){
+            const goals = goal.value
+            goalR.textContent =  `Your bio:${goals}`
+        })
+
+        const story = document.getElementById("story")
+        const storyD = document.getElementById("storyD")
+        const storyR = document.getElementById("storyR")
+        storyD.addEventListener("click",function(){
+            const storys = story.value
+            storyR.textContent =  `Your story or anecdote:${storys}`
+        })
     </script>
 </body>
 </html>
