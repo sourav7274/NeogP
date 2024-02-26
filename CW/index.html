@@ -1,66 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <body>
-  <header>                     
-        <nav class="navbar navbar-expand-lg text-secondary">
-          <div class="container">
-            <a class="navbar-brand" href="index.html">Company Name</a>
+    <label for="numI">Enter your age</label>
+    <input type="number" id="numI">
+    <button id="numB">Validate Age</button>
+    <p id="validate"></p>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
-            aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <uL class="navbar-nav">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="employee.html">Employee</a></li>
-              <li class="nav-item"><a class="nav-link" href="report.html">Report</a></li>
-            </uL>
-            </div>
-          </div>
-        </nav>   
-  </header>
+    <label for="animalI">Enter your favourite animal</label>
+    <input type="text" id="animalI">
+    <button id="checkA">Display animal</button>
+    <p id="showA"></p>
 
-    <main>
-        <div class="container">
-          <div class="text-center">
-            <section>
-              <img class="img-fluid" src="https://placehold.co/1400x500?text=Smile" alt="smile"/>
-          </section>
-          </div>
-        </div>
+    <label for="colorI">Enter your favourite colour:</label>
+    <input type="text" id="colorI">
+    <button id="colorS">Display Color</button>
+    <p id="showCol"></p>
+
+    <label for="urlI">Yes/No Question</label>
+    <input type="text" id="urlI">
+    <button id="urlB">Show link</button>
+    <p id="linkR"></p>
+
+    <label for="number">Enter a number</label>
+    <input type="number" id="numberI">
+    <button id="numberB">Check Number</button>
+    <p id="numberR"></p>
+    <script>        
+        const numI = document.getElementById("numI")
+        const numB = document.getElementById("numB")
+        const numM = document.getElementById("showG")
+        numB.addEventListener("click",function(){
+            const userN = numI.value
+            if (userN >=18 && userN <=100)
+            {
+                validate.innerHTML = `It is a valid age`
+            }
+            else{
+                validate.innerHTML = `Not a valid age`
+            }
+        })
+
+        const animalI = document.getElementById("animalI")
+        const checkA = document.getElementById("checkA")
+        const checkM = document.getElementById("showA")
+        checkA.addEventListener("click",function(){
+         const animal = animalI.value
+         showA.textContent = `${animal}`
+        })
+
+
+        const colorI = document.getElementById("colorI")
+        const colorS = document.getElementById("colorS")
+        const colorCol = document.getElementById("showCol")
+        colorS.addEventListener("click",function(){
+            const col = colorI.value
+            showCol.textContent = `${col}`
+        })
+
+        const urlI = document.getElementById("urlI")
+        const urlB = document.getElementById("urlB")
+        const linkR = document.getElementById("linkR")
+        urlB.addEventListener("click",function(){
+            const url = urlI.value
+            linkR.innerHTML = `You said '${url}'`
+        })
         
-        <div class="text-center container bg-light">
-          <section class="py-5">
-            <h2>Our Employees</h2>
-            <p>
-                Meet our peeps who work tirelessly to achieve 
-                our company's goals.
-            </p>
-            <a class="btn btn-primary" href="employee.html">View Employees</a>
-        </section>
-        </div>
-        <div class="text-center container">
-          <section class="py-5">
-            <h2>Reports</h2>
-            <p>
-                Explore our latest financial Reportto gain insight
-                into our performace and growth
-            </p>
-            <a class="btn btn-primary" href="report.html">View Report</a>
-        </section>
-        </div>
-    </main>
-    <footer class="bg-dark py-3">
-      <div class="text-center">
-        <p class="text-white">&copy; 2024 Company name all rights reserved</p>
-      </div>
-
-    </footer>
+        const numberI = document.getElementById("numberI")
+        const numberB = document.getElementById("numberB")
+        const numberR = document.getElementById("numberR")
+        numberB.addEventListener("click",function(){
+            const number = numberI.value
+            if(number % 2 ==0)
+            {
+                numberR.innerHTML = `${number} is even`
+            }
+            else
+            {
+                numberR.innerHTML = `${number} is odd`
+            }
+        })
+    </script>
 </body>
 </html>
