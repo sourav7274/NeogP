@@ -6,94 +6,113 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="ageI">Enter your age</label>
-    <input type="number" id="ageI"/>
-    <button id="ageDb">Display Age</button>
-    <button id="ageEb">Check Eligibility</button>
-    <p id="ageR"></p>
+    <label for="jsansI">What is Javascript</label>
+    <textarea  id="jsansI" cols="40" rows="5"></textarea>
+    <button id="jsansB">Display Answer</button>
+    <button id="jsansC">Count Words</button>
+    <p id="jsansR"></p>
+    <p id="jsansCR"></p>
 
-    <label for="ansI">Are you a student?</label>
-    <input type="text" id="ansI"/>
-    <button id="ansDb">Display Answer</button>
-    <button id="ansEb">Check Eligibility</button>
-    <p id="ansR"></p>
+    <label for="todoI">List Todos:</label>
+    <textarea  id="todoI" cols="40" rows="5"></textarea>
+    <button id="todoB">Display Todos</button>
+    <button id="todoC">Count Todos</button>
+    <p id="todoR"></p>
 
-    <label for="passI">Enter password</label>
+    <label for="passI">Enter Password:</label>
     <input type="text" id="passI"/>
-    <button id="passDb">Display Password</button>
-    <button id="passEb">Check Password</button>
+    <button id="passB">Display Password</button>
+    <button id="passC">Check Password</button>
     <p id="passR"></p>
 
     <script>
-        const ageI = document.querySelector("#ageI");
-        const ageDb = document.querySelector("#ageDb");
-        const ageEb = document.querySelector("#ageEb");
-        const ageR = document.querySelector("#ageR");
+        const jsansI = document.querySelector("#jsansI")
+        const jsansB = document.querySelector("#jsansB")
+        const jsansC = document.querySelector("#jsansC")
+        const jsansR = document.querySelector("#jsansR")
+        const jsansCR = document.querySelector("#jsansCR")
 
-        ageDb.addEventListener("click", function () {
-            const age = ageI.value;
-            ageR.innerHTML = `Your Age: ${age}`;
-        });
-
-        ageEb.addEventListener("click", function () {
-            if (ageI.value >= 18) {
-                ageR.style.color = "green";
-            } else {
-                ageR.style.color = "red";
+        jsansB.addEventListener("click",function(){
+            const ans = jsansI.value
+            jsansR.innerHTML=`Your answer:${ans}`
+        })
+        jsansC.addEventListener("click",function(){
+            const ans = jsansI.value
+            const words = ans.split(" ")
+            const length = words.length
+            if(length<=7)
+            {
+                jsansR.style.color = 'green'
+                jsansCR.innerHTML = `Good`
+                jsansCR.style.color = 'green'
             }
-        });
-
-        const ansI = document.querySelector("#ansI");
-        const ansDb = document.querySelector("#ansDb");
-        const ansEb = document.querySelector("#ansEb");
-        const ansR = document.querySelector("#ansR");
-
-        ansDb.addEventListener("click", function () {
-            const ans = ansI.value;
-            if (ans.toLowerCase() === "yes") {
-                ansR.innerHTML = `You are eligible`;
-            } else {
-                ansR.innerHTML = `You are not eligible`;
+            else
+            {
+                jsansR.style.color = 'red'
+                jsansCR.innerHTML = `Word count exceeding`
+                jsansCR.style.color = 'red'
             }
-        });
+        })
 
-        ansEb.addEventListener("click", function () {
-            const ans = ansI.value;
-            if (ans.toLowerCase() === "yes") {
-                ansR.style.color = "green";
-            } else {
-                ansR.style.color = "red";
-            }
-        });
+        const todoI = document.querySelector("#todoI")
+        const todoB = document.querySelector("#todoB")
+        const todoC = document.querySelector("#todoC")
+        const todoR = document.querySelector("#todoR")
+        todoB.addEventListener("click",function(){
+            const ans = todoI.value
+            const tasks = ans.split(",")
+            const length = tasks.length
+            todoR.innerHTML = `Total number of todos:${length}`
+        })
+        todoC.addEventListener("click",function(){
+            const ans = todoI.value
+            const tasks = ans.split(",")
+            const length = tasks.length
+            todoR.innerHTML = `Total number of todos:${length}`
+            todoR.style.color = 'green'
+        })
 
-        const passI = document.querySelector("#passI");
-        const passDb = document.querySelector("#passDb");
-        const passEb = document.querySelector("#passEb");
-        const passR = document.querySelector("#passR");
-
-        passDb.addEventListener("click", function () {
-            const pass = passI.value;
-            passR.innerHTML = `Your password: ${pass}`;
-        });
-
-        passEb.addEventListener("click", function () {
-            const pass = passI.value;
-            let val = false;
-            for (let i = 0; i < pass.length; i++) {
-                if (pass[i] === "@") {
-                    val = true;
-                    break;
+        const passI = document.querySelector("#passI")
+        const passB = document.querySelector("#passB")
+        const passC = document.querySelector("#passC")
+        const passR = document.querySelector("#passR")
+        passB.addEventListener("click",function(){
+            const pass = passI.value
+            passR.innerHTML = `Your password: ${pass}`
+        })
+        passC.addEventListener("click",function(){
+            const pass = passI.value
+            const length = pass.length
+            if(length>5)
+            {
+                let val = false
+                for(let i=0;i<length;i++)
+                {
+                    if(pass[i]=="@"||pass[i]=="!"||pass[i]=="$")
+                    {
+                        val = true
+                        break
+                    }
+                }
+                console.log(val)
+                if(val)
+                {
+                    passR.innerHTML = `Password Accepted.`
+                    passR.style.color = "green"
+                }
+                else
+                {
+                    passR.innerHTML = `Invalid Password. Password should be more than 5 characters and must contain @ or ! or $ symbol.`
+                    passR.style.color = "red"
                 }
             }
-
-            if (val) {
-                passR.innerHTML = `Password Accepted`;
-                passR.style.color = "green";
-            } else {
-                passR.innerHTML = `Invalid password, missing @`;
-                passR.style.color = "red";
-            }
-        });
+            else
+            {
+                passR.innerHTML = `Invalid Password. Password should be more than 5 characters and must contain @ or ! or $ symbol.`
+                passR.style.color = "red"
+            }            
+        })
+        
     </script>
 </body>
 </html>
