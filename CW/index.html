@@ -6,73 +6,121 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="optInCheckBox">Select checkbox to opt-in:</label>
-    <br>
-    <input type="checkbox" id="optInCheckBox">yes
-    <p id="optInResult"></p>
+    <label>Program 1: Select multiple sports:</label>
+    <input type="checkbox" name="sports" value="Soccer">Soccer
+    <input type="checkbox" name="sports" value="Basketball">Basketball
+    <input type="checkbox" name="sports" value="Tennis">Tennis
+    <button id="displaySB">Display Selected Sports</button>
+    <p id="showM1"></p>
 
-    <label>Choose Pizza Toppings</label>
-    <br>
-    <input type="checkbox" name="toppings" value="Pepperoni">Pepperoni
-    <input type="checkbox" name="toppings" value="Olives">Olives
-    <input type="checkbox" name="toppings" value="Mushrooms">Mushrooms
-    <p id="toppingsResult"></p>
+    <label>Program 2: Select multiple vaccation destinations:</label>
+    <input type="checkbox" name="vaccation" value="Beach">Beach
+    <input type="checkbox" name="vaccation" value="Mountain">Mountain
+    <input type="checkbox" name="vaccation" value="City">City
+    <button id="displaySD">Display Selected Destinations</button>
+    <p id="showM2"></p>
 
-    <label for="">Choose Your preferred programming language:</label>
-    <br>
-    <input type="checkbox" name="language" value="JavaScript">JavaScript
-    <input type="checkbox" name="language" value="Python">Python
-    <input type="checkbox" name="language" value="Java">Java
-    <p id="languageResult"></p>
+    <label>Program 3: Select multiple movie genres:</label>
+    <input type="checkbox" name="movie" value="Action">Action
+    <input type="checkbox" name="movie" value="Comedy">Comedy
+    <input type="checkbox" name="movie" value="Drama">Drama
+    <button id="displaySM">Display Selected Movie genres</button>
+    <p id="showM3"></p>
+    
+    <label>Program 4: Select multiple items from restaurant menu:</label>
+    <input type="checkbox" name="items" value="Burger">Burger
+    <input type="checkbox" name="items" value="Pizza">Pizza
+    <input type="checkbox" name="items" value="Salad">Salad
+    <button id="displaySI">Display Selected Items</button>
+    <p id="showM4"></p>
+
+    <label>Program 5: Select multiple fruits:</label>
+    <input type="checkbox" name="fruits" value="Apple">Apple
+    <input type="checkbox" name="fruits" value="Banana">Banana
+    <input type="checkbox" name="fruits" value="Orange">Orange
+    <button id="displaySF">Display Selected Fruits</button>
+    <p id="showM5"></p>
 
     <script>
-        const optInCheckBox = document.getElementById("optInCheckBox")
-        const optInResult = document.getElementById("optInResult")
-        optInCheckBox.addEventListener("change",function(){
-            if(optInCheckBox.checked)
+        const sportsValue = document.getElementsByName("sports")
+        const displaySB = document.getElementById("displaySB")
+        const showM1 = document.getElementById("showM1")
+        displaySB.addEventListener("click",function(){
+            const data = []
+            for(let i=0;i<sportsValue.length;i++)
             {
-                optInResult.textContent = "You are subscribed."
+                    if(sportsValue[i].checked)
+                    {
+                        data.push(sportsValue[i].value)
+                    }
+               
             }
-            else
-            {
-                optInResult.textContent = ''
-            }
+            showM1.innerHTML = `Selected Sports: ${data.join(", ")}`
         })
 
-        const toppingCheckbox = document.getElementsByName("toppings")
-        const toppingsResult = document.getElementById("toppingsResult")
-        for (let i=0;i<toppingCheckbox.length;i++)
-        {
-            toppingCheckbox[i].addEventListener("change",function(){
-                const selectedToppings =[]
-
-                for(j=0;j<toppingCheckbox.length;j++)
-                {
-                    if(toppingCheckbox[j].checked)
+        const vaccation = document.getElementsByName("vaccation")
+        const displaySD = document.getElementById("displaySD")
+        const showM2 = document.getElementById("showM2")
+        displaySD.addEventListener("click",function(){
+            const data = []
+            for(let i=0;i<vaccation.length;i++)
+            {
+                    if(vaccation[i].checked)
                     {
-                        selectedToppings.push(toppingCheckbox[j].value)
+                        data.push(vaccation[i].value)
                     }
-                }
-                toppingsResult.textContent = `Selected Toppings; ${selectedToppings.join(', ')}`
-            })
-        }
+               
+            }
+            showM2.innerHTML = `Selected Sports: ${data.join(", ")}`
+        })
 
-        const languageCheckboxes = document.getElementsByName("language");
-        const languageResult = document.getElementById("languageResult");
-
-        for (let i = 0; i < languageCheckboxes.length; i++) {
-            languageCheckboxes[i].addEventListener("change", function() {
-                const selectedLanguages = [];
-                for (let j = 0; j < languageCheckboxes.length; j++) {
-                    if (languageCheckboxes[j].checked) {
-                        selectedLanguages.push(languageCheckboxes[j].value);
+        const movie = document.getElementsByName("movie")
+        const displaySM = document.getElementById("displaySM")
+        const showM3 = document.getElementById("showM3")
+        displaySM.addEventListener("click",function(){
+            const data = []
+            for(let i=0;i<movie.length;i++)
+            {
+                    if(movie[i].checked)
+                    {
+                        data.push(movie[i].value)
                     }
-                }
-                languageResult.innerHTML = `Selected Languages: ${selectedLanguages.join(", ")}`;
-                console.log(selectedLanguages)
-            });
-        }
+               
+            }
+            showM3.innerHTML = `Selected Genres: ${data.join(", ")}`
+        })
 
+        const items = document.getElementsByName("items")
+        const displaySI = document.getElementById("displaySI")
+        const showM4 = document.getElementById("showM4")
+        displaySI.addEventListener("click",function(){
+            const data = []
+            for(let i=0;i<movie.length;i++)
+            {
+                    if(items[i].checked)
+                    {
+                        data.push(items[i].value)
+                    }
+               
+            }
+            showM4.innerHTML = `Selected Genres: ${data.join(", ")}`
+        })
+
+        const fruits = document.getElementsByName("fruits")
+        const displaySF = document.getElementById("displaySF")
+        const showM5 = document.getElementById("showM5")
+        displaySF.addEventListener("click",function(){
+            const data = []
+            for(let i=0;i<fruits.length;i++)
+            {
+                    if(fruits[i].checked)
+                    {
+                        data.push(fruits[i].value)
+                    }
+               
+            }
+            showM5.innerHTML = `Selected Genres: ${data.join(", ")}`
+        })
     </script>
 </body>
 </html>
