@@ -6,56 +6,91 @@
     <title>Document</title>
 </head>
 <body>
-    <label>Choose your gender</label>
-    <br>
-    <input type="radio" name="gender" value="Male">Male
-    <br>
-    <input type="radio" name="gender" value="Female">Female
-    <br>
-    <input type="radio" name="gender" value="others">others
-    <p id="genderR"></p>
+    <label for="">Program 1: Select a music genre</label>
+    <input type="radio" name="music" value="Pop">Pop
+    <input type="radio" name="music" value="Rock">Rock
+    <input type="radio" name="music" value="Hip-Hop">Hip-Hop
+    <p id="musicR"></p>
 
-    <label for="">Choose your meal preference</label><br>
-    <input type="radio" name="meal" value="Vegetarian">Vegetarian<br>
-    <input type="radio" name="meal" value="Non-Vegetarian">Non-Vegetarian<br>
-    <p id="mealR"></p>
+    <label for="">Program 2: Select a language preference</label>
+    <input type="radio" name="language" value="English">English
+    <input type="radio" name="language" value="Spanish">Spanish
+    <input type="radio" name="language" value="French">French
+    <p id="languageR"></p>
+    
+    <label for="">Program 3: Select a job role</label>
+    <input type="radio" name="job" value="Developer">Developer
+    <input type="radio" name="job" value="Designer">Designer
+    <input type="radio" name="job" value="Manager">Manager
+    <button id="jobD" >Display Selected Role</button>
+    <p id="jobR"></p>
 
-    <label for="">Choose a size</label><br>
-    <input type="radio" name="size" value="Small">Small<br>
-    <input type="radio" name="size" value="Medium">Medium<br>
-    <input type="radio" name="size" value="Large">Large<br>
-    <p id="sizeR"></p>
+    <label for="">Program 4: Choose a favourite hobby</label>
+    <input type="radio" name="hobby" value="Reading">Reading
+    <input type="radio" name="hobby" value="Gardening">Gardening
+    <input type="radio" name="hobby" value="Sports">Sports
+    <button id="hobbyD" >Display Selected Hobby</button>
+    <p id="hobbyR"></p>
+
+    <label for="">Program 5: Choose a clothing style:</label>
+    <input type="radio" name="style" value="Casual">Casual
+    <input type="radio" name="style" value="Formal">Formal
+    <input type="radio" name="style" value="Sporty">Sporty
+    <button id="styleD" >Display Selected Hobby</button>
+    <p id="styleR"></p>
+
 
     <script>
-        const genderRadio = document.getElementsByName("gender")
-        const genderR = document.getElementById("genderR")
-        for(let i=0;i<genderRadio.length;i++)
+
+        const style = document.getElementsByName("style")
+        const styleD = document.getElementById("styleD")
+        const styleR = document.getElementById("styleR")
+        styleD.addEventListener("click", function(){
+            const selectedstyle = document.querySelector("input[name=style]:checked");
+            if (selectedstyle) {
+                styleR.innerHTML = `Selected Job Role: ${selectedstyle.value}`;
+            }
+        });
+
+        const hobby = document.getElementsByName("hobby")
+        const hobbyD = document.getElementById("hobbyD")
+        const hobbyR = document.getElementById("hobbyR")
+        hobbyD.addEventListener("click", function(){
+            const selectedhobby = document.querySelector("input[name=hobby]:checked");
+            if (selectedhobby) {
+                hobbyR.innerHTML = `Selected Job Role: ${selectedhobby.value}`;
+            }
+        });
+
+        const jobs = document.getElementsByName("job")
+        const jobD = document.getElementById("jobD")
+        const jobR = document.getElementById("jobR")
+        jobD.addEventListener("click", function(){
+            const selectedJob = document.querySelector("input[name=job]:checked");
+            if (selectedJob) {
+                jobR.innerHTML = `Selected Job Role: ${selectedJob.value}`;
+            }
+        });
+        
+        const musicI = document.getElementsByName("music")
+        const musicR = document.getElementById("musicR")
+        for(let i=0;i<musicI.length;i++)
         {
-            genderRadio[i].addEventListener("change",function(){
-                const sRb = document.querySelector("input[name=gender]:checked").value
-                genderR.textContent = `Selected Gender: ${sRb}`                
-            })
+           musicI[i].addEventListener("change",function(){
+            const data = document.querySelector("input[name=music]:checked").value
+            musicR.innerHTML = `Selected Genres: ${data}`
+        })
         }
 
-        const mealRadio = document.getElementsByName("meal")
-        const mealR = document.getElementById("mealR")
-        for(let i=0;i<mealRadio.length;i++)
+        const language = document.getElementsByName("language")
+        const languageR = document.getElementById("languageR")
+        for(let i=0;i<language.length;i++)
         {
-            mealRadio[i].addEventListener("change",function(){
-                const mealI = document.querySelector("input[name=meal]:checked").value
-                mealR.textContent = `Selected Meal: ${mealI}`
-            })
+           language[i].addEventListener("change",function(){
+            const data = document.querySelector("input[name=language]:checked").value
+            languageR.innerHTML = `Selected Languages: ${data}`
+        })
         }
-
-        const sizeRadio = document.getElementsByName("size")
-        const sizeR = document.getElementById("sizeR")
-        for(let i=0;i<sizeRadio.length;i++)
-        {
-            sizeRadio[i].addEventListener("change",function(){
-                const sizeValue = document.querySelector("input[name=size]:checked").value
-                sizeR.textContent = `Selected Size: ${sizeValue}`
-            })
-        }
-</script>
+    </script>
 </body>
 </html>
