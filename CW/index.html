@@ -6,89 +6,89 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="">Program 1: Select a music genre</label>
-    <input type="radio" name="music" value="Pop">Pop
-    <input type="radio" name="music" value="Rock">Rock
-    <input type="radio" name="music" value="Hip-Hop">Hip-Hop
-    <p id="musicR"></p>
+    <label for="">Program 1: Select a mood</label>
+    <input type="radio" name="mood" value="Happy">Happy
+    <input type="radio" name="mood" value="Sad">Sad
+    <input type="radio" name="mood" value="Excited">Excited
+    <p id="moodR"></p>
 
-    <label for="">Program 2: Select a language preference</label>
-    <input type="radio" name="language" value="English">English
-    <input type="radio" name="language" value="Spanish">Spanish
-    <input type="radio" name="language" value="French">French
-    <p id="languageR"></p>
+    <label for="">Program 2: Select a book genre</label>
+    <input type="radio" name="book" value="Mystery">Mystery
+    <input type="radio" name="book" value="Romance">Romance
+    <input type="radio" name="book" value="Science-Fiction">Science-Fiction
+    <p id="bookR"></p>
     
-    <label for="">Program 3: Select a job role</label>
-    <input type="radio" name="job" value="Developer">Developer
-    <input type="radio" name="job" value="Designer">Designer
-    <input type="radio" name="job" value="Manager">Manager
-    <button id="jobD" >Display Selected Role</button>
-    <p id="jobR"></p>
+    <label for="">Program 3: Select a clothing style</label>
+    <input type="radio" name="cloth" value="Casual">Casual
+    <input type="radio" name="cloth" value="Formal">Formal
+    <input type="radio" name="cloth" value="Sporty">Sporty
+    <button id="clothD" >Display Selected Role</button>
+    <p id="clothR"></p>
 
-    <label for="">Program 4: Choose a favourite hobby</label>
-    <input type="radio" name="hobby" value="Reading">Reading
-    <input type="radio" name="hobby" value="Gardening">Gardening
-    <input type="radio" name="hobby" value="Sports">Sports
-    <button id="hobbyD" >Display Selected Hobby</button>
-    <p id="hobbyR"></p>
+    <label for="">Program 4: Choose a weather preference</label>
+    <input type="radio" name="weather" value="Sunny">Sunny
+    <input type="radio" name="weather" value="Rainy">Rainy
+    <input type="radio" name="weather" value="Snowy">Snowy
+    <button id="weatherD">Display Selected weather</button>
+    <p id="weatherR"></p>
 
-    <label for="">Program 5: Choose a clothing style:</label>
-    <input type="radio" name="style" value="Casual">Casual
-    <input type="radio" name="style" value="Formal">Formal
-    <input type="radio" name="style" value="Sporty">Sporty
-    <button id="styleD" >Display Selected Hobby</button>
-    <p id="styleR"></p>
+    <label for="">Program 5: Choose a travel mode:</label>
+    <input type="radio" name="travel" value="Car">Car
+    <input type="radio" name="travel" value="Train">Train 
+    <input type="radio" name="travel" value="Plane">Plane
+    <button id="travelD" >Display Selected weather</button>
+    <p id="travelR"></p>
 
 
     <script>
 
-        const style = document.getElementsByName("style")
-        const styleD = document.getElementById("styleD")
-        const styleR = document.getElementById("styleR")
-        styleD.addEventListener("click", function(){
-            const selectedstyle = document.querySelector("input[name=style]:checked");
-            if (selectedstyle) {
-                styleR.innerHTML = `Selected Job Role: ${selectedstyle.value}`;
+        const travel = document.getElementsByName("travel")
+        const travelD = document.getElementById("travelD")
+        const travelR = document.getElementById("travelR")
+        travelD.addEventListener("click", function(){
+            const selectedtravel = document.querySelector("input[name=travel]:checked");
+            if (selectedtravel) {
+                travelR.innerHTML = `Selected travel preference: ${selectedtravel.value}`;
             }
         });
 
-        const hobby = document.getElementsByName("hobby")
-        const hobbyD = document.getElementById("hobbyD")
-        const hobbyR = document.getElementById("hobbyR")
-        hobbyD.addEventListener("click", function(){
-            const selectedhobby = document.querySelector("input[name=hobby]:checked");
-            if (selectedhobby) {
-                hobbyR.innerHTML = `Selected Job Role: ${selectedhobby.value}`;
+        const weather = document.getElementsByName("weather")
+        const weatherD = document.getElementById("weatherD")
+        const weatherR = document.getElementById("weatherR")
+        weatherD.addEventListener("click", function(){
+            const selectedweather = document.querySelector("input[name=weather]:checked");
+            if (selectedweather) {
+                weatherR.innerHTML = `Selected weather : ${selectedweather.value}`;
             }
         });
 
-        const jobs = document.getElementsByName("job")
-        const jobD = document.getElementById("jobD")
-        const jobR = document.getElementById("jobR")
-        jobD.addEventListener("click", function(){
-            const selectedJob = document.querySelector("input[name=job]:checked");
-            if (selectedJob) {
-                jobR.innerHTML = `Selected Job Role: ${selectedJob.value}`;
+        const cloths = document.getElementsByName("cloth")
+        const clothD = document.getElementById("clothD")
+        const clothR = document.getElementById("clothR")
+        clothD.addEventListener("click", function(){
+            const selectedcloth = document.querySelector("input[name=cloth]:checked");
+            if (selectedcloth) {
+                clothR.innerHTML = `Selected cloth : ${selectedcloth.value}`;
             }
         });
         
-        const musicI = document.getElementsByName("music")
-        const musicR = document.getElementById("musicR")
-        for(let i=0;i<musicI.length;i++)
+        const moodI = document.getElementsByName("mood")
+        const moodR = document.getElementById("moodR")
+        for(let i=0;i<moodI.length;i++)
         {
-           musicI[i].addEventListener("change",function(){
-            const data = document.querySelector("input[name=music]:checked").value
-            musicR.innerHTML = `Selected Genres: ${data}`
+           moodI[i].addEventListener("change",function(){
+            const data = document.querySelector("input[name=mood]:checked").value
+            moodR.innerHTML = `Selected Mood: ${data}`
         })
         }
 
-        const language = document.getElementsByName("language")
-        const languageR = document.getElementById("languageR")
-        for(let i=0;i<language.length;i++)
+        const book = document.getElementsByName("book")
+        const bookR = document.getElementById("bookR")
+        for(let i=0;i<book.length;i++)
         {
-           language[i].addEventListener("change",function(){
-            const data = document.querySelector("input[name=language]:checked").value
-            languageR.innerHTML = `Selected Languages: ${data}`
+           book[i].addEventListener("change",function(){
+            const data = document.querySelector("input[name=book]:checked").value
+            bookR.innerHTML = `Selected book: ${data}`
         })
         }
     </script>
