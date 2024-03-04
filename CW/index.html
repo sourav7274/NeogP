@@ -6,176 +6,72 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="">Choose a season</label>
-    <select name="" id="seasonI">
-        <option value="Spring">Spring</option>
-        <option value="Summer">Summer</option>
-        <option value="Fall">Fall</option>        
-        <option value="Winter">Winter</option>        
-    </select>
-    <button id="seasonB">Display Typical genre</button>
-    <p id="seasonR"></p>
+    <h1>User profile form</h1>
+    <form id="userProfile">
+        <label for="userName">Enter your Name: </label><br>
+        <input type="text" name="" id="userName">
+        <br>
+        <br>
+        
+        <label for="address">Enter full address</label><br>
+        <textarea name="" id="address" cols="30" rows="5"></textarea>
+        <br>
+        <br>
+        
+        <label for="gender">Select Gender: </label><br>
+        <label for="Male"><input type="radio" name="gender" id="Male" value="Male">Male</label><br>
+        <label for="Female"><input type="radio" name="gender" id="Female" value="Female">Female</label><br>
+        <label for="Others"><input type="radio" name="gender" id="Others" value="Others">Others</label><br>
+        <br>
+        <label for="">Select Interests:</label><br>
+        <label for="Reading"><input type="checkbox" name="interests" value="Reading" id="Reading">Reading</label><br>
+        <label for="Gardening"><input type="checkbox" name="interests" value="Gardening" id="Gardening">Gardening</label><br>
+        <label for="Painting"><input type="checkbox" name="interests" value="Painting" id="Painting">Painting</label><br>
+        <br>
+        <label for="">Select Favourite Colour:</label><br>
+        <select name="" id="colorSelect">
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+            <option value="Green">Green</option>
+        </select>
+        <br>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+    <div id="formR">
 
-    <label for="">Choose a movie genre</label>
-    <select name="" id="genreI">
-        <option value="Science-Fiction">Science-Fiction</option>
-        <option value="Mystery">Mystery</option>
-        <option value="Romance">Romance</option>
-    </select>
-    <button id="genreB">Display Movie Recommendation</button>
-    <p id="genreR"></p>
-
-    <label for="">Select a langauge</label>
-    <select name="" id="langaugeI">
-        <option value="English">English</option>
-        <option value="Spanish">Spanish</option>
-        <option value="French">French</option>
-    </select>
-    <button id="langaugeB">Display Greeting</button>
-    <p id="langaugeR"></p>
-
-    <label for="">Choose a Pet</label>
-    <select name="" id="petI">
-        <option value="Cat">Cat</option>
-        <option value="Dog">Dog</option>
-        <option value="Fish">Fish</option>
-    </select>
-    <button id="petB">Display Fun Fact</button>
-    <p id="petR"></p>
-
-    <label for="">Choose a musical instrument</label>
-    <select name="" id="musicI">
-        <option value="Piano">Piano</option>
-        <option value="Guitar">Guitar</option>
-        <option value="Violin">Violin</option>
-    </select>
-    <p id="musicR"></p>
-
-    <label for="">Choose a planet</label>
-    <select name="" id="planetI">
-        <option value="Earth">Earth</option>
-        <option value="Mars">Mars</option>
-        <option value="Jupiter">Jupiter</option>
-    </select>
-    <button id="planetB">Display Planet Fact</button>
-    <p id="planetR"></p>
+    </div>
 
     <script>
+        const userProfile = document.getElementById("userProfile")
+        userProfile.addEventListener("submit",function(){
+           event.preventDefault()
 
-        const planetI = document.getElementById("planetI")
-        const planetB = document.getElementById("planetB")
-        const planetR = document.getElementById("planetR")
-        planetB.addEventListener("click",function(){
-            const planet = planetI.value
-            if(planet === "Earth")
-            {
-                planetR.innerHTML = `Planet Fact: ${planet} is the only known planet with life`
-            }
-            else if(planet === "Mars")
-            {
-                planetR.innerHTML = `Planet Fact: ${planet} is often called the "Red-Plannet" due to its color.`
-            }
-            else
-            {
-                planetR.innerHTML = `Planet Fact: ${planet} is the largest plannet in our solar system`
-            }
-        })
-
-        const petI = document.getElementById("petI")
-        const petB = document.getElementById("petB")
-        const petR = document.getElementById("petR")
-        petB.addEventListener("click",function(){
-            const pet = petI.value
-            if(pet === "Cat")
-            {
-                petR.innerHTML = `Pet Description: ${pet}s are independent and playful`
-            }
-            else if(pet === "Dog")
-            {
-                petR.innerHTML = `Pet Description: ${pet}s are loyalty and friendly companions`
-            }
-           else
-            {
-                petR.innerHTML = `Pet Description: ${pet}s are low-maintainence and peaceful pets`
-            }
-        })
-
-        const musicI = document.getElementById("musicI")
-        const musicB = document.getElementById("musicB")
-        const musicR = document.getElementById("musicR")
-        musicI.addEventListener("change",function(){
-            const music = musicI.value
-            if(music === "Piano")
-            {
-                musicR.textContent = `Sound: The ${music} creates harmonious music through its keys `
-            }
-            else if(music === "Guitar")
-            {
-                musicR.textContent = `Sound: The ${music} produces melodic tones with its strings`
-            }
-            else
-            {
-                musicR.textContent = `Sound: The ${music} produces sweet and expressive sounds`
-            }
-        })
-
-
-        const languageI = document.getElementById("langaugeI")
-        const languageB = document.getElementById("langaugeB") 
-        const languageR = document.getElementById("langaugeR") 
-        languageB.addEventListener("click", function() {
-            const lang = languageI.value
-            if (lang === "English") {
-                languageR.textContent = `Common Greeting: Hello`
-            } else if (lang === "Spanish") {
-                languageR.textContent = `Common Greeting: Hola`
-            } else {
-                languageR.textContent = `Common Greeting: Bonjour`
-            }
-        })
-
-        const genreI = document.getElementById("genreI")
-        const genreR = document.getElementById("genreR")
-        const genreB = document.getElementById("genreB")
-        genreB.addEventListener("click",function(){
-            const genre = genreI.value
-            if(genre==="Science-Fiction")
-            {
-                genreR.textContent = `Movie Recommendation: Dune`
-            }
-            else if(genre === "Mystery")
-            {
-                genreR.textContent = `Movie Recommendation: Gone Girl`
-            }
-            else
-            {
-                genreR.textContent = `Movie Recommendation: Pride and Prejudice`
-            }
-        })
-
-        const seasonI = document.getElementById("seasonI")
-        const seasonR = document.getElementById("seasonR")
-        const seasonB = document.getElementById("seasonB")
-        seasonB.addEventListener("click",function(){
-            const season = seasonI.value
-            if(season==="Summer")
-            {
-                seasonR.textContent = `Typical Weather: Hot temperatures and sunny days`
-            }
-            else if(season === "Fall")
-            {
-                seasonR.textContent = `Typical Weather: Cooler temperatures and falling leaves`
-            }
-            else if(season === "Winter")
-            {
-                seasonR.textContent = `Typical Weather: Cold temperatures and snowfall`
-            }
-            else
-            {
-                seasonR.textContent = `Typical Weather: Mild temperatures and blooming flowers` 
-            }
+           const userName = document.getElementById("userName").value 
+           const address = document.getElementById("address").value
+           const gender = document.querySelector("input[name=gender]:checked").value
+           const interests = document.querySelectorAll('input[name="interests"]:checked')
+           let interestsS = []
+           for(let i=0;i<interests.length;i++)
+           {
+                interestsS.push(interests[i].value)
+           }
+           const favColor = document.getElementById("colorSelect").value   
+           
+           const userInput = `
+           <h2>Submitted Information</h2>
+           <p>Name: ${userName}</p>
+           <p>Full address: ${address}</p>
+           <p>Gender: ${gender}</p>
+           <p>Interests: ${interestsS.join(", ")}</p>
+           <p>Favourite Color: ${favColor}</p>
+           `
+           const divElement = document.getElementById("formR")
+           divElement.innerHTML = userInput
 
         })
+
     </script>
+
 </body>
 </html>
