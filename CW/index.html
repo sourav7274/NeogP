@@ -6,91 +6,139 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="">Program 1: Select a mood</label>
-    <input type="radio" name="mood" value="Happy">Happy
-    <input type="radio" name="mood" value="Sad">Sad
-    <input type="radio" name="mood" value="Excited">Excited
-    <p id="moodR"></p>
+    <label for="">Choose a movie genre</label>
+    <select name="" id="movieI">
+        <option value="Action">Action</option>
+        <option value="Comedy">Comedy</option>
+        <option value="Drama">Drama</option>        
+    </select>
+    <p id="movieR"></p>
 
-    <label for="">Program 2: Select a book genre</label>
-    <input type="radio" name="book" value="Mystery">Mystery
-    <input type="radio" name="book" value="Romance">Romance
-    <input type="radio" name="book" value="Science-Fiction">Science-Fiction
-    <p id="bookR"></p>
-    
-    <label for="">Program 3: Select a clothing style</label>
-    <input type="radio" name="cloth" value="Casual">Casual
-    <input type="radio" name="cloth" value="Formal">Formal
-    <input type="radio" name="cloth" value="Sporty">Sporty
-    <button id="clothD" >Display Selected Role</button>
-    <p id="clothR"></p>
-
-    <label for="">Program 4: Choose a weather preference</label>
-    <input type="radio" name="weather" value="Sunny">Sunny
-    <input type="radio" name="weather" value="Rainy">Rainy
-    <input type="radio" name="weather" value="Snowy">Snowy
-    <button id="weatherD">Display Selected weather</button>
+    <label for="">Select a weather condition</label>
+    <select name="" id="weatherI">
+        <option value="Sunny">Sunny</option>
+        <option value="Rainy">Rainy</option>
+        <option value="Snowy">Snowy</option>
+    </select>
     <p id="weatherR"></p>
 
-    <label for="">Program 5: Choose a travel mode:</label>
-    <input type="radio" name="travel" value="Car">Car
-    <input type="radio" name="travel" value="Train">Train 
-    <input type="radio" name="travel" value="Plane">Plane
-    <button id="travelD" >Display Selected weather</button>
-    <p id="travelR"></p>
+    <label for="">Select a langauge</label>
+    <select name="" id="langaugeI">
+        <option value="English">English</option>
+        <option value="Spanish">Spanish</option>
+        <option value="French">French</option>
+    </select>
+    <button id="langaugeB">Display Greeting</button>
+    <p id="langaugeR"></p>
 
+    <label for="">Choose a musical instrument</label>
+    <select name="" id="musicI">
+        <option value="Piano">Piano</option>
+        <option value="Guitar">Guitar</option>
+        <option value="Violin">Violin</option>
+    </select>
+    <button id="musicB">Display fun fact</button>
+    <p id="musicR"></p>
+
+    <label for="">Select a Pet</label>
+    <select name="" id="petI">
+        <option value="Cat">Cat</option>
+        <option value="Dog">Dog</option>
+        <option value="Fish">Fish</option>
+    </select>
+    <button id="petB">Display Pet Description</button>
+    <p id="petR"></p>
 
     <script>
 
-        const travel = document.getElementsByName("travel")
-        const travelD = document.getElementById("travelD")
-        const travelR = document.getElementById("travelR")
-        travelD.addEventListener("click", function(){
-            const selectedtravel = document.querySelector("input[name=travel]:checked");
-            if (selectedtravel) {
-                travelR.innerHTML = `Selected travel preference: ${selectedtravel.value}`;
+        const petI = document.getElementById("petI")
+        const petB = document.getElementById("petB")
+        const petR = document.getElementById("petR")
+        petB.addEventListener("click",function(){
+            const pet = petI.value
+            if(pet === "Cat")
+            {
+                petR.innerHTML = `Pet Description: ${pet}s are independent and playful`
             }
-        });
+            else if(pet === "Dog")
+            {
+                petR.innerHTML = `Pet Description: ${pet}s are loyal and friendly companions`
+            }
+           else
+            {
+                petR.innerHTML = `Pet Description: ${pet}s are low-maintainence and peaceful pets`
+            }
+        })
 
-        const weather = document.getElementsByName("weather")
-        const weatherD = document.getElementById("weatherD")
+        const musicI = document.getElementById("musicI")
+        const musicB = document.getElementById("musicB")
+        const musicR = document.getElementById("musicR")
+        musicB.addEventListener("click",function(){
+            const music = musicI.value
+            if(music === "Piano")
+            {
+                musicR.textContent = `Fun fact: ${music} has 88 keys `
+            }
+            else if(music === "Guitar")
+            {
+                musicR.textContent = `Fun fact: ${music} is one of the most populat instruments in the world`
+            }
+            else
+            {
+                musicR.textContent = `Fun fact: ${music} is a string instrument known for its sweet sound`
+            }
+        })
+
+        const languageI = document.getElementById("langaugeI")
+        const languageB = document.getElementById("langaugeB") 
+        const languageR = document.getElementById("langaugeR") 
+        languageB.addEventListener("click", function() {
+            const lang = languageI.value
+            if (lang === "English") {
+                languageR.textContent = `Common Greeting: Hello`
+            } else if (lang === "Spanish") {
+                languageR.textContent = `Common Greeting: Hola`
+            } else {
+                languageR.textContent = `Common Greeting: Bonjour`
+            }
+        })
+
+        const weatherI = document.getElementById("weatherI")
         const weatherR = document.getElementById("weatherR")
-        weatherD.addEventListener("click", function(){
-            const selectedweather = document.querySelector("input[name=weather]:checked");
-            if (selectedweather) {
-                weatherR.innerHTML = `Selected weather : ${selectedweather.value}`;
+        weatherI.addEventListener("change",function(){
+            const weather = weatherI.value
+            if(weather==="Sunny")
+            {
+                weatherR.textContent = `Outdoor Activity Suggestion: Swimming`
             }
-        });
-
-        const cloths = document.getElementsByName("cloth")
-        const clothD = document.getElementById("clothD")
-        const clothR = document.getElementById("clothR")
-        clothD.addEventListener("click", function(){
-            const selectedcloth = document.querySelector("input[name=cloth]:checked");
-            if (selectedcloth) {
-                clothR.innerHTML = `Selected cloth : ${selectedcloth.value}`;
+            else if(weather === "Rainy")
+            {
+                weatherR.textContent = `Indoor Activity Suggestion: Movie Day Indoors`
             }
-        });
-        
-        const moodI = document.getElementsByName("mood")
-        const moodR = document.getElementById("moodR")
-        for(let i=0;i<moodI.length;i++)
-        {
-           moodI[i].addEventListener("change",function(){
-            const data = document.querySelector("input[name=mood]:checked").value
-            moodR.innerHTML = `Selected Mood: ${data}`
+            else
+            {
+                weatherR.textContent = `Activity Suggestion: Barbeque`
+            }
         })
-        }
 
-        const book = document.getElementsByName("book")
-        const bookR = document.getElementById("bookR")
-        for(let i=0;i<book.length;i++)
-        {
-           book[i].addEventListener("change",function(){
-            const data = document.querySelector("input[name=book]:checked").value
-            bookR.innerHTML = `Selected book: ${data}`
+        const movieI = document.getElementById("movieI")
+        const movieR = document.getElementById("movieR")
+        movieI.addEventListener("change",function(){
+            const movie = movieI.value
+            if(movie==="Comedy")
+            {
+                movieR.textContent = `Recommended ${movie} Movie: Superbad`
+            }
+            else if(movie === "Action")
+            {
+                movieR.textContent = `Recommended ${movie} Movie: Top-Gun`
+            }
+            else
+            {
+                movieR.textContent = `Recommended ${movie} Movie: Dune`
+            }
+
         })
-        }
     </script>
 </body>
 </html>
