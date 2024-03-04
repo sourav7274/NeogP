@@ -6,21 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <label for="">Choose a movie genre</label>
-    <select name="" id="movieI">
-        <option value="Action">Action</option>
-        <option value="Comedy">Comedy</option>
-        <option value="Drama">Drama</option>        
+    <label for="">Choose a season</label>
+    <select name="" id="seasonI">
+        <option value="Spring">Spring</option>
+        <option value="Summer">Summer</option>
+        <option value="Fall">Fall</option>        
+        <option value="Winter">Winter</option>        
     </select>
-    <p id="movieR"></p>
+    <button id="seasonB">Display Typical genre</button>
+    <p id="seasonR"></p>
 
-    <label for="">Select a weather condition</label>
-    <select name="" id="weatherI">
-        <option value="Sunny">Sunny</option>
-        <option value="Rainy">Rainy</option>
-        <option value="Snowy">Snowy</option>
+    <label for="">Choose a movie genre</label>
+    <select name="" id="genreI">
+        <option value="Science-Fiction">Science-Fiction</option>
+        <option value="Mystery">Mystery</option>
+        <option value="Romance">Romance</option>
     </select>
-    <p id="weatherR"></p>
+    <button id="genreB">Display Movie Recommendation</button>
+    <p id="genreR"></p>
 
     <label for="">Select a langauge</label>
     <select name="" id="langaugeI">
@@ -31,25 +34,52 @@
     <button id="langaugeB">Display Greeting</button>
     <p id="langaugeR"></p>
 
+    <label for="">Choose a Pet</label>
+    <select name="" id="petI">
+        <option value="Cat">Cat</option>
+        <option value="Dog">Dog</option>
+        <option value="Fish">Fish</option>
+    </select>
+    <button id="petB">Display Fun Fact</button>
+    <p id="petR"></p>
+
     <label for="">Choose a musical instrument</label>
     <select name="" id="musicI">
         <option value="Piano">Piano</option>
         <option value="Guitar">Guitar</option>
         <option value="Violin">Violin</option>
     </select>
-    <button id="musicB">Display fun fact</button>
     <p id="musicR"></p>
 
-    <label for="">Select a Pet</label>
-    <select name="" id="petI">
-        <option value="Cat">Cat</option>
-        <option value="Dog">Dog</option>
-        <option value="Fish">Fish</option>
+    <label for="">Choose a planet</label>
+    <select name="" id="planetI">
+        <option value="Earth">Earth</option>
+        <option value="Mars">Mars</option>
+        <option value="Jupiter">Jupiter</option>
     </select>
-    <button id="petB">Display Pet Description</button>
-    <p id="petR"></p>
+    <button id="planetB">Display Planet Fact</button>
+    <p id="planetR"></p>
 
     <script>
+
+        const planetI = document.getElementById("planetI")
+        const planetB = document.getElementById("planetB")
+        const planetR = document.getElementById("planetR")
+        planetB.addEventListener("click",function(){
+            const planet = planetI.value
+            if(planet === "Earth")
+            {
+                planetR.innerHTML = `Planet Fact: ${planet} is the only known planet with life`
+            }
+            else if(planet === "Mars")
+            {
+                planetR.innerHTML = `Planet Fact: ${planet} is often called the "Red-Plannet" due to its color.`
+            }
+            else
+            {
+                planetR.innerHTML = `Planet Fact: ${planet} is the largest plannet in our solar system`
+            }
+        })
 
         const petI = document.getElementById("petI")
         const petB = document.getElementById("petB")
@@ -62,7 +92,7 @@
             }
             else if(pet === "Dog")
             {
-                petR.innerHTML = `Pet Description: ${pet}s are loyal and friendly companions`
+                petR.innerHTML = `Pet Description: ${pet}s are loyalty and friendly companions`
             }
            else
             {
@@ -73,21 +103,22 @@
         const musicI = document.getElementById("musicI")
         const musicB = document.getElementById("musicB")
         const musicR = document.getElementById("musicR")
-        musicB.addEventListener("click",function(){
+        musicI.addEventListener("change",function(){
             const music = musicI.value
             if(music === "Piano")
             {
-                musicR.textContent = `Fun fact: ${music} has 88 keys `
+                musicR.textContent = `Sound: The ${music} creates harmonious music through its keys `
             }
             else if(music === "Guitar")
             {
-                musicR.textContent = `Fun fact: ${music} is one of the most populat instruments in the world`
+                musicR.textContent = `Sound: The ${music} produces melodic tones with its strings`
             }
             else
             {
-                musicR.textContent = `Fun fact: ${music} is a string instrument known for its sweet sound`
+                musicR.textContent = `Sound: The ${music} produces sweet and expressive sounds`
             }
         })
+
 
         const languageI = document.getElementById("langaugeI")
         const languageB = document.getElementById("langaugeB") 
@@ -103,39 +134,45 @@
             }
         })
 
-        const weatherI = document.getElementById("weatherI")
-        const weatherR = document.getElementById("weatherR")
-        weatherI.addEventListener("change",function(){
-            const weather = weatherI.value
-            if(weather==="Sunny")
+        const genreI = document.getElementById("genreI")
+        const genreR = document.getElementById("genreR")
+        const genreB = document.getElementById("genreB")
+        genreB.addEventListener("click",function(){
+            const genre = genreI.value
+            if(genre==="Science-Fiction")
             {
-                weatherR.textContent = `Outdoor Activity Suggestion: Swimming`
+                genreR.textContent = `Movie Recommendation: Dune`
             }
-            else if(weather === "Rainy")
+            else if(genre === "Mystery")
             {
-                weatherR.textContent = `Indoor Activity Suggestion: Movie Day Indoors`
+                genreR.textContent = `Movie Recommendation: Gone Girl`
             }
             else
             {
-                weatherR.textContent = `Activity Suggestion: Barbeque`
+                genreR.textContent = `Movie Recommendation: Pride and Prejudice`
             }
         })
 
-        const movieI = document.getElementById("movieI")
-        const movieR = document.getElementById("movieR")
-        movieI.addEventListener("change",function(){
-            const movie = movieI.value
-            if(movie==="Comedy")
+        const seasonI = document.getElementById("seasonI")
+        const seasonR = document.getElementById("seasonR")
+        const seasonB = document.getElementById("seasonB")
+        seasonB.addEventListener("click",function(){
+            const season = seasonI.value
+            if(season==="Summer")
             {
-                movieR.textContent = `Recommended ${movie} Movie: Superbad`
+                seasonR.textContent = `Typical Weather: Hot temperatures and sunny days`
             }
-            else if(movie === "Action")
+            else if(season === "Fall")
             {
-                movieR.textContent = `Recommended ${movie} Movie: Top-Gun`
+                seasonR.textContent = `Typical Weather: Cooler temperatures and falling leaves`
+            }
+            else if(season === "Winter")
+            {
+                seasonR.textContent = `Typical Weather: Cold temperatures and snowfall`
             }
             else
             {
-                movieR.textContent = `Recommended ${movie} Movie: Dune`
+                seasonR.textContent = `Typical Weather: Mild temperatures and blooming flowers` 
             }
 
         })
