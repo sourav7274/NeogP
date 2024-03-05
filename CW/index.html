@@ -6,71 +6,72 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>User profile form</h1>
-    <form id="userProfile">
-        <label for="userName">Enter your Name: </label><br>
-        <input type="text" name="" id="userName">
+    <h1>Event Registration Form</h1>
+    <form id="userDetails">
+        <label for="name">Name: </label>
+        <input type="text" id="name">
         <br>
         <br>
-        
-        <label for="address">Enter full address</label><br>
-        <textarea name="" id="address" cols="30" rows="5"></textarea>
+        <label for="mail">Email Address: </label>
+        <input type="email" id="mail">
         <br>
         <br>
-        
-        <label for="gender">Select Gender: </label><br>
-        <label for="Male"><input type="radio" name="gender" id="Male" value="Male">Male</label><br>
-        <label for="Female"><input type="radio" name="gender" id="Female" value="Female">Female</label><br>
-        <label for="Others"><input type="radio" name="gender" id="Others" value="Others">Others</label><br>
+        <label for="">Event Type: </label>
         <br>
-        <label for="">Select Interests:</label><br>
-        <label for="Reading"><input type="checkbox" name="interests" value="Reading" id="Reading">Reading</label><br>
-        <label for="Gardening"><input type="checkbox" name="interests" value="Gardening" id="Gardening">Gardening</label><br>
-        <label for="Painting"><input type="checkbox" name="interests" value="Painting" id="Painting">Painting</label><br>
+        <label for="confidence"><input type="radio" name="type" value="Confidence" id="confidence"> Confidence</label>
         <br>
-        <label for="">Select Favourite Colour:</label><br>
-        <select name="" id="colorSelect">
-            <option value="Red">Red</option>
-            <option value="Blue">Blue</option>
-            <option value="Green">Green</option>
+        <label for="workshop"><input type="radio" name="type" value="Workshop" id="workshop"> Workshop</label>
+        <br>
+        <label for="networking"><input type="radio" name="type" value="Networking" id="networking"> Networking</label>
+        <br>
+        <br>
+        <label for="">Dietary Restrictions: </label>
+        <br>
+        <label for="Vegetarian"><input type="checkbox" name="diet" value="Vegetarian" id="Vegetarian"> Vegetarian</label>
+        <br>
+        <label for="Vegan"><input type="checkbox" name="diet" value="Vegan" id="Vegan"> Vegan</label>
+        <br>
+        <label for="Glutten-Free"><input type="checkbox" name="diet" value="Glutten-Free" id="Glutten-Free"> Glutten-Free</label>
+        <br>
+        <br>
+        <label for="">T-shirt Size</label>
+        <select id="size">
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
         </select>
         <br>
         <br>
-        <input type="submit" value="submit">
+        <input type="submit" value="Register">
     </form>
-    <div id="formR">
-
-    </div>
+    <div id="showR"></div>
 
     <script>
-        const userProfile = document.getElementById("userProfile")
-        userProfile.addEventListener("submit",function(){
-           event.preventDefault()
 
-           const userName = document.getElementById("userName").value 
-           const address = document.getElementById("address").value
-           const gender = document.querySelector("input[name=gender]:checked").value
-           const interests = document.querySelectorAll('input[name="interests"]:checked')
-           let interestsS = []
-           for(let i=0;i<interests.length;i++)
-           {
-                interestsS.push(interests[i].value)
-           }
-           const favColor = document.getElementById("colorSelect").value   
-           
-           const userInput = `
-           <h2>Submitted Information</h2>
-           <p>Name: ${userName}</p>
-           <p>Full address: ${address}</p>
-           <p>Gender: ${gender}</p>
-           <p>Interests: ${interestsS.join(", ")}</p>
-           <p>Favourite Color: ${favColor}</p>
-           `
-           const divElement = document.getElementById("formR")
-           divElement.innerHTML = userInput
-
+        const userDetails = document.getElementById("userDetails")
+        userDetails.addEventListener("submit",function(){
+            event.preventDefault()
+            const name = document.getElementById("name").value
+            const mail = document.getElementById("mail").value
+            const evenType = document.querySelector("input[name=type]:checked").value
+            const diet = document.querySelectorAll("input[name=diet]:checked")
+            let eats =[]
+            for(let i=0;i<diet.length;i++)
+            {
+                eats.push(diet[i].value)
+            }
+            const size = document.getElementById("size").value
+            const showR = document.getElementById("showR")
+            const details = `
+             <h1>Registration Details:</h1>
+             <p><b>Name: </b>${name}</p>
+             <p><b>Email: </b>${mail}</p>
+             <p><b>Event Type: </b>${evenType}</p>
+             <p><b>Dietary Restrictions: </b>${eats.join(", ")}</p>
+             <p><b>T-shirt Size: </b>${size}</p>             
+            `
+            showR.innerHTML = details
         })
-
     </script>
 
 </body>
