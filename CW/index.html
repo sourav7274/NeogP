@@ -6,73 +6,63 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Event Registration Form</h1>
-    <form id="userDetails">
-        <label for="name">Name: </label>
-        <input type="text" id="name">
-        <br>
-        <br>
-        <label for="mail">Email Address: </label>
-        <input type="email" id="mail">
-        <br>
-        <br>
-        <label for="">Event Type: </label>
-        <br>
-        <label for="confidence"><input type="radio" name="type" value="Confidence" id="confidence"> Confidence</label>
-        <br>
-        <label for="workshop"><input type="radio" name="type" value="Workshop" id="workshop"> Workshop</label>
-        <br>
-        <label for="networking"><input type="radio" name="type" value="Networking" id="networking"> Networking</label>
-        <br>
-        <br>
-        <label for="">Dietary Restrictions: </label>
-        <br>
-        <label for="Vegetarian"><input type="checkbox" name="diet" value="Vegetarian" id="Vegetarian"> Vegetarian</label>
-        <br>
-        <label for="Vegan"><input type="checkbox" name="diet" value="Vegan" id="Vegan"> Vegan</label>
-        <br>
-        <label for="Glutten-Free"><input type="checkbox" name="diet" value="Glutten-Free" id="Glutten-Free"> Glutten-Free</label>
-        <br>
-        <br>
-        <label for="">T-shirt Size</label>
-        <select id="size">
-            <option value="Small">Small</option>
-            <option value="Medium">Medium</option>
-            <option value="Large">Large</option>
+    <h1>Product Order Form</h1>
+    <form id="details">
+        <label for="">Product Name: </label>
+        <select name="" id="product">
+            <option value="Product A">Product A</option>
+            <option value="Product B">Product B</option>
+            <option value="Product C">Product C</option>
         </select>
         <br>
         <br>
-        <input type="submit" value="Register">
+        <label for="quantity">Quantity: 
+            <input type="number" name="" id="quantity">
+        </label>
+        <br>
+        <br>
+        <label for="ship">Shipping Address:</label><br>
+        <textarea name="" id="ship" cols="50" rows="5"></textarea>
+        <br>
+        <br>
+        <label for="">Payment Method: </label><br>
+        <label for="Credit Card"><input type="radio" name="Payment" id="Credit Card" value="Credit Card"> Credit Card</label><br>
+        <label for="Pyapal"><input type="radio" name="Payment" id="Pyapal" value="Pyapal"> Pyapal</label><br>
+        <label for="Bank Transfer"><input type="radio" name="Payment" id="Bank Transfer" value="Bank Transfer"> Bank Transfer</label><br>
+        <br>
+        <br>
+        <label for="">Delivery Speed</label>
+        <select name="" id="speed">
+            <option value="Standard"> Standard</option>
+            <option value="Express"> Express</option>
+            <option value="Same Day"> Same Day</option>
+        </select>
+        <br>
+        <br>
+        <input type="submit" value="Place Order">
     </form>
     <div id="showR"></div>
-
     <script>
-
-        const userDetails = document.getElementById("userDetails")
-        userDetails.addEventListener("submit",function(){
+        const details = document.getElementById("details")
+        details.addEventListener("submit",function(){
             event.preventDefault()
-            const name = document.getElementById("name").value
-            const mail = document.getElementById("mail").value
-            const evenType = document.querySelector("input[name=type]:checked").value
-            const diet = document.querySelectorAll("input[name=diet]:checked")
-            let eats =[]
-            for(let i=0;i<diet.length;i++)
-            {
-                eats.push(diet[i].value)
-            }
-            const size = document.getElementById("size").value
-            const showR = document.getElementById("showR")
-            const details = `
-             <h1>Registration Details:</h1>
-             <p><b>Name: </b>${name}</p>
-             <p><b>Email: </b>${mail}</p>
-             <p><b>Event Type: </b>${evenType}</p>
-             <p><b>Dietary Restrictions: </b>${eats.join(", ")}</p>
-             <p><b>T-shirt Size: </b>${size}</p>             
+            const product = document.getElementById("product").value
+            const quantity = document.getElementById("quantity").value
+            const address  = document.getElementById("ship").value
+            const payment = document.querySelector("input[name=Payment]:checked").value
+            const speed = document.getElementById("speed").value
+
+            const overall  = `
+             <h1>Order Details</h1>
+             <p><b>Product Name: </b>${product}</p>
+             <p><b>Quantity: </b>${quantity}</p>
+             <p><b>Shipping Address: </b>${address}</p>
+             <p><b>Payment Method: </b>${payment}</p>
+             <p><b>Delievery Speed: </b>${speed}</p>
             `
-            showR.innerHTML = details
+            const showR = document.getElementById('showR')
+            showR.innerHTML = overall
         })
     </script>
-
 </body>
 </html>
