@@ -6,61 +6,84 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Feedback Form</h1>
+    <h1>User Waitlist Form</h1>
     <form id="details">
-        <label for="name">Name:</label>
-        <input type="text" name="" id="name">
+        <label for="name"><b>Full Name: </b><input type="text" name="" id="name"></label><br>
         <br>
         <br>
-        <label for="feedback">Feedback</label><br>
-        <textarea name="" id="feedback" cols="50" rows="5"></textarea>
+        <label for="number"><b>Phone Number: </b><input type="text" id="number"></label>
         <br>
         <br>
-        <label for="">Rate our service:</label><br>
-        <label for="Excellent"><input type="radio" name="rate" value="Excellent" id="Excellent"> Excellent</label><br>
-        <label for="Good"><input type="radio" name="rate" value="Good" id="Good"> Good</label><br>
-        <label for="Fair"><input type="radio" name="rate" value="Fair" id="Fair"> Fair</label>
+        <label for="mail"><b>Email Id: </b><input type="email" id="mail"></label>
         <br>
         <br>
-        <label for="">Select Topics of Interest:</label><br>
-        <label for="Technology"><input type="checkbox" name="topic" value="Technology" id="Technology"> Technology</label><br>
-        <label for="Travel"><input type="checkbox" name="topic" value="Travel" id="Travel"> Travel</label><br>
-        <label for="Food"><input type="checkbox" name="topic" value="Food" id="Food"> Food</label><br>
+        <label for=""><b>Gender: </b></label><br>
+        <label for="Male"><input type="radio" name="gender" value="Male" id="Male">Male</label><br>
+        <label for="Female"><input type="radio" name="gender" value="Female" id="Female">Female</label><br>
+        <label for="Other"><input type="radio" name="gender" value="Other" id="Other">Other</label><br>
         <br>
-        <label for="">Overall Experience</label>
-        <select name="" id="exp">
-            <option value="Very Satisfied">Very Satisfied</option>
-            <option value="Satisfied">Satisfied</option>
-            <option value="Neutral">Neutral</option>
+        <label for=""><b>Are you a college graduate?: </b></label><br>
+        <label for="Yes"><input type="radio" value="Yes" name="option" id="Yes">Yes</label><br>
+        <label for="No"><input type="radio" value="No" name="option" id="No">No</label><br>
+        <label for="Dropout"><input type="radio" value="Dropout" name="option" id="Dropout">Dropout</label><br>
+        <br>
+        <label for=""><b>Are you working anywhere full-time or part-time?:</b></label><br>
+        <select name="" id="work">
+            <option value="Working Full Time">Working Full Time</option>
+            <option value="Working Part Time">Working Part Time</option>
+            <option value="Not Working">Not Working</option>
         </select>
         <br>
         <br>
-        <input type="submit" value="submit">
+        <label for=""><b>Why do you want to learn web-development?:</b></label><br>
+        <textarea  id="reason" cols="50" rows="5"></textarea>
+        <br>
+        <br>
+        <label for=""><b>How did you know about us?</b></label><br>
+        <label for="Youtube"><input type="checkbox" value="Youtube" name="know" id="Youtube">Youtube</label><br>
+        <label for="Instagram"><input type="checkbox" value="Instagram" name="know" id="">Instagram</label><br>
+        <label for="LinkedIn"><input type="checkbox" value="LinkedIn" name="know" id="LinkedIn">LinkedIn</label><br>
+        <label for="Twitter"><input type="checkbox" value="Twitter" name="know" id="Twitter">Twitter</label><br>
+        <label for="Friends and Family"><input type="checkbox" value="Friends and Family" name="know" id="Friends and Family">Friends and Family</label><br>
+        <label for="Other"><input type="checkbox" value="Other" name="know" id="Other">Other</label><br>
+        <br>
+        <input type="checkbox"><b>I confirm that all the information in this form is factuallu true.</b>
+        <br>
+        <br>
+        <input type="submit" value="Submit Details">
     </form>
+
     <div id="showR"></div>
 
     <script>
         const details = document.getElementById("details")
         details.addEventListener("submit",function(){
             event.preventDefault()
+
             const name = document.getElementById("name").value
-            const feedback = document.getElementById("feedback").value
-            const rating = document.querySelector("input[name=rate]:checked").value
-            const topics = document.querySelectorAll("input[name=topic]:checked") 
-            let topicS = []
-            for(let i = 0;i<topics.length;i++)
+            const number = document.getElementById("number").value
+            const mail = document.getElementById("mail").value
+            const gender = document.querySelector("input[name=gender]:checked").value
+            const graduate = document.querySelector("input[name=option]:checked").value
+            const work = document.getElementById("work").value
+            const reason = document.getElementById("reason").value
+            const link = document.querySelectorAll("input[name=know]:checked")
+            let know = []
+            for(let i = 0;i<link.length;i++)
             {
-                topicS.push(topics[i].value)
+                know.push(link[i].value)
             }
-            const Experience = document.getElementById("exp").value
 
             const userDetails = `
-            <h1>Feedback Submitted:</h1>
-            <p><b>Name:</b> ${name}</p>
-            <p><b>Feedback:</b> ${feedback}</p>
-            <p><b>Service Rating:</b> ${rating}</p>
-            <p><b>Topics of Interest:</b> ${topicS.join(", ")}</p>
-            <p><b>Overall Experience:</b> ${Experience}</p>
+            <h1>Details Submitted:</h1>
+            <p><b>Name: </b>${name}</p>
+            <p><b>Phone Number: </b>${number}</p>
+            <p><b>Email ID: </b>${mail}</p>
+            <p><b>Gender: </b>${gender}</p>          
+            <p><b>Are you a college graduate?: </b>${graduate}</p>
+            <p><b>Are you a working anywhere full-time or part-time?: </b>${work}</p>
+            <p><b>Why do you want to learn web-development?: </b>${reason}</p>
+            <p><b>How did you come to know about us?: </b>${know.join(", ")}</p>
             `
             const showR = document.getElementById("showR")
             showR.innerHTML = userDetails
