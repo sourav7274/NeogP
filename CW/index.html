@@ -6,62 +6,64 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Product Order Form</h1>
+    <h1>Feedback Form</h1>
     <form id="details">
-        <label for="">Product Name: </label>
-        <select name="" id="product">
-            <option value="Product A">Product A</option>
-            <option value="Product B">Product B</option>
-            <option value="Product C">Product C</option>
+        <label for="name">Name:</label>
+        <input type="text" name="" id="name">
+        <br>
+        <br>
+        <label for="feedback">Feedback</label><br>
+        <textarea name="" id="feedback" cols="50" rows="5"></textarea>
+        <br>
+        <br>
+        <label for="">Rate our service:</label><br>
+        <label for="Excellent"><input type="radio" name="rate" value="Excellent" id="Excellent"> Excellent</label><br>
+        <label for="Good"><input type="radio" name="rate" value="Good" id="Good"> Good</label><br>
+        <label for="Fair"><input type="radio" name="rate" value="Fair" id="Fair"> Fair</label>
+        <br>
+        <br>
+        <label for="">Select Topics of Interest:</label><br>
+        <label for="Technology"><input type="checkbox" name="topic" value="Technology" id="Technology"> Technology</label><br>
+        <label for="Travel"><input type="checkbox" name="topic" value="Travel" id="Travel"> Travel</label><br>
+        <label for="Food"><input type="checkbox" name="topic" value="Food" id="Food"> Food</label><br>
+        <br>
+        <label for="">Overall Experience</label>
+        <select name="" id="exp">
+            <option value="Very Satisfied">Very Satisfied</option>
+            <option value="Satisfied">Satisfied</option>
+            <option value="Neutral">Neutral</option>
         </select>
         <br>
         <br>
-        <label for="quantity">Quantity: 
-            <input type="number" name="" id="quantity">
-        </label>
-        <br>
-        <br>
-        <label for="ship">Shipping Address:</label><br>
-        <textarea name="" id="ship" cols="50" rows="5"></textarea>
-        <br>
-        <br>
-        <label for="">Payment Method: </label><br>
-        <label for="Credit Card"><input type="radio" name="Payment" id="Credit Card" value="Credit Card"> Credit Card</label><br>
-        <label for="Pyapal"><input type="radio" name="Payment" id="Pyapal" value="Pyapal"> Pyapal</label><br>
-        <label for="Bank Transfer"><input type="radio" name="Payment" id="Bank Transfer" value="Bank Transfer"> Bank Transfer</label><br>
-        <br>
-        <br>
-        <label for="">Delivery Speed</label>
-        <select name="" id="speed">
-            <option value="Standard"> Standard</option>
-            <option value="Express"> Express</option>
-            <option value="Same Day"> Same Day</option>
-        </select>
-        <br>
-        <br>
-        <input type="submit" value="Place Order">
+        <input type="submit" value="submit">
     </form>
     <div id="showR"></div>
+
     <script>
         const details = document.getElementById("details")
         details.addEventListener("submit",function(){
             event.preventDefault()
-            const product = document.getElementById("product").value
-            const quantity = document.getElementById("quantity").value
-            const address  = document.getElementById("ship").value
-            const payment = document.querySelector("input[name=Payment]:checked").value
-            const speed = document.getElementById("speed").value
+            const name = document.getElementById("name").value
+            const feedback = document.getElementById("feedback").value
+            const rating = document.querySelector("input[name=rate]:checked").value
+            const topics = document.querySelectorAll("input[name=topic]:checked") 
+            let topicS = []
+            for(let i = 0;i<topics.length;i++)
+            {
+                topicS.push(topics[i].value)
+            }
+            const Experience = document.getElementById("exp").value
 
-            const overall  = `
-             <h1>Order Details</h1>
-             <p><b>Product Name: </b>${product}</p>
-             <p><b>Quantity: </b>${quantity}</p>
-             <p><b>Shipping Address: </b>${address}</p>
-             <p><b>Payment Method: </b>${payment}</p>
-             <p><b>Delievery Speed: </b>${speed}</p>
+            const userDetails = `
+            <h1>Feedback Submitted:</h1>
+            <p><b>Name:</b> ${name}</p>
+            <p><b>Feedback:</b> ${feedback}</p>
+            <p><b>Service Rating:</b> ${rating}</p>
+            <p><b>Topics of Interest:</b> ${topicS.join(", ")}</p>
+            <p><b>Overall Experience:</b> ${Experience}</p>
             `
-            const showR = document.getElementById('showR')
-            showR.innerHTML = overall
+            const showR = document.getElementById("showR")
+            showR.innerHTML = userDetails
         })
     </script>
 </body>
