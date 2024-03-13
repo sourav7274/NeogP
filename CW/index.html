@@ -3,91 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
+    <title>Travel Bucket List</title>
 </head>
 <body>
-    <h1>User Waitlist Form</h1>
-    <form id="details">
-        <label for="name"><b>Full Name: </b><input type="text" name="" id="name"></label><br>
-        <br>
-        <br>
-        <label for="number"><b>Phone Number: </b><input type="text" id="number"></label>
-        <br>
-        <br>
-        <label for="mail"><b>Email Id: </b><input type="email" id="mail"></label>
-        <br>
-        <br>
-        <label for=""><b>Gender: </b></label><br>
-        <label for="Male"><input type="radio" name="gender" value="Male" id="Male">Male</label><br>
-        <label for="Female"><input type="radio" name="gender" value="Female" id="Female">Female</label><br>
-        <label for="Other"><input type="radio" name="gender" value="Other" id="Other">Other</label><br>
-        <br>
-        <label for=""><b>Are you a college graduate?: </b></label><br>
-        <label for="Yes"><input type="radio" value="Yes" name="option" id="Yes">Yes</label><br>
-        <label for="No"><input type="radio" value="No" name="option" id="No">No</label><br>
-        <label for="Dropout"><input type="radio" value="Dropout" name="option" id="Dropout">Dropout</label><br>
-        <br>
-        <label for=""><b>Are you working anywhere full-time or part-time?:</b></label><br>
-        <select name="" id="work">
-            <option value="Working Full Time">Working Full Time</option>
-            <option value="Working Part Time">Working Part Time</option>
-            <option value="Not Working">Not Working</option>
-        </select>
-        <br>
-        <br>
-        <label for=""><b>Why do you want to learn web-development?:</b></label><br>
-        <textarea  id="reason" cols="50" rows="5"></textarea>
-        <br>
-        <br>
-        <label for=""><b>How did you know about us?</b></label><br>
-        <label for="Youtube"><input type="checkbox" value="Youtube" name="know" id="Youtube">Youtube</label><br>
-        <label for="Instagram"><input type="checkbox" value="Instagram" name="know" id="">Instagram</label><br>
-        <label for="LinkedIn"><input type="checkbox" value="LinkedIn" name="know" id="LinkedIn">LinkedIn</label><br>
-        <label for="Twitter"><input type="checkbox" value="Twitter" name="know" id="Twitter">Twitter</label><br>
-        <label for="Friends and Family"><input type="checkbox" value="Friends and Family" name="know" id="Friends and Family">Friends and Family</label><br>
-        <label for="Other"><input type="checkbox" value="Other" name="know" id="Other">Other</label><br>
-        <br>
-        <input type="checkbox"><b>I confirm that all the information in this form is factuallu true.</b>
-        <br>
-        <br>
-        <input type="submit" value="Submit Details">
-    </form>
-
-    <div id="showR"></div>
+    <header class="container py-3">
+        <h1>Travel Bucket List</h1>
+    </header>
+    <section class="container py-3">
+        <div class="input-group">
+            <input  id="destinationI" class="form-control">         
+            <button id="addDestination" class="btn btn-primary">Add</button>
+         </div>  
+        <ul id="bucketList"></ul>
+        <div><p id="visitedCount"></p></div>
+    </section>
 
     <script>
-        const details = document.getElementById("details")
-        details.addEventListener("submit",function(){
-            event.preventDefault()
-
-            const name = document.getElementById("name").value
-            const number = document.getElementById("number").value
-            const mail = document.getElementById("mail").value
-            const gender = document.querySelector("input[name=gender]:checked").value
-            const graduate = document.querySelector("input[name=option]:checked").value
-            const work = document.getElementById("work").value
-            const reason = document.getElementById("reason").value
-            const link = document.querySelectorAll("input[name=know]:checked")
-            let know = []
-            for(let i = 0;i<link.length;i++)
-            {
-                know.push(link[i].value)
-            }
-
-            const userDetails = `
-            <h1>Details Submitted:</h1>
-            <p><b>Name: </b>${name}</p>
-            <p><b>Phone Number: </b>${number}</p>
-            <p><b>Email ID: </b>${mail}</p>
-            <p><b>Gender: </b>${gender}</p>          
-            <p><b>Are you a college graduate?: </b>${graduate}</p>
-            <p><b>Are you a working anywhere full-time or part-time?: </b>${work}</p>
-            <p><b>Why do you want to learn web-development?: </b>${reason}</p>
-            <p><b>How did you come to know about us?: </b>${know.join(", ")}</p>
-            `
-            const showR = document.getElementById("showR")
-            showR.innerHTML = userDetails
+        const visitedCount = document.getElementById("visitedCount")
+        const destinationI = document.getElementById("destinationI")
+        const addDestination = document.getElementById("addDestination")
+        const unorderLi = document.getElementById("bucketList")
+        let count = 0
+        addDestination.addEventListener("click",function(){
+            const list = document.createElement("li")
+            list.innerHTML = `<p>
+                <input class="mx-1 mb-2" type="checkbox" id="destinationVisit" 
+                onChange = "countVisitPlaces(this)"/> ${destinationI.value}
+                <button class="btn btn-danger btn-sm mx-5" onClick = "deleteDestination(this)">Delete</button></p>`
+            unorderLi.appendChild(list)
         })
+
+        function countVisitPlaces(checkbox)
+        {
+            if(checkbox.checked)
+            {
+                count++
+            }
+            else
+            {
+                count--
+            }
+            updateCount()
+        }
+        function deleteDestination(button)
+        {
+            const listItem = button.parentElement.parentElement;
+            const checkbox = listItem.querySelector('input[type="checkbox"]');
+            if (checkbox.checked) {
+                count--;
+                updateCount();
+            }
+            listItem.remove();
+        }
+
+        function updateCount()
+        {
+            visitedCount.textContent = `Vistied Places Count: ${count}`
+        }
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 </body>
 </html>
