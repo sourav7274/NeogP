@@ -3,70 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Priority</title>
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
 </head>
 <body>
-    <div class="container">
-        <header class="py-3"><h1>Priority To-Do List</h1></header>
-        <div class="input-group">
-            <input class="form-control" placeholder="Add a new task" type="text" id="value">
-            <select class="form-control" id="level">
-                <option value="low">Low Priority</option>
-                <option value="medium">Medium Priority</option>
-                <option value="high">High Priority</option>
-            </select>
-            <button class="btn btn-primary" id="addB">Add</button>
+   <div class="container">
+        <h1 class="py-3">Poll Voting</h1>
+        <label for="John Doe">Jhon Doe: </label>
+        <input type="radio" name="member" value="John Doe" id="John Doe"><br>
+        <br>
+        <label for="Alex William">Alex William: </label>
+        <input type="radio" name="member" value="Alex William" id="Alex William"><br>
+        <br>
+        <label for="Prerana Nawar">Prerana Nawar: </label>
+        <input type="radio" name="member" value="Prerana Nawar" id="Prerana Nawar"><br>
+        <br>
+        <button class="btn btn-primary" id="vote">Vote</button>
+        <div class="py-3">
+            <h1>Results:</h1>
+            <ul class="list-group" id="result"></ul>
         </div>
-        <div class="row py-3 gap-4">
-            <div class="col" id="low">
-                <h2>Low Priority</h2>
-                <ul class="list-group" id="lowP"></>
-            </div>
-            <div class="col" id="medium">
-                <h2>Medium Priority</h2>
-                <ul class="list-group" id="medP"></ul>
-            </div>
-            <div class="col" id="high">
-                <h2>High Priority</h2>
-                <ul class="list-group" id="highP"></ul>
-            </div>
+        <div class="py-3">
+            <h2>Winner</h2>
+            <p id="winner"></p>
         </div>
-       
-    </div>
-    
+   </div>
+
     <script>
-        const addB = document.getElementById("addB")
-        const lowP = document.getElementById("lowP")
-        const medP = document.getElementById("medP")
-        const highP = document.getElementById("highP")
-        
-        function deleteTask(button)
+        const voteB = document.getElementById("vote")
+        let maxvote = 0
+        let lead = []
+        let candidates = 
+        {
+            "John Doe":0,
+            "Alex William":0,
+            "Prerana Nawar":0
+        }
+        voteB.addEventListener("click",function()
+        {
+            const person = document.querySelector("input[name='member']:checked").value
+            candidates[person]+=1          
+            const result = document.getElementById("result")
+            const winner = document.getElementById("winner")
+
+          
+            const existingListItem = result.querySelector(`li[data-name='${person}']`)
+
+            if (existingListItem) {              
+                existingListItem.textContent = `${person}: ${candidates[person]}`
+            } else {               
+                const listItem = document.createElement("li")
+                listItem.setAttribute("data-name", person)
+                listItem.setAttribute("class", "list-group-item")
+                listItem.textContent = `${person}: ${candidates[person]}`
+                result.appendChild(listItem)
+            }          
+
+            for (const candidate in candidates)
             {
-                const listItem = button.parentElement.parentElement.parentElement
-                listItem.remove()
+                if (candidates[candidate] > maxvote)
+                {
+                    maxvote = candidates[candidate]
+                    lead = [candidate]
+                }
+                else if (candidates[candidate] === maxvote)
+                {
+                    lead.push(candidate)
+                }
             }
-
-        addB.addEventListener("click", function() {
-            const task = document.getElementById("value").value
-            const level = document.getElementById("level").value
-            const listValue = document.createElement("div")        
-
-            listValue.innerHTML = `
-             
-                <li class="list-group-item d-flex justify-content-between align-item-center">
-                            ${task}                     
-                            <button class="btn btn-danger" onClick="deleteTask(this)">Delete</button>                                
-                </li>
-             `
-
-            if (level === "low") {
-                lowP.appendChild(listValue)
-            } else if (level === "medium") {
-                medP.appendChild(listValue)
-            } else if (level === "high") {
-                highP.appendChild(listValue)
+            if(lead.length>1)
+            {
+                if(candidates["John Doe"] == candidates["Alex William"] == candidates["Prerana Nawar"])
+                {
+                    winner.innerHTML = `Tie between John Doe, Alex William and Prerana Nawar with ${maxvote} votes`
+                }
+                else if(candidates["John Doe"] == candidates["Alex William"])
+                {
+                    winner.innerHTML = `Tie between John Doe and Alex William with ${maxvote} votes`
+                }
+                else if(candidates["John Doe"] == candidates["Prerana Nawar"])
+                {
+                    winner.innerHTML = `Tie between John Doe and Prerana Nawar with ${maxvote} votes`
+                }
+                else
+                {
+                    winner.innerHTML = `Tie between Alex William and Prerana Nawar with ${maxvote} votes`
+                }
+            }
+            else
+            {
+                winner.innerHTML = `${lead} is winning with ${maxvote} votes`
             }
         })
     </script>
