@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    </head>
+<body>
+    <header class="container">
+        <div class="">
+         <nav class="navbar navbar-expand-lg bg-body-tertiary">
+             <div class="container-fluid">
+               <a class="navbar-brand" href="index.html">Movie Database</a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                 <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarText">
+                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                   <li class="nav-item">
+                     <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                   </li>
+                   <li class="nav-item">
+                     <a class="nav-link" href="movies.html">Movies</a>
+                   </li>
+                   <li class="nav-item">
+                     <a class="nav-link" href="report.html">Report</a>
+                   </li>
+                 </ul>
+               </div>
+             </div>
+           </nav>
+        </div>          
+     </header>
+     
+     <section class="container">
+        <h1 class="py-3">Add a New Movie</h1>
+
+        <form>
+
+          <div class="mb-3">
+            <label for="titleI">Title: </label><br>
+            <input class="form-control" type="text" id="titleI" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="">Genre: </label><br>
+            <select class="form-control" name="" id="genreI" required>
+              <option value="Action">Action</option>
+              <option value="Comedy">Comedy</option>
+              <option value="Drama">Drama</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="dateI">Release Date: </label><br>
+            <input class="form-control" type="date" id="dateI" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="directorI">Director: </label><br>
+            <input class="form-control" type="text" id="directorI">
+          </div>
+
+          <button id="addB" class="btn btn-primary">Add Movie</button>
+
+        </form>
+
+     </section>
+
+     <section class="container">
+        <div class="row" id="show">
+
+        </div>
+     </section>
+
+     <script>
+        const data = [
+          {id:1,name:"Movie 1",genre:"Action",rel:"2023-01-15",director:"John Doe"},
+          {id:2,name:"Movie 2",genre:"Drama",rel:"2023-02-20",director:"Jane Smith"}
+        ]
+        const show = document.getElementById("show")
+        const addB = document.getElementById("addB")
+        addB.addEventListener("click",function(){
+
+            event.preventDefault()
+
+            const title = document.querySelector("#titleI").value
+            const genre = document.querySelector("#genreI").value
+            const date = document.querySelector("#dateI").value
+            const director = document.querySelector("#directorI").value
+
+            function updateMovie(data)
+            {
+              show.innerHTML =``
+              for(let i=0;i<data.length;i++)
+              {
+                
+                const col = document.createElement("div")
+                col.className = "col-md-4"
+
+                const card = document.createElement("div")
+                card.className = "card"
+
+                const cardHeader = document.createElement("div")
+                cardHeader.className = "card-header"
+                const h2 = document.createElement("h2")
+                h2.innerHTML = `<b>${data[i].name}</b>`
+                cardHeader.appendChild(h2)
+
+                const cardBody = document.createElement("div")
+                cardBody.className = "card-body"
+
+                const cardGenre = document.createElement("p")
+                cardGenre.className = "card-text"
+                cardGenre.innerHTML = `<b>Genre: </b>${data[i].genre}`
+
+                const cardDate = document.createElement("p")
+                cardDate.className = "card-text"
+                cardDate.innerHTML = `<b>Release Date: </b>${data[i].rel}`
+
+                const cardDirector = document.createElement("p")
+                cardDirector.className = "card-text"
+                cardDirector.innerHTML = `<b>Director: </b>${data[i].director}`
+              
+                const button = document.createElement("button")
+                button.className = "btn btn-primary"
+                button.className = "card-text"
+
+                cardBody.appendChild(cardGenre)
+                cardBody.appendChild(cardDate)
+                cardBody.appendChild(cardDirector)
+                cardBody.appendChild(button)
+
+                card.appendChild(cardHeader)
+                card.appendChild(cardBody)
+
+                col.appendChild(card)
+
+                show.appendChild(col)
+              }
+            }
+
+            if(title && genre && date)
+            {
+              const movieId = data.length+1
+              const entry = {
+                id:movieId,
+                name:title,
+                genre:genre,
+                rel:date,
+                director:director
+              }
+              data.push(entry)
+              updateMovie(data)
+            }
+
+        })
+        updateMovie(data)
+     </script>
+
+</body>
+</html>

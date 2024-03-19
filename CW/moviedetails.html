@@ -31,34 +31,51 @@
                </div>
              </div>
            </nav>
-        </div>          
-     </header>
-     <main class="container">
-        <h1 class="pt-4">Movie Report</h1>        
-        <div class="row">
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                       <h2>Top-Rated Movie</h2> 
-                    </div>
-                    <div class="card-body">
-                        <p><strong>title: </strong>Movie 1</p>
-                        <p><strong>rating: </strong>9.3</p>
-                    </div>
-                </div>
-            </div>            
-            <div class="col-6">
-                <div class="card">
-                    <div class="card-header">
-                       <h2>Most Popular Genre</h2> 
-                    </div>
-                    <div class="card-body">
-                        <p><strong>genre: </strong>Action</p>
-                        <p><strong>Total Movies: </strong>3</p>
-                    </div>
-                </div>
-            </div>           
         </div>
-     </main>
+        <h1 class="display-1">Movie Details</h1>          
+     </header>
+    <main class="container">
+        <section id="show">
+
+        </section>
+    </main>
+     <script>
+        pdata = [
+            {id:1,name:"Movie 1",genre:"Action",details:"This is an action-packed movie"},
+            {id:2,name:"Movie 2",genre:"Comedy",details:"This is a comedy movie"},
+            {id:3,name:"Movie 3",genre:"Horror",details:"This is an horror movie"}
+            
+        ]
+
+        function getid(id)
+        {
+            let url = new URL(window.location.href)
+            return url.searchParams.get(id)
+        }
+        let iddetials = getid("id")
+        let data
+        for (let i=0;i<pdata.length;i++)
+        {
+            if(pdata[i].id == iddetials)
+            {
+                data = pdata[i]
+            }
+        }
+        
+        if(pdata)
+        {
+            let visual = document.getElementById("show")
+            visual.innerHTML = 
+            `
+              <div class="card">                             
+                <div class="card-body">
+                    <h3>${data.name}</h3>
+                    <p><strong>Genre: </strong>${data.genre}</p>
+                    <p><strong>Details: </strong>${data.details}</p>
+                </div>
+              </div>  
+            `
+        }
+     </script>
 </body>
 </html>
