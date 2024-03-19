@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+<header class="container">
+    <div class="">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Calorie & Workout Report</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="intake.html">Calories</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="report.html">Report</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<section class="container mt-4">
+    <form action="">
+        <div class="py-3">
+            <label for="dayI">Day:</label><br>
+            <input type="text" name="" id="dayI" required>
+        </div>
+        <div class="py-3">
+            <label for="CiI">Calories Intake:</label><br>
+            <input type="number" name="" id="CiI" required>
+        </div>
+        <div class="py-3">
+            <label for="CbI">Calories Burned:</label><br>
+            <input type="number" name="" id="CbI" required>
+        </div>
+        <button class="btn btn-primary" id="addB">Add Calories</button>
+    </form>
+</section>
+
+<section class="container mt-4">
+    <div id="show" class="row"></div>
+</section>
+
+<script>
+    const addB = document.getElementById("addB");
+    const show = document.querySelector("#show");
+    const food = [
+        {id:1, name:"Day 1", calIn:2000, calB:300},
+        {id:2, name:"Day 2", calIn:3000, calB:400}
+    ];
+
+    function updateFoodlist(food) {
+        show.innerHTML = ``;
+        for (let i=0; i<food.length; i++) {
+            const col = document.createElement("div");
+            col.className = "col-md-4";
+            const card = document.createElement("div");
+            card.className = "card mb-4";
+
+            const cardHeader = document.createElement("div");
+            cardHeader.className = "card-header";
+            const h2 = document.createElement("h2");
+            h2.innerHTML = `<b>${food[i].name}</b>`;
+            cardHeader.appendChild(h2);
+
+            const cardBody = document.createElement("div");
+            cardBody.className = "card-body";
+
+            const calI = document.createElement("p");
+            calI.className = "card-text";
+            calI.innerHTML = `<b>Calories Consumed:</b>${food[i].calIn}`;
+
+            const calB = document.createElement("p");
+            calB.className = "card-text";
+            calB.innerHTML = `<b>Calories Burned:</b>${food[i].calB}`;
+
+            cardBody.appendChild(calI);
+            cardBody.appendChild(calB);
+
+            card.appendChild(cardHeader);
+            card.appendChild(cardBody);
+
+            col.appendChild(card);
+            show.appendChild(col);
+        }
+    }
+
+    addB.addEventListener("click", function() {
+        const dayI = document.querySelector("#dayI").value;
+        const CiI = document.querySelector("#CiI").value;
+        const CbI = document.querySelector("#CbI").value;
+
+        if (dayI && CbI && CiI) {
+            const foodId = food.length + 1;
+            const newFood = {
+                id: foodId,
+                name: dayI,
+                calIn: CiI,
+                calB: CbI
+            };
+            food.push(newFood);
+
+            updateFoodlist(food);
+        }
+    });
+</script>
+
+</body>
+</html>
