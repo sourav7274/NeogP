@@ -69,7 +69,7 @@
 
      </section>
 
-     <section class="container">
+     <section class="container py-3">
         <div class="row" id="show">
 
         </div>
@@ -82,65 +82,64 @@
         ]
         const show = document.getElementById("show")
         const addB = document.getElementById("addB")
+
+        function updateMovie(data)
+        {
+          show.innerHTML = ``
+          for(let i=0;i<data.length;i++)
+          {            
+            const col = document.createElement("div")
+            col.className = "col-md-4 mb-3"
+
+            const card = document.createElement("div")
+            card.className = "card"
+
+            const cardHeader = document.createElement("div")
+            cardHeader.className = "card-header"
+            const h2 = document.createElement("h2")
+            h2.innerHTML = `<b>${data[i].name}</b>`
+            cardHeader.appendChild(h2)
+
+            const cardBody = document.createElement("div")
+            cardBody.className = "card-body"
+
+            const cardGenre = document.createElement("p")
+            cardGenre.className = "card-text"
+            cardGenre.innerHTML = `<b>Genre: </b>${data[i].genre}`
+
+            const cardDate = document.createElement("p")
+            cardDate.className = "card-text"
+            cardDate.innerHTML = `<b>Release Date: </b>${data[i].rel}`
+
+            const cardDirector = document.createElement("p")
+            cardDirector.className = "card-text"
+            cardDirector.innerHTML = `<b>Director: </b>${data[i].director}`
+          
+            const button = document.createElement("a")
+            button.className = "btn btn-primary"
+            button.type = "button"
+            button.textContent = "Details"
+            button.href = `moviedetails.html?id=${data[i].id}`
+
+            cardBody.appendChild(cardGenre)
+            cardBody.appendChild(cardDate)
+            cardBody.appendChild(cardDirector)
+            cardBody.appendChild(button)
+
+            card.appendChild(cardHeader)
+            card.appendChild(cardBody)
+
+            col.appendChild(card)
+            show.appendChild(col)
+          }
+        }
+        updateMovie(data)
         addB.addEventListener("click",function(){
-
             event.preventDefault()
-
             const title = document.querySelector("#titleI").value
             const genre = document.querySelector("#genreI").value
             const date = document.querySelector("#dateI").value
             const director = document.querySelector("#directorI").value
-
-            function updateMovie(data)
-            {
-              show.innerHTML =``
-              for(let i=0;i<data.length;i++)
-              {
-                
-                const col = document.createElement("div")
-                col.className = "col-md-4"
-
-                const card = document.createElement("div")
-                card.className = "card"
-
-                const cardHeader = document.createElement("div")
-                cardHeader.className = "card-header"
-                const h2 = document.createElement("h2")
-                h2.innerHTML = `<b>${data[i].name}</b>`
-                cardHeader.appendChild(h2)
-
-                const cardBody = document.createElement("div")
-                cardBody.className = "card-body"
-
-                const cardGenre = document.createElement("p")
-                cardGenre.className = "card-text"
-                cardGenre.innerHTML = `<b>Genre: </b>${data[i].genre}`
-
-                const cardDate = document.createElement("p")
-                cardDate.className = "card-text"
-                cardDate.innerHTML = `<b>Release Date: </b>${data[i].rel}`
-
-                const cardDirector = document.createElement("p")
-                cardDirector.className = "card-text"
-                cardDirector.innerHTML = `<b>Director: </b>${data[i].director}`
-              
-                const button = document.createElement("button")
-                button.className = "btn btn-primary"
-                button.className = "card-text"
-
-                cardBody.appendChild(cardGenre)
-                cardBody.appendChild(cardDate)
-                cardBody.appendChild(cardDirector)
-                cardBody.appendChild(button)
-
-                card.appendChild(cardHeader)
-                card.appendChild(cardBody)
-
-                col.appendChild(card)
-
-                show.appendChild(col)
-              }
-            }
 
             if(title && genre && date)
             {
@@ -155,9 +154,8 @@
               data.push(entry)
               updateMovie(data)
             }
-
         })
-        updateMovie(data)
+       
      </script>
 
 </body>
