@@ -38,15 +38,15 @@
     <form action="">
         <div class="py-3">
             <label for="dayI">Day:</label><br>
-            <input type="text" name="" id="dayI" required>
+            <input type="text" class="form-control" id="dayI" required>
         </div>
         <div class="py-3">
             <label for="CiI">Calories Intake:</label><br>
-            <input type="number" name="" id="CiI" required>
+            <input type="number" class="form-control" id="CiI" required>
         </div>
         <div class="py-3">
             <label for="CbI">Calories Burned:</label><br>
-            <input type="number" name="" id="CbI" required>
+            <input type="number" class="form-control" id="CbI" required>
         </div>
         <button class="btn btn-primary" id="addB">Add Calories</button>
     </form>
@@ -100,7 +100,10 @@
         }
     }
 
+    updateFoodlist(food)
+
     addB.addEventListener("click", function() {
+        event.preventDefault()
         const dayI = document.querySelector("#dayI").value;
         const CiI = document.querySelector("#CiI").value;
         const CbI = document.querySelector("#CbI").value;
