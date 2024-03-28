@@ -53,74 +53,66 @@
         </nav>
       </div>
     </header>
-    
+   
 
-    <section class="container mt-4">
-      <h1>Players Report</h1>
-      <hr>
-      <div class="row" id="player-report">
+  <main class="container">
+    <section id="show">
 
-      </div>
     </section>
+  </main>
+  <script>
+    const pdata =
+     [
+          {id:1,name:"ABC",country:"India",role:"Batsman"},
+          {id:2,name:"XYZ",country:"Australia",role:"Bowler"},
+          {id:3,name:"EFG",country:"SA",role:"Batsman"},
+          {id:4,name:"EFG",country:"India",role:"Bowler"},
+          {id:5,name:"EFG",country:"Australia",role:"Batsman"},
+          {id:6,name:"EFG",country:"SA",role:"Bowler"}
+     ]
 
-
-    <script>
-
-      function generatePlayerReport()
-      {
-        const topScorer = {name:"ABC",total:12000}
-        const bestBowler = {name:"CDE",totalWicekts: 500}
-
-        const playerReport = document.querySelector("#player-report")
-
-        function createCard(cardObj)
-        {
-          const col = document.createElement("div")
-          col.className = 'col md-6'
-
-          const card = document.createElement("div")
-          card.className = 'card mb-3'
-
-          const cardHeader = document.createElement("div")
-          cardHeader.className = 'card-header'
-          const h2 = document.createElement("h2")
-          h2.textContent = cardObj === topScorer ? 'Top Scorer' : 'Best Bowler'
-          
-          cardHeader.appendChild(h2)
-
-          const cardBody = document.createElement('div')
-          cardBody.className = 'card-body'
-
-          const playerName = document.createElement('p')
-          playerName.className = 'card-text'
-          playerName.innerHTML = `<b>Name: </b>${cardObj.name}`
-
-          const playerStats = document.createElement('p')
-          playerStats.className = 'card-text'
-          playerStats.innerHTML = cardObj == topScorer ? `<b>Total Runs:</b> ${cardObj.total}` : `<b>Total Wickets: </b> ${cardObj.totalWicekts}`
-
-          cardBody.appendChild(playerName)
-          cardBody.appendChild(playerStats)
-
-          card.appendChild(cardHeader)
-          card.appendChild(cardBody)
-
-          col.appendChild(card)
-
-          playerReport.appendChild(col)
-
-        }
-
-
-        createCard(topScorer)
-        createCard(bestBowler)
+    function getid(id) {
+      let url = new URL(window.location.href)
+      return url.searchParams.get(id)
+    }
+    let iddetials = getid("id")
+    let data = []
+    for (let i = 0; i < pdata.length; i++) {
+      if (pdata[i].id == iddetials) {
+        data = pdata[i]
       }
+    }
 
-      generatePlayerReport()
+    if (pdata) {
+      let visual = document.getElementById("show")
+    
+      const card = document.createElement('div')
+      card.className = 'card'
 
+      const cardheader = document.createElement('div')
+      cardheader.className = 'card-header'
+      const h2 = document.createElement('h2')
+      h2.innerHTML = `<b>${data.name}</b>`
+      cardheader.appendChild(h2)
 
-    </script>
- 
+      const cardbody = document.createElement("div")
+      cardbody.className = 'card-body'
+
+      const country = document.createElement('p')
+      country.innerHTML = `<b>Country: </b>${data.country}`
+
+      const role = document.createElement("p")
+      role.innerHTML = `<b>Role: </b>${data.role}`
+
+      cardbody.appendChild(country)
+      cardbody.appendChild(role)
+
+      card.appendChild(cardheader)
+      card.appendChild(cardbody)
+
+      visual.appendChild(card)
+    }
+  </script>
 </body>
 
 </html>
