@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body>
+  <header class="bg-dark text-white text-center py-3">                
+    <h1>List of Employees</h1>
+  </header>
+
+  <section class="container py-3">                  
+    <h3>Filter By Department</h3>
+    <label for="departmentFilter"></label>
+    <select name="" class="form-control mb-4" id="departmentFilter">
+      <option value="all">All Department</option>
+      <option value="IT">IT</option>
+      <option value="Design">Design</option>
+      <option value="Management">Management</option>
+    </select>
+
+    <form>
+      <h1>Add Employee</h1>
+
+      <div class="mb-3">
+        <label for="nameI">Name: </label><br>
+        <input class="form-control" type="text" id="nameI">
+      </div>
+
+      <div class="mb-3">
+        <label for="titleI">Title:</label><br>
+        <input class="form-control" type="text" id="titleI">
+      </div>
+
+      <div class="mb-3">
+        <label for="departmentI">Department</label><br>
+        <select class="form-control" id="departmentI">
+          <option value="IT">IT</option>
+          <option value="Design">Design</option>
+          <option value="Management">Management</option>
+        </select>
+      </div>
+
+      <button class="btn btn-primary" id="addB">Add Employee</button>
+    </form>
+  </section>
+
+  <section class="container mt-4">
+    <ul id="show" class="list-group"></ul>
+  </section>
+
+  <script>
+    const addB = document.getElementById("addB")
+    const show = document.getElementById("show")
+    const departmentFilter = document.getElementById("departmentFilter")
+    const departmentSelect = document.getElementById("departmentI")
+    let employees = 
+      [
+        {id:"1",name:"John Doe",title:"Software Developer",department:"IT"},
+        {id:"2",name:"Jame Smith",title:"Designer",department:"Design"},
+        {id:"3",name:"Bob Johnson",title:"Project Manager",department:"Management"}    
+      ]
+
+    function filterDepartment()
+    {
+      const want = departmentFilter.value
+      const filter = []
+      
+      if(want == "all")
+      {
+        updateList(employees)
+      }
+      else
+      {
+        for(let j=0;j<employees.length;j++)
+        { 
+          if(employees[j].department == want)
+          {
+            filter.push(employees[j])
+          }
+        }
+        updateList(filter)
+      }             
+    }
+
+    function updateList(employees)
+    {
+      show.innerHTML = ``
+      for(let i=0;i<employees.length;i++)
+      {                  
+        const liE = document.createElement("li")
+        liE.className = "list-group-item d-flex justify-content-between align-items-center"
+
+        const div1 = document.createElement("div")
+        div1.innerHTML = `<h5>${employees[i].name}</h5>`
+        const pE = document.createElement("p")
+        pE.innerHTML = `${employees[i].title}`
+
+        const div2 = document.createElement("div")
+        const aE = document.createElement("a")
+        aE.className = "btn btn-link"
+        aE.href = `employeedetail.html?id=${employees[i].id}`
+        aE.innerHTML = `View Details`
+
+        div1.appendChild(pE)
+        div2.appendChild(aE)
+
+        liE.appendChild(div1)
+        liE.appendChild(div2)
+
+        show.appendChild(liE)
+      }
+    }
+    
+    updateList(employees)
+    
+    addB.addEventListener("click", function() {
+      event.preventDefault()
+      const nameI = document.querySelector("#nameI").value
+      const titleI = document.querySelector("#titleI").value
+      const departmentI = departmentSelect.value
+      const idN = employees.length + 1
+      const entry = {
+        id: idN,
+        name: nameI,
+        title: titleI,
+        department: departmentI 
+      }
+      employees.push(entry)
+      updateList(employees) 
+    })
+
+    departmentFilter.addEventListener("change",filterDepartment)
+
+
+  </script>
+</body>
+</html>
