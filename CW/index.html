@@ -3,31 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
-    <h1>Joke API - Programming Joke</h1>
-
-    <button id="jokeB">Get Programming Joke</button>
-    <br>
-    <p id="show"></p>
+    <div class="container mt-4">
+        <h1 class="text-center">Chuck Norris Jokes</h1>
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary btn-block" id="getJokeB">Get Joke</button>
+        </div>
+        <div class="mt-4" id="jokeC"></div>
+    </div>
+    
 
     <script>
-        const show = document.getElementById("show")
-        const jokeB = document.getElementById("jokeB")
-        const apiUrl = 'https://v2.jokeapi.dev/joke/Programming?type=single'
+        const getJokeB = document.querySelector("#getJokeB")
+        const jokeC = document.querySelector("#jokeC")
+        const apiUrl = 'https://api.chucknorris.io/jokes/random'
 
-        jokeB.addEventListener("click",function(){
+        getJokeB.addEventListener("click",function(){
 
-            fetch(apiUrl).then(function getResponse(response){
+            fetch(apiUrl).then(function responseHandler(response){
                 return response.json()
-            }).then(function hhowData(data){
-                console.log(data)
-                show.innerHTML = `${data.joke}`
-            }).catch(function errorHandle(error){
-                show.textContent = 'Some error occured'
+            }).then(function showData(data){
+               if(data.value)
+               {
+                   jokeC.innerHTML = `${data.value}`
+               }
+               else
+               {
+                jokeC.textContent = 'Failed to get a joke'
+               }
+            }).catch(function handleError(error){
+                jokeC.textContent = 'An error occured while fetching joke'
             })
-
+            
         })
 
     </script>
