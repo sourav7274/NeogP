@@ -6,25 +6,29 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Todo API</h1>
-    <button id="getB">Get Data</button>
-    <div id="show"></div>
+    <h1>Joke API - Programming Joke</h1>
+
+    <button id="jokeB">Get Programming Joke</button>
+    <br>
+    <p id="show"></p>
 
     <script>
-        const urlApi = 'https://jsonplaceholder.typicode.com/todos/5'
-        const getB = document.getElementById("getB")
         const show = document.getElementById("show")
+        const jokeB = document.getElementById("jokeB")
+        const apiUrl = 'https://v2.jokeapi.dev/joke/Programming?type=single'
 
-        getB.addEventListener("click",function(){
-            fetch(urlApi).then(function getResponse(response){
+        jokeB.addEventListener("click",function(){
+
+            fetch(apiUrl).then(function getResponse(response){
                 return response.json()
-            }).then(function showData(data){            
+            }).then(function hhowData(data){
                 console.log(data)
-                show.innerHTML = `User ID:${data.userId}<br> Title:${data.title} <br> Completed:${data.completed}`
+                show.innerHTML = `${data.joke}`
             }).catch(function errorHandle(error){
-                show.textContent = `Error Occured`
+                show.textContent = 'Some error occured'
             })
-    })
+
+        })
 
     </script>
 </body>
