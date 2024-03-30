@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Todo API</h1>
+    <button id="getB">Get Data</button>
+    <div id="show"></div>
+
+    <script>
+        const urlApi = 'https://jsonplaceholder.typicode.com/todos/5'
+        const getB = document.getElementById("getB")
+        const show = document.getElementById("show")
+
+        getB.addEventListener("click",function(){
+            fetch(urlApi).then(function getResponse(response){
+                return response.json()
+            }).then(function showData(data){            
+                console.log(data)
+                show.innerHTML = `User ID:${data.userId}<br> Title:${data.title} <br> Completed:${data.completed}`
+            }).catch(function errorHandle(error){
+                show.textContent = `Error Occured`
+            })
+    })
+
+    </script>
+</body>
+</html>
