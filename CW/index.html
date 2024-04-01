@@ -8,34 +8,32 @@
 </head>
 <body>
     <div class="container mt-4">
-        <h1 class="text-center">Chuck Norris Jokes</h1>
-        <div class="d-grid gap-2">
-            <button class="btn btn-primary btn-block" id="getJokeB">Get Joke</button>
+        <h1 class="text-center mb-4">Advice Slip API</h1>
+        <div class="text-center">
+            <button class="btn btn-primary" id="getAdviceB">Get Advice</button>
         </div>
-        <div class="mt-4" id="jokeC"></div>
+        <div class="text-center mt-4" id="adviceC"></div>
     </div>
     
 
     <script>
-        const getJokeB = document.querySelector("#getJokeB")
-        const jokeC = document.querySelector("#jokeC")
-        const apiUrl = 'https://api.chucknorris.io/jokes/random'
+        const getAdviceB = document.querySelector("#getAdviceB")
+        const adviceC = document.querySelector("#adviceC") 
+        const apiUrl = 'https://api.adviceslip.com/advice'
 
-        getJokeB.addEventListener("click",function(){
+        getAdviceB.addEventListener("click", function() {
 
-            fetch(apiUrl).then(function responseHandler(response){
+            fetch(apiUrl).then(function(response) {
                 return response.json()
-            }).then(function showData(data){
-               if(data.value)
-               {
-                   jokeC.innerHTML = `${data.value}`
-               }
-               else
-               {
-                jokeC.textContent = 'Failed to get a joke'
-               }
-            }).catch(function handleError(error){
-                jokeC.textContent = 'An error occured while fetching joke'
+            }).then(function(showData) {
+                console.log(showData)
+                if (showData.slip.advice) {
+                    adviceC.innerHTML = `<b>${showData.slip.advice}</b>`
+                } else {
+                    adviceC.textContent = 'Failed to get advice'
+                }
+            }).catch(function(handleError) {
+                adviceC.textContent = 'An error occurred while fetching advice'
             })
             
         })
