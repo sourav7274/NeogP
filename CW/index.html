@@ -7,33 +7,40 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="container mt-4">
-        <h1 class="text-center mb-4">Advice Slip API</h1>
-        <div class="text-center">
-            <button class="btn btn-primary" id="getAdviceB">Get Advice</button>
+    <div class="ms-5  mt-4">
+        <h1 class="mb-4">Random User Api</h1>
+        <div class="">
+            <button class="btn btn-info" id="getApiB">Get Random User</button>
         </div>
-        <div class="text-center mt-4" id="adviceC"></div>
+        <div class="mt-4" id="randomC"></div>
     </div>
     
 
     <script>
-        const getAdviceB = document.querySelector("#getAdviceB")
-        const adviceC = document.querySelector("#adviceC") 
-        const apiUrl = 'https://api.adviceslip.com/advice'
+        const getApiB = document.querySelector("#getApiB")
+        const randomC = document.querySelector("#randomC") 
+        const apiUrl = 'https://randomuser.me/api/'
 
-        getAdviceB.addEventListener("click", function() {
+        getApiB.addEventListener("click", function() {
 
             fetch(apiUrl).then(function(response) {
                 return response.json()
             }).then(function(showData) {
                 console.log(showData)
-                if (showData.slip.advice) {
-                    adviceC.innerHTML = `<b>${showData.slip.advice}</b>`
+                if (showData) {
+                    const fname = showData.results[0].name.first
+                    const lname = showData.results[0].name.last
+                    const name = fname+' '+lname
+                    randomC.innerHTML = `
+                    <b>Name: </b>${name}<br>
+                    <b>Email: </b>${showData.results[0].email}<br>
+                    <b>City: </b>${showData.results[0].location.city}<br>
+                    `
                 } else {
-                    adviceC.textContent = 'Failed to get advice'
+                    randomC.textContent = 'Failed to get advice'
                 }
             }).catch(function(handleError) {
-                adviceC.textContent = 'An error occurred while fetching advice'
+                randomC.textContent = 'An error occurred while fetching advice'
             })
             
         })
