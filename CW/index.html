@@ -7,43 +7,44 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="ms-5  mt-4">
-        <h1 class="mb-4">Random User Api</h1>
-        <div class="">
-            <button class="btn btn-info" id="getApiB">Get Random User</button>
-        </div>
-        <div class="mt-4" id="randomC"></div>
-    </div>
-    
+  <div class="container mt-3">
+    <h1>Posts</h1>
+    <button class="btn btn-info" id="postB">Get Posts</button>
+    <div class="mt-3" id="dataContainer"></div>
+  </div>
 
     <script>
-        const getApiB = document.querySelector("#getApiB")
-        const randomC = document.querySelector("#randomC") 
-        const apiUrl = 'https://randomuser.me/api/'
+       const postB = document.getElementById("postB")
+       const dataContainer = document.getElementById("dataContainer")
+       const apiUrl = 'https://jsonplaceholder.typicode.com/posts'
 
-        getApiB.addEventListener("click", function() {
-
-            fetch(apiUrl).then(function(response) {
+       postB.addEventListener("click",function(){
+            dataContainer.textContent = `Loading...`
+            fetch(apiUrl).then(function(response){
                 return response.json()
-            }).then(function(showData) {
-                console.log(showData)
-                if (showData) {
-                    const fname = showData.results[0].name.first
-                    const lname = showData.results[0].name.last
-                    const name = fname+' '+lname
-                    randomC.innerHTML = `
-                    <b>Name: </b>${name}<br>
-                    <b>Email: </b>${showData.results[0].email}<br>
-                    <b>City: </b>${showData.results[0].location.city}<br>
-                    `
-                } else {
-                    randomC.textContent = 'Failed to get advice'
+            }).then(function(data){
+                if(data && data.length > 0)
+                {
+                    const postsData = []
+                    for(let i=0;i<data.length;i++)
+                    {
+                        let post = `<div><h3>${data[i].title}</h3>
+                            <p>${data[i].body}</p>
+                            </div>`
+
+                        postsData.push(post)
+                    }
+                    const finalData = postsData.join('')
+                    dataContainer.innerHTML = finalData
                 }
-            }).catch(function(handleError) {
-                randomC.textContent = 'An error occurred while fetching advice'
+                else
+                {
+                    dataContainer.textContent = `No Posts Found`
+                }                
+            }).catch(function showError(error){
+                dataContainer.textContent = `An error occured while fetching posts.`
             })
-            
-        })
+       })
 
     </script>
 </body>
