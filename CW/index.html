@@ -8,15 +8,15 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="mt-4">Random Users</h1>
-        <button id="userB" class="btn btn-primary my-3">Get Random Users</button>
-        <div id="show"></div>
+        <h1 class="mt-4">Random Todos</h1>
+        <button id="userB" class="btn btn-primary my-3">Get Random Todos</button>
+        <div class="text-center" id="show"></div>
     </div>
     
     <script>
         const userB = document.getElementById("userB")
         const show = document.getElementById("show")
-        const apiUrl = 'https://randomuser.me/api/?results=3'
+        const apiUrl = 'https://jsonplaceholder.typicode.com/todos?_limit=3'
 
         userB.addEventListener("click",function(){
             show.innerHTML = `Loading....Please Wait`
@@ -25,19 +25,24 @@
             }).then(function(data){
                 if(data)
                 {
+                    console.log(data[0].completed)
                     const userData=[]
-                    for(let i=0;i<data.results.length;i++)
+                    for(let i=0;i<data.length;i++)
                     {
-                        let fname = data.results[i].name.first
-                        let lname = data.results[i].name.last
-                        let peep = `
-                        <div>
-                        <img src="${data.results[i].picture.large}" />
-                        <p>Name : ${fname+" "+lname}</p>                    
-                        <p>Email: ${data.results[i].email}</p>
+                        let status = ''
+                        if(data[i].completed == "false")
+                        {
+                            status = "Not Completed"
+                        }
+                        let todo = `
+                        <div class="card text-start">
+                            <div class="card-body">
+                                <p class="fw-semibold">${data[i].title}</p>
+                                <p>${data[i].completed == false ? "Not Completed":"Completed"}</p>
+                            </div>                         
                         </div>
                         `
-                        userData.push(peep)
+                        userData.push(todo)
                     }
                     show.innerHTML = userData
                 }
