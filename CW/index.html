@@ -7,12 +7,12 @@
 
 </head>
 <body>
-    <h1>Movie List</h1>
+    <h1>Employee List</h1>
     <ul id="show"></ul>
 
     <script>
         const show = document.getElementById("show")
-        const apiUrl = 'https://va-5-assignment-express-student-neog.replit.app/movies'
+        const apiUrl =  'https://employee-management-backend-student-neog-ca.replit.app/employees'
 
         function fetchData()
         {
@@ -20,6 +20,7 @@
             fetch(apiUrl).then(function(response){
                 return response.json()
             }).then(function(data){
+                console.log(data)
                 if(data)
                 {
                     show.textContent = ''
@@ -27,7 +28,7 @@
                     {
                         const liE = document.createElement('li')
                         liE.textContent =`
-                        ${data[i].title}-${data[i].language}-${data[i].rating}-${data[i].director}
+                        ${data[i].name}-{Gender Not Found in APi}-${data[i].department}
                         ` 
                         show.appendChild(liE)
                     }
