@@ -4,37 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
 <body>
-    <h1>Student List</h1>
-    <ul id="studentList"></ul>
+    <h1>Movie List</h1>
+    <ul id="show"></ul>
 
     <script>
-        const apiUrl = 'https://student-management-student-neog.replit.app/students'
-        const studentList = document.getElementById("studentList")
+        const show = document.getElementById("show")
+        const apiUrl = 'https://va-5-assignment-express-student-neog.replit.app/movies'
+
         function fetchData()
-        {    studentList.textContent = 'Loading...'      
-            fetch(apiUrl).then(function(response){                
+        {
+            show.innerHTML = 'Loading...'
+            fetch(apiUrl).then(function(response){
                 return response.json()
             }).then(function(data){
                 if(data)
                 {
-                    studentList.textContent = ''
-                    for(let i=0;i<data.length;i++)
+                    show.textContent = ''
+                    for(let i =0;i<data.length;i++)
                     {
                         const liE = document.createElement('li')
-                        liE.textContent = `${data[i].name} - ${data[i].grade}`
-                        studentList.appendChild(liE)
+                        liE.textContent =`
+                        ${data[i].title}-${data[i].language}-${data[i].rating}-${data[i].director}
+                        ` 
+                        show.appendChild(liE)
                     }
-                }               
+                }
+                else
+                {
+                    show.textContent = 'No Data Found'
+                }
+                
             }).catch(function(error){
-                studentList.textContent = 'Unable to Do things'
+                show.innerHTML = 'Unable to Fetch data'
             })
         }
-
         fetchData()
-
-
     </script>
 </body>
 </html>
