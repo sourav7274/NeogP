@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>User Movie Choice Form</h1>
+    <br><br>
+    <label for="id"><b>Movie ID Number:</b></label>
+    <input type="text" id="id"><br><br>
+    <label for="name"><b>User Full Name:</b></label>
+    <input type="text" id="name"><br><br>
+    <label for="phone"><b>User Phone Number:</b></label>
+    <input type="text" id="phone"><br><br>
+    
+    <label for="mail"><b>User Email:</b></label>
+    <input type="email" id="mail"><br><br>
+    <label for=""><b>User Gender:</b></label><br>
+    <input type="radio" value="Male" name="gender">Male <br>
+    <input type="radio" value="Female" name="gender">Female <br>
+    <input type="radio" value="Others" name="gender">Others
+    <br><br>
+    <label for="address"><b>User Address:</b></label><br>
+    <textarea name="" id="address" cols="40" rows="5"></textarea><br><br>
+    <label for=""><b>Movie Type:</b></label>
+    <select name="" id="type">
+        <option value="Adult">Adult</option>
+        <option value="Teen">Teen</option>
+        <option value="Kids">Kids</option>
+    </select><br><br>
+    <label for=""><b>Movie Genre:</b></label><br>
+    <input type="checkbox" name="genre" value="Romance">Romance<br>
+    <input type="checkbox" name="genre" value="Thriller">Thriller<br>
+    <input type="checkbox" name="genre" value="Action">Action<br>
+    <input type="checkbox" name="genre" value="Horror">Horror<br>
+    <input type="checkbox" name="genre" value="Sad">Sad<br>
+    <input type="checkbox" name="genre" value="Biography">Biography<br>
+    <input type="checkbox" name="genre" value="Comedy">Comedy<br>
+    <br><br>
+    <button id="submitB">Submit</button>
+    <br><br>
+    <div id="show">
+
+    </div>
+
+    <script>
+        const submitB = document.getElementById("submitB")
+        const show = document.getElementById("show")
+
+        submitB.addEventListener("click",function(event){
+            event.preventDefault()
+            const id = document.getElementById("id")
+            const name = document.getElementById("name")
+            const phone = document.getElementById("phone")
+            const mail = document.getElementById("mail")
+            const address = document.getElementById("address")
+            const type = document.getElementById("type")
+            const gender = document.querySelector("input[name=gender]:checked").value
+            const genre = document.querySelectorAll("input[name=genre]:checked")
+            const genreL = []
+            for(let i=0;i<genre.length;i++)
+            {   
+                genreL.push(genre[i].value)
+            }
+
+            show.innerHTML = `
+                <h1>User Details</h1>
+                <p><b>ID Number: </b> ${id.value}</p>    
+                <p><b>User Full Name: </b>${name.value}</p>    
+                <p><b>User Phone Number: </b>${phone.value}</p>    
+                <p><b>User Email: </b>${mail.value}</p>    
+                <p><b>User Gender: </b>${address.value}</p>    
+                <p><b>User Address: </b>${type.value}</p>    
+                <p><b>User Type: </b>${gender}</p>    
+                <p><b>User's Movie Preference: </b>${genreL.join(',')}</p>    
+            
+            `
+        })
+    </script>
+</body>
+</html>
