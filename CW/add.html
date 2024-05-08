@@ -16,57 +16,99 @@
     </style>
  </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Inventory Management</a>
-          <div class="d-flex flex-row-reverse">
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="item.html">Item List</a>
-                  </li>  
-                  <li class="nav-item">
-                    <a class="nav-link active" href="add.html">Add List Items</a>
-                  </li>              
-                </ul>
-              </div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">ICC Player Management</a>
+      <div class="d-flex flex-row-reverse">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="player.html">Player List</a>
+              </li>  
+              <li class="nav-item">
+                <a class="nav-link active" href="add.html">Add Players</a>
+              </li>              
+            </ul>
           </div>
-        </div>
-      </nav>
-      <div class="mx-5">
-        <h1 class="my-3">Add Items</h1>
-        <div id="loading" class="bgsome ps-3 py-3 mb-3 rounded">Saving Data....</div>      
-        <label for="nameI">Item Name:</label><br>
-        <input type="text" class="form-control mt-2 mb-4" name="" id="nameI">
-        <label for="numI">Quantity:</label><br>
-        <input type="number" class="form-control mt-2" name="" id="numI"><br>
-        <label for="">Category:</label><br>
-        <select class="mt-2" id="categoryI">
-          <option value="Perishable">Perishable</option>
-          <option value="Non-Perishable">Non-Perishable</option>
-        </select><br><br>
-        <button id="addB" class="btn btn-primary">Add Items</button>
       </div>
+    </div>
+  </nav>
+      <div class="mx-5">
+        <h1 class="my-3">Add Players</h1>
+        <div id="loading" class="bgsome ps-3 py-3 mb-3 rounded">Saving Data....</div>      
+        <label for="nameI">Player Full Name:</label><br>
+        <input type="text" class="form-control mt-2 mb-4" name="" id="nameI">
+        <label for="dateI">Date of Birth:</label><br>
+        <input type="date" class="form-control mt-2" name="" id="dateI"><br>
+        <label for="nationI">Nationality:</label><br>
+        <input type="text" class="form-control mt-2" name="" id="nationI"><br>
+        <label for="placeI">Place of Birth:</label><br>
+        <input type="text" class="form-control mt-2" name="" id="placeI"><br>
+        <label for="addressI">Contact Address:</label><br>
+        <textarea class="form-control" rows="5" id="addressI"></textarea><br>
+        <label for="phoneI">Phone Number:</label><br>
+        <input type="number" class="form-control mt-2" name="" id="phoneI"><br>
+        <label for="emailI">Email Address:</label><br>
+        <input type="email" class="form-control mt-2" name="" id="emailI"><br>
+        <label for="">Playing Role:</label><br>
+        <select class="mt-2" id="roleI">
+          <option value="Batsman">Batsman</option>
+          <option value="Bowler">Bowler</option>
+          <option value="All-rounder">All-rounder</option>
+        </select><br><br>
+        <label for="">Batting Hand:</label><br> 
+        <select class="mt-2" id="handI">
+          <option value="Right Handed">Right Handed</option>
+          <option value="Left Handed">Left Handed</option>
+          <option value="Both">Both</option>
+        </select><br><br>
+        <label for="">Bowling Style:</label><br>
+        <select class="mt-2" id="styleI">
+          <option value="Right-Arm Fast">Right-Arm Fast</option>         
+          <option value="Right-Arm Medium">Right-Arm Medium</option>         
+          <option value="Right-Arm Spin(Off-Spin)">Right-Arm Spin(Off-Spin)</option>
+          <option value="Left-Arm Fast">Left-Arm Fast</option>         
+          <option value="Left-Arm Medium">Left-Arm Medium</option>         
+          <option value="Left-Arm Spin(Off-Spin)">Left-Arm Spin(Off-Spin)</option>           
+        </select><br><br>
+
+        <button id="addB" class="btn btn-primary mt-3">Add Players</button>
+      </div>      
+      
       <script>
         const addB = document.getElementById("addB")
         const loading = document.getElementById("loading")
         addB.addEventListener("click",function(){
           loading.style.display = "Block"
           const name = document.getElementById("nameI").value
-          const num = document.getElementById("numI").value
-          const category = document.getElementById("categoryI").value
-          const apiUrl =  'https://inventory-management-student-neog-ca.replit.app/inventory'
+          const date = document.getElementById("dateI").value
+          const nation = document.getElementById("nationI").value
+          const place = document.getElementById("placeI").value
+          const address = document.getElementById("addressI").value
+          const phone = document.getElementById("phoneI").value
+          const email = document.getElementById("emailI").value
+          const role = document.getElementById("roleI").value
+          const hand = document.getElementById("handI").value
+          const style = document.getElementById("styleI").value
+
+          const apiUrl = 'https://players-backend-student-neog-ca.replit.app/players'
 
           const datas={
-            itemName:name,
-            quantity:num,
-            category:category
+            battingHand:hand,
+            bowlingStyle:style,
+            dateOfBirth:date,
+            emailAddress:email,
+            fullName:name,
+            nationality:nation,
+            phoneNumber:phone,
+            placeOfBirth: place,
+            playingRole:role
           }
 
 
@@ -81,7 +123,10 @@
           }).then(function(data){
             console.log(data)
             loading.style.backgroundColor = "rgb(207, 234, 214)"
-            loading.textContent = "Item Added Successfully!"
+            loading.textContent = "Player Added Successfully!"
+          }).catch(function(error){
+            loading.style.backgroundColor = "red"
+            loading.textContent = "Player Not Added!"
           })
         })
       </script>

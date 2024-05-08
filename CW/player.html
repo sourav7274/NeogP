@@ -16,37 +16,37 @@
     </style>
   </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand fw-semibold" href="index.html">Inventory Management</a>
-          <div class="d-flex flex-row-reverse">
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="item.html">Item List</a>
-                  </li>  
-                  <li class="nav-item">
-                    <a class="nav-link" href="add.html">Add List Items</a>
-                  </li>              
-                </ul>
-              </div>
+  <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="index.html">ICC Player Management</a>
+      <div class="d-flex flex-row-reverse">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="player.html">Player List</a>
+              </li>  
+              <li class="nav-item">
+                <a class="nav-link" href="add.html">Add Players</a>
+              </li>              
+            </ul>
           </div>
-        </div>
-      </nav>
+      </div>
+    </div>
+  </nav>
       <div id="show" class="mx-5">
-        <h1 class="pb-3">Item List</h1>
+        <h1 class="pb-3">Player List</h1>
         <div id="loading" class="bg ps-3 py-3 rounded">Loading....</div>
         <label class="pt-3" for="">Filter by Category:</label><br>
         <select class="form-control mb-4" name="" id="category">
-          <option value="All">All</option>
-          <option value="Perishable">Perishable</option>
-          <option value="Non-Perishable">Non-Perishable</option>
+          <option value="All-rounder">All-rounder</option>
+          <option value="Batsman">Batsman</option>
+          <option value="Bowler">Bowler</option>
         </select>
         <ul class="list-group" id="showL">
 
@@ -54,7 +54,7 @@
       </div>
 
       <script>
-        const apiUrl =  'https://inventory-management-student-neog-ca.replit.app/inventory'
+        const apiUrl = 'https://players-backend-student-neog-ca.replit.app/players'
         const loading = document.getElementById("loading")
         const show = document.getElementById("show")
         const showL = document.getElementById("showL")
@@ -76,14 +76,14 @@
           }).then(function(data){
             if(data)
             {
-              if(val == "All")
+              if(val == "All-rounder")
               { 
                 for(let i=0;i<data.length;i++)
                 {
                   let Lie = document.createElement("li")
                   Lie.className = "list-group-item"
                   Lie.innerHTML = `
-                  ${data[i].itemName} - Quantity: ${data[i].quantity} - Category: ${data[i].category}
+                  ${data[i].fullName} - Playing Role: ${data[i].playingRole}  - Nationality: ${data[i].nationality}
                   <button class = "btn btn-danger float-end" id="deleteB" data-id =${data[i]._id}>Delete</button>
                   `
                   showL.appendChild(Lie)
@@ -93,12 +93,12 @@
               {
                 for(let i=0;i<data.length;i++)
                 {
-                  if(val==data[i].category)
+                  if(val==data[i].playingRole)
                   {
                     let Lie = document.createElement("li")
                     Lie.className = "list-group-item"
                     Lie.innerHTML = `
-                    ${data[i].itemName} - Quantity: ${data[i].quantity} - Category: ${data[i].category}
+                    ${data[i].fullName} - Playing Role: ${data[i].playingRole}  - Nationality: ${data[i].nationality}
                     <button class = "btn btn-danger float-end" id="deleteB" data-id =${data[i]._id}>Delete</button>
                     `
                     showL.appendChild(Lie)
@@ -117,13 +117,15 @@
                     return response.json()
                   }).then(function(data){
                     fetchData("All")
+                  }).catch(function(error){
+                    console.log("Error Occuredd")
                   })
                 })
               }
             }
           })
         }
-        fetchData("All")
+        fetchData("All-rounder")
 
       </script>
 </body>
