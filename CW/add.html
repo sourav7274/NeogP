@@ -7,100 +7,81 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <style>
-      #show{
+      .bgsome{
+        background-color: rgb(204, 233, 240);
+      }
+      #loading{
         display: none;
       }
     </style>
-  </head>
-
+ </head>
 <body>
-  <nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">Student Management</a>
-      <button class="ms-5 navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    <div class="d-flex flex-row-reverse">
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <div class="d-flex justify-content-end">
-             <ul class="navbar-nav">
-                <li class="nav-item ">
-                  <a class="nav-link" aria-current="page" href="index.html">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="student.html">Student List</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="add.html">Add Student</a>
-                </li>
-              </ul>
-        </div>            
-      </div>
-    </div> 
-    </div>
-  </nav>
-      <div class="container">
-        <h1 class="pb-3">Add Student</h1>
-        <label for="nameI">Name:</label><br>
-        <input id="nameI" class="form-control" type="text"><br>
-        <label for="ageI">Age:</label><br>
-        <input id="ageI" class="form-control" type="number"><br>
-        <label for="">Gender:</label>
-        <select id="genderS">
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Others">Others</option>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index.html">Inventory Management</a>
+          <div class="d-flex flex-row-reverse">
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="item.html">Item List</a>
+                  </li>  
+                  <li class="nav-item">
+                    <a class="nav-link active" href="add.html">Add List Items</a>
+                  </li>              
+                </ul>
+              </div>
+          </div>
+        </div>
+      </nav>
+      <div class="mx-5">
+        <h1 class="my-3">Add Items</h1>
+        <div id="loading" class="bgsome ps-3 py-3 mb-3 rounded">Saving Data....</div>      
+        <label for="nameI">Item Name:</label><br>
+        <input type="text" class="form-control mt-2 mb-4" name="" id="nameI">
+        <label for="numI">Quantity:</label><br>
+        <input type="number" class="form-control mt-2" name="" id="numI"><br>
+        <label for="">Category:</label><br>
+        <select class="mt-2" id="categoryI">
+          <option value="Perishable">Perishable</option>
+          <option value="Non-Perishable">Non-Perishable</option>
         </select><br><br>
-        <label for="gradeI">Grade:</label><br>
-        <input type="text" class="form-control" id="gradeI"><br>
-        <label for="marksI">Marks:</label><br>
-        <input type="number" class="form-control" id="marksI"><br>
-        <label for="attendI">Attendance:</label><br>
-        <input type="number" class="form-control" id="attendI"><br>
-        <button id="addB" class="btn btn-primary">Add Student</button>
-        <p class="pt-3" id="show">Student Added Successfully!!..</p>
+        <button id="addB" class="btn btn-primary">Add Items</button>
       </div>
-
       <script>
         const addB = document.getElementById("addB")
-        const apiUrl = 'https://student-management-Student-neog.replit.app/students'
-        const show = document.getElementById("show")
-
+        const loading = document.getElementById("loading")
         addB.addEventListener("click",function(){
+          loading.style.display = "Block"
           const name = document.getElementById("nameI").value
-          const age = document.getElementById("ageI").value
-          const gender = document.getElementById("genderS").value
-          const grade = document.getElementById("gradeI").value
-          const marks = document.getElementById("marksI").value
-          const attend = document.getElementById("attendI").value
-          
-          const data = {
-            name: name,
-            age:age,
-            gender:gender,
-            grade:grade,
-            marks:marks,
-            attendance:attend
+          const num = document.getElementById("numI").value
+          const category = document.getElementById("categoryI").value
+          const apiUrl =  'https://inventory-management-student-neog-ca.replit.app/inventory'
+
+          const datas={
+            itemName:name,
+            quantity:num,
+            category:category
           }
+
+
           fetch(apiUrl,{
             method:"POST",
-            body:JSON.stringify(data),
+            body:JSON.stringify(datas),
             headers:{
               'Content-Type':'application/json'
             }
           }).then(function(response){
             return response.json()
           }).then(function(data){
-            if(data)
-            {
-              show.style.display = 'block'
-            }
-            else
-            {
-              show.textContent = 'Unable to Add student'
-            }
-          }).catch(function(error){
-            show.textContent = "Some error occurred"
+            console.log(data)
+            loading.style.backgroundColor = "rgb(207, 234, 214)"
+            loading.textContent = "Item Added Successfully!"
           })
         })
       </script>
