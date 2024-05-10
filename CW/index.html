@@ -11,59 +11,82 @@
     }
   </style>
 </head>
-<body class="mx-5 mt-4">
-   <div>
-    <h1>Event Registration Form</h1>
-    <br>
-    <label for="nameI">Name:</label>
-    <input type="text" name="" id="nameI"><br><br>
-    <label for="nameI">Email:</label>
-    <input type="email" name="" id="emailI"><br><br>
-    <label for="">Select Event:</label>
-    <select name="" id="typeI">
-      <option value="Conference">Conference</option>
-      <option value="Workshop">Workshop</option>
-      <option value="Seminar">Seminar</option>
-      <option value="Networking Event">Networking Event</option>
-      <option value="Webinar">Webinar</option>
-    </select><br><br>
-    <label for="numI">Number of Attendees:</label>
-    <input type="number" id="numI"><br><br>
-    <label for="">Registration Type:</label>
-    <input type="radio" name="rtype" value="Individual"> Individual
-    <input type="radio" name="rtype" value="Group"> Group<br><br>
-    <label for="infoI">Additional Information:</label><br>
-    <textarea name="" id="infoI" rows="5" cols="50"></textarea><br><br>
-    <button id="addB" class="btn btn-primary">Submit</button>
-   </div>
-   <div id="show" class="mt-4 card"></div>
+<body>
+  <div class="card m-5 p-5">
+    <div class="card-body">
+      <h1 class="text-center">Job Application Form</h1>
+      <label for="nameI">Name: </label><br>
+        <input type="text" name="" id="nameI"><br><br>
+      <label for="emailI">Email: </label><br>
+        <input type="text" name="" id="emailI"><br><br>
+      <label for="fileI">Upload Resume: </label><br>
+        <input type="file" id="fileI"><br><br>
+      <label for="">Position Apllied For: </label><br>
+      <select name="" id="positionI">
+        <option value="Software Engineer">Software Engineer</option>
+        <option value="Data Analyst">Data Analyst</option>
+        <option value="Marketing Specialist">Marketing Specialist</option>
+        <option value="Graphics Designer">Graphics Designer</option>
+        <option value="HR Manager">HR Manager</option>
+      </select><br><br>
+      <label for="">Years of Experience: </label><br>
+        <input type="radio" name="expI" value="0-2 years"> 0-2 years<br>
+        <input type="radio" name="expI" value="2-3 years"> 2-3 years<br>
+        <input type="radio" name="expI" value="5+ years"> 5+ years<br><br>
+      <label for="">Skills(Check all that apply:)</label><br>
+        <input type="checkbox" name="skillsI" value="Programming"> Programming <br>
+        <input type="checkbox" name="skillsI" value="Communication"> Communication <br>
+        <input type="checkbox" name="skillsI" value="Teamwork"> Teamwork <br>
+        <input type="checkbox" name="skillsI" value="Problem Solving"> Problem Solving  <br>
+      <br>
+      <label for="infoI">Additional information: </label><br>
+        <textarea id="infoI" rows="5" cols="50"></textarea><br><br>
+      <button id="submitB" class="btn btn-primary">Submit</button>  
+      </div>
+  </div>
 
-    <script>
-        const addB = document.getElementById("addB")
-        const show = document.getElementById("show")
-        addB.addEventListener("click",function(Event){
-            Event.preventDefault()
-            show.style.display="block"
-            const name = document.getElementById("nameI").value
-            const email = document.getElementById("emailI").value
-            const type = document.getElementById("typeI").value
-            const num = document.getElementById("numI").value
-            const rtype = document.querySelector("input[name=rtype]:checked").value
-            const info = document.getElementById("infoI").value
+  <div id="show" class="card m-5"></div>
 
-            const cardb = document.createElement("div")
-            cardb.className = "card-body"
-            cardb.innerHTML = `
-              <h1><b>Registration Submitted</b></h1>
-              <p><b>Name: </b>${name}</p>
-              <p><b>Email: </b>${email}</p>
-              <p><b>Event: </b>${type}</p>
-              <p><b>Number of Attendees: </b>${num}</p>
-              <p><b>Registration Type: </b>${rtype}</p>
-              <p><b>Additional Information: </b>${info}</p>
-            `
-            show.appendChild(cardb)
-        })
-    </script> 
+  <script>
+    const submitB = document.getElementById("submitB")
+    const show = document.getElementById("show")
+   
+   
+  
+    submitB.addEventListener("click",function(event){
+      show.style.display = "block"
+    event.preventDefault()
+    
+    const fileI = document.getElementById("fileI")
+    const path = fileI.value
+    const name = document.getElementById("nameI").value
+    const email = document.getElementById("emailI").value
+    const position = document.getElementById("positionI").value
+    const exp = document.querySelector("input[name=expI]:checked").value
+    const skills = document.querySelectorAll("input[name=skillsI]:checked")
+    const skill = []
+    for(let i=0;i<skills.length;i++)
+    {
+  
+      skill.push(skills[i].value)
+    }
+    const info = document.getElementById("infoI").value    
+
+   
+    const cardb = document.createElement("div")
+    cardb.className = "card-body"
+    cardb.innerHTML = `
+    <h1>Application Submitted</h1>
+    <p><b>Name: </b>${name}</p>
+    <p><b>Email: </b>${email}</p>
+    <p><b>Resume Path: </b>${path}</p>
+    <p><b>Positon Applied For: </b>${position}</p>
+    <p><b>Years of Experience: </b>${exp}</p>
+    <p><b>Skills: </b>${skill.join(', ')}</p>
+    <p><b>Additional Infromation: </b>${info}</p>
+    `
+    show.appendChild(cardb)
+     })
+  </script>
 </body>
 </html>
