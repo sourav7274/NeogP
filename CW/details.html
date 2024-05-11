@@ -27,7 +27,12 @@
     </div>
   </nav>
 
-  <div id="show"></div>
+  <div class="container">
+    <h1>Laptop Details</h1>
+    <div class="card">
+        <div id="show" class="card-body"></div>
+    </div>
+  </div>
 
   <script>
     const show = document.getElementById("show")
@@ -48,7 +53,7 @@
           brand: "HP",
           model: "Pavilion x360",
           details: "Versatile 2-in-1 laptop for productivity and entertainment.",
-          laptopImg: "https://placehold.co/300x200/EFEFEFF/grey?text=HP%20Pavilion%20x360",
+          laptopImg: "https://placehol.co/300x200/EFEFEFF/grey?text=HP%20Pavilion%20x360",
           processor: "AMD Ryzen 5",
           RAM: "8GB",
           storage: "256GB SSD",
@@ -85,12 +90,12 @@
       {
         show.innerHTML = 
         `
-         <img src="${value.laptopImg}" alt="${value.brand}${value.model}" />
-         <p><b>${value.brand}+${value.model}</b></p>
-         <p><b>Details: </b></p> 
-         <p><b>Processor: </b></p> 
-         <p><b>Ram: </b></p> 
-         <p><b>Storage: </b></p>          
+         <img src="${value.laptopImg}" alt="${value.brand}+${value.model}" />
+         <p><b>${value.brand} ${value.model}</b></p>
+         <p><b>Details: </b>${value.details}</p> 
+         <p><b>Processor: </b>${value.processor}</p> 
+         <p><b>Ram: </b>${value.RAM}</p> 
+         <p><b>Storage: </b>${value.storage}</p>          
         `
       }
 
