@@ -10,17 +10,17 @@
     
   </style>
 </head>
-<body class="container">
+<body>
   <nav class="navbar navbar-expand-lg ">
     <div class="container-fluid container">
-      <a class="navbar-brand" href="index.html">Laptop Store</a>
+      <a class="navbar-brand" href="index.html">Job Portal</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link active" aria-current="page" href="index.html">Home</a>
-          <a class="nav-link" href="laptop.html">Laptops</a>
+          <a class="nav-link" href="jobs.html">Jobs</a>
           <a class="nav-link active" href="report.html">Report</a>         
         </div>
       </div>
@@ -28,7 +28,7 @@
   </nav>
 
   <div class="container">
-    <h1>Laptop Details</h1>
+    <h1>Job Details</h1>
     <div class="card">
         <div id="show" class="card-body"></div>
     </div>
@@ -36,41 +36,11 @@
 
   <script>
     const show = document.getElementById("show")
-    const laptops = [
-        {
-          id: 1,
-          brand: "Dell",
-          model: "Inspiron 15",
-          details: "Powerful performance in a sleek design.",
-          laptopImg: "https://placehold.co/300x200/EFEFEFF/grey?text=Dell%20Inspiron%2015",
-          processor: "Intel Core i7",
-          RAM: "16GB",
-          storage: "512GB SSD",
-          price: 1200,
-        },
-        {
-          id: 2,
-          brand: "HP",
-          model: "Pavilion x360",
-          details: "Versatile 2-in-1 laptop for productivity and entertainment.",
-          laptopImg: "https://placehol.co/300x200/EFEFEFF/grey?text=HP%20Pavilion%20x360",
-          processor: "AMD Ryzen 5",
-          RAM: "8GB",
-          storage: "256GB SSD",
-          price: 900,
-        },
-        {
-          id: 3,
-          brand: "Lenovo",
-          model: "ThinkPad X1 Carbon",
-          details: "Ultra-lightweight and durable business laptop.",
-          laptopImg: "https://placehol.co/300x200/EFEFEFF/grey?text=Lenovo%20ThinkPad%20X1%20Carbon",
-          processor: "Intel Core i5",
-          RAM: "8GB",
-          storage: "256GB SSD",
-          price: 1500,
-        },
-      ];
+    const jobs = [
+          {id: 1, title: "Software Engineer", category: "IT", location: "New York", postDate: "2023-01-15", details: "Job description for a software engineer."},
+          {id: 2, title: "Financial Analyst", category: "Finance", location: "San Francisco", postDate: "2023-02-20", details: "Job description for a financial analyst."},
+          {id: 3, title: "Marketing Manager", category: "Marketing", location: "San Francisco", postDate: "2023-04-05", details: "Job description for a marketing manager."}
+        ];
 
       function getid(id)
       {
@@ -79,23 +49,28 @@
       }
       let a = getid('id')
       let value 
-      for(let i=0;i<laptops.length;i++)
+      for(let i=0;i<jobs.length;i++)
       {
-        if(laptops[i].id==a)
+        if(jobs[i].id==a)
         {
-            value = laptops[i]
+            value = jobs[i]
         }
       }
       if(value)
       {
         show.innerHTML = 
         `
-         <img src="${value.laptopImg}" alt="${value.brand}+${value.model}" />
-         <p><b>${value.brand} ${value.model}</b></p>
-         <p><b>Details: </b>${value.details}</p> 
-         <p><b>Processor: </b>${value.processor}</p> 
-         <p><b>Ram: </b>${value.RAM}</p> 
-         <p><b>Storage: </b>${value.storage}</p>          
+        <div class="row">
+          <div class="col">
+            <p><b>${value.title}</b></p>
+          </div>
+          <div class="col">
+              <p class="float-end">Post Date:${value.postDate}</p>
+          </div>
+        </div>        
+         <p><b>Category: </b>${value.category}</p>
+         <p><b>Location: </b>${value.location}</p> 
+         <p><b>Details: </b>${value.details}</p>           
         `
       }
 
