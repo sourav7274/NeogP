@@ -18,7 +18,7 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html">Fruit Basket Management</a>
+          <a class="navbar-brand" href="index.html">Computer Management</a>
           <div class="d-flex flex-row-reverse">
             <button class="navbar-toggler p-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -29,10 +29,10 @@
                     <a class="nav-link" aria-current="page" href="index.html">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="fruit.html">Fruits List</a>
+                    <a class="nav-link" href="computer.html">Computer List</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" href="add.html">Add Fruits</a>
+                    <a class="nav-link active" href="add.html">Add Computers</a>
                   </li>            
                 </ul>
               </div>
@@ -40,24 +40,27 @@
         </div>
       </nav>
       <div class="mx-5 mt-3">
-        <h1>Add Fruits</h1><br>
-        <div id="show" class="bgs mb-4 px-5 py-3 rounded">Saving Fruit Data...</div>
-        <label for="nameI">Fruit Name:</label><br>
+        <h1>Add Computers</h1><br>
+        <div id="show" class="bgs mb-4 px-5 py-3 rounded">Saving Computer Data...</div>
+        <label for="nameI">Computer Name:</label><br>
         <input type="text" class="form-control mt-2" id="nameI"><br>
         <label for="quantityI">Quantity:</label><br>
         <input type="number" class="form-control mt-2" id="quantityI"><br>
         <label for="categoryI">Category:</label><br>
         <select class="form-control" id="categoryI">
-            <option value="Perishable">Perishable</option>
-            <option value="Non Perishable">Non Perishable</option>
+            <option value="Laptop">Laptop</option>
+            <option value="Desktop">Desktop</option>
+            <option value="Tablet">Tablet</option>
         </select><br>
-        <button id="addB" class="btn btn-primary">Add Fruits</button>
+        <label for="dateI">Manufacture Date:</label><br>
+        <input type="date" name="" class="form-control" id="dateI"><br><br>
+        <button id="addB" class="btn btn-primary">Add Computers</button>
       </div>
 
       <script>
         const addB = document.getElementById("addB")
         const show = document.getElementById("show")
-        const apiUrl ='https://fruits-backend-student-neog.replit.app/fruits'
+        const apiUrl ='https://computer-backend-student-neog.replit.app/computers'
 
         addB.addEventListener("click",function(event){
             event.preventDefault()
@@ -65,11 +68,13 @@
             const name = document.getElementById("nameI")
             const category = document.getElementById("categoryI")
             const quantity = document.getElementById("quantityI")
+            const dateI = document.getElementById("dateI")
 
             let data = {
                 name:name.value,
                 category:category.value,
-                quantity:quantity.value
+                quantity:quantity.value,
+                manufactureDate:dateI.value
             }
 
             fetch(apiUrl,{
@@ -81,10 +86,11 @@
             }).then(function(response){
                 return response.json()
             }).then(function(data){
+              console.log(data)
                 if(data)
                 {                    
                     show.style.backgroundColor = "rgb(207, 234, 212)"
-                    show.textContent = "Fruit added successfully!"
+                    show.textContent = "Computer added successfully!"
                 }
                 else
                 {
