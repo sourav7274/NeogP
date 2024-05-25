@@ -7,25 +7,49 @@
 </head>
 <body>
     <h1>FizzBuzz Program Output</h1>
-    <ul id="show"></ul>
+    <ol id="show"></ol>
 
     <script>
         const show = document.getElementById("show")
-        for(let i=1;i<=20;i++)
+        for(let i=1;i<=30;i++)
         {
             let liE = document.createElement("li")
             liE.textContent = ""
-            if(i%3==0)
+            if(i>1)
             {
-                liE.innerHTML = "<b>Fizz</b>"
+                let c = 0 
+                for(let j=1;j<=i;j++)
+                {
+                    if(i%j==0)
+                    {
+                        c++
+                    }
+                    if(c>2)
+                    {
+                        break
+                    }
+                }
+                if(c==2)
+                {
+                    liE.innerHTML = `<b>Prime</b>`
+                    if(i%3==0)
+                    {
+                        liE.innerHTML = `<b>FizzPrime</b>`
+                    }
+                    if(i%5==0)
+                    {
+                        liE.innerHTML = `<b>BuzzPrime</b>`
+                    }
+                }
+                else
+                {
+                    liE.innerHTML = `<b>${i}</b>`
+                }
+
             }
-            if(i%5==0)
+            else
             {
-                liE.innerHTML += "<b>Buzz</b>"
-            }
-            if(i%3 !=0 && i%5 !=0)
-            {
-                liE.innerHTML = `<b>${i}</b>`
+                liE.innerHTML = `<b>${1}</b>`
             }
             show.appendChild(liE)
         }
