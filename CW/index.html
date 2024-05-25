@@ -6,11 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Multiplication Table Generator</h1>
-    <label for="numberI">Enter a number: </label>
-    <input type="number" id="numberI">
-    <button id="tableB">Generate Table</button>
-    <ul id="show"></ul>
+    <h1>Capitalize Words Program</h1>
+    <label for="senI">Enter a sentence: </label>
+    <input type="text" id="senI">
+    <button id="tableB">Capitalize</button>
+    <div id="show"></div>
 
     <script>
         const show = document.getElementById("show")          
@@ -18,13 +18,10 @@
         
         tableB.addEventListener("click",function(event){
             event.preventDefault()    
-            const number = document.getElementById("numberI").value      
-            for(let i=1;i<=10;i++)
-            {
-                let liE = document.createElement("li")
-                liE.innerHTML = `${number}*${i}=${i*number}`
-                show.appendChild(liE)
-            }
+            const sen = document.getElementById("senI").value      
+            let liE = document.createElement("p")
+            liE.innerHTML = `${sen.toUpperCase()}`
+            show.appendChild(liE)
         })
     </script>
 </body>
