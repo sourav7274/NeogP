@@ -6,25 +6,26 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>FizzBuzz Program Output</h1>
-    <ol id="show"></ol>
+    <h1>Multiplication Table Generator</h1>
+    <label for="numberI">Enter a number: </label>
+    <input type="number" id="numberI">
+    <button id="tableB">Generate Table</button>
+    <ul id="show"></ul>
 
     <script>
-        const show = document.getElementById("show")
-        for(let i=1;i<=20;i++)
-        {
-            let liE = document.createElement("li")
-            liE.textContent = ""
-            if(i%2==0)
+        const show = document.getElementById("show")          
+        const tableB = document.getElementById("tableB")
+        
+        tableB.addEventListener("click",function(event){
+            event.preventDefault()    
+            const number = document.getElementById("numberI").value      
+            for(let i=1;i<=10;i++)
             {
-                liE.innerHTML = `<b>Even:${i**2}</b>`
+                let liE = document.createElement("li")
+                liE.innerHTML = `${number}*${i}=${i*number}`
+                show.appendChild(liE)
             }
-            else
-            {
-                liE.innerHTML = `<b>Odd:${i**2}</b>`
-            }
-            show.appendChild(liE)
-        }
+        })
     </script>
 </body>
 </html>
