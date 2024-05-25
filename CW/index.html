@@ -11,45 +11,17 @@
 
     <script>
         const show = document.getElementById("show")
-        for(let i=1;i<=30;i++)
+        for(let i=1;i<=20;i++)
         {
             let liE = document.createElement("li")
             liE.textContent = ""
-            if(i>1)
+            if(i%2==0)
             {
-                let c = 0 
-                for(let j=1;j<=i;j++)
-                {
-                    if(i%j==0)
-                    {
-                        c++
-                    }
-                    if(c>2)
-                    {
-                        break
-                    }
-                }
-                if(c==2)
-                {
-                    liE.innerHTML = `<b>Prime</b>`
-                    if(i%3==0)
-                    {
-                        liE.innerHTML = `<b>FizzPrime</b>`
-                    }
-                    if(i%5==0)
-                    {
-                        liE.innerHTML = `<b>BuzzPrime</b>`
-                    }
-                }
-                else
-                {
-                    liE.innerHTML = `<b>${i}</b>`
-                }
-
+                liE.innerHTML = `<b>Even:${i**2}</b>`
             }
             else
             {
-                liE.innerHTML = `<b>${1}</b>`
+                liE.innerHTML = `<b>Odd:${i**2}</b>`
             }
             show.appendChild(liE)
         }
