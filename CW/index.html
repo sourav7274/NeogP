@@ -27,31 +27,26 @@
         const av = document.getElementById("av")
         let john=0
         let alice=0
-        jv.addEventListener("click",function(event){
-            event.preventDefault()
+        const updateResult = () => {
+            if (john === alice) {
+                result.textContent = `It's a tie with ${john} votes each!`
+            } else if (john > alice) {
+                result.textContent = `John is winning with ${john - alice} vote${john-alice>1?"s":""}!`
+            } else {
+                result.textContent = `Alice is winning with ${alice - john} vote${alice-john>1?"s":""}!`
+            }
+        };
+
+        jv.addEventListener("click", () => {
             john++
-            vj.textContent = ""
-            vj.textContent = `${john}`
-            if(john==alice)
-            {
-                result.textContent = "Its a tie!"
-            }
-            if(john>alice){
-                result.textContent = `John is winning!`
-            }
+            vj.textContent = john
+            updateResult()
         })
-        av.addEventListener("click",function(event){
-            event.preventDefault()
+
+        av.addEventListener("click", () => {
             alice++
-            va.textContent = ""
-            va.textContent = `${alice}`
-            if(john==alice)
-            {
-                result.textContent = "Its a tie!"
-            }
-            if(john<alice){
-                result.textContent = `Alice is winning!`
-            }
+            va.textContent = alice
+            updateResult()
         })
     </script>
 </body>
