@@ -6,23 +6,50 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Capitalize Words Program</h1>
-    <label for="senI">Enter a sentence: </label>
-    <input type="text" id="senI">
-    <button id="tableB">Capitalize</button>
-    <div id="show"></div>
+    <h1>Numbers Classification</h1>
+    <h2>Classified Array:</h2>
+    <ul id="show"></ul>
 
     <script>
+        const arr= [2, -5, 6, 7, -8, 0, 10, 23, -13, 14, 18, -32] 
         const show = document.getElementById("show")          
         const tableB = document.getElementById("tableB")
         
-        tableB.addEventListener("click",function(event){
-            event.preventDefault()    
-            const sen = document.getElementById("senI").value      
-            let liE = document.createElement("p")
-            liE.innerHTML = `${sen.toUpperCase()}`
-            show.appendChild(liE)
-        })
+        for(let i=0;i<arr.length;i++)
+        {
+            let Lie = document.createElement("li")
+            Lie.innerHTML = `${arr[i]} - `
+            if(arr[i]==0)
+            {
+                Lie.textContent+="Zero"
+            }
+            else{
+                if(arr[i]<10 && arr[i]>-10)
+                {
+                    if(arr[i].toString().length==1)
+                    {
+                        Lie.textContent+="Single Digit Positive Number"
+                    }
+                    else
+                    {
+                        Lie.textContent+="Single Digit Negative Number"
+                    }
+                }
+                else
+                {
+                    if(arr[i].toString().length==2)
+                    {
+                        Lie.textContent+="Double Digit Positive Number"
+                    }
+                    else
+                    {
+                        Lie.textContent+="Double Digit Negative Number"
+                    }
+                }
+            }
+
+            show.appendChild(Lie)
+        }
     </script>
 </body>
 </html>
