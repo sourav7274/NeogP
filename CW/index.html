@@ -6,8 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-   <button id="ic1">Increment Count 1</button>
-   <button id="ic2">Increment Count 2</button>
+   <button id="ic1">Decrement Count 1</button>
+   <button id="ic2">Decrement Count 2</button>
    <p id="sic1"></p>
    <p id="sic2"></p>
    <p id="total"></p>
@@ -17,43 +17,30 @@
         const sic1 = document.getElementById("sic1")
         const sic2 = document.getElementById("sic2")
         const total = document.getElementById("total")
-        let va1 = 0
-        let va2 = 0
-        sic1.textContent = "Count 1: 0"
-        sic2.textContent = "Count 2: 0"
-
+        let va1 = 20
+        let va2 = 20
+        sic1.textContent = "Count 1: 20"
+        sic2.textContent = "Count 2: 20"
+        total.textContent = `Total Count: ${va1+va2}`
         ic1.addEventListener("click",function(event){
             event.preventDefault()
             sic1.textContent = ""
-            va1++
+            va1--
             let pe = document.createElement("p")
             pe.innerHTML = `Count 1: ${va1}`
             sic1.appendChild(pe)
-            if(va1==va2)
-            {
-                total.textContent = "Count 1 is equal to count 2"
-            }       
-            if(va1>va2)
-            {
-                total.textContent = `Count 1 is more than count 2`
-            }                
+            total.textContent = `Total Count: ${va1+va2}`                      
         })
         ic2.addEventListener("click",function(event){
             event.preventDefault()
             sic2.textContent = ""
-            va2++
+            va2--
             let pe = document.createElement("p")
             pe.innerHTML = `Count 2: ${va2}`
             sic2.appendChild(pe)
-            if(va1==va2)
-            {
-                total.textContent = "Count 2 is equal to count 1"
-            }              
-            if(va2>va1)
-            {
-                total.textContent = `Count 2 is more than count 1`
-            }                
+            total.textContent = `Total Count: ${va1+va2}`           
         })
+       
    </script>
 </body>
 </html>
