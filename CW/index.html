@@ -14,11 +14,15 @@
     <p id="vj"></p>
     <h2>Vote Count for Alice</h2>
     <p id="va"></p>
+    <h2>Curret Winner:</h2>
+    <p id="result"></p>
     <script>
         let vj = document.getElementById("vj")
         let va = document.getElementById("va")
+        result = document.getElementById("result")
         vj.textContent = "0"
         va.textContent = "0"
+        result.textContent = "Its a tie!"
         const jv = document.getElementById("jv")
         const av = document.getElementById("av")
         let john=0
@@ -28,12 +32,26 @@
             john++
             vj.textContent = ""
             vj.textContent = `${john}`
+            if(john==alice)
+            {
+                result.textContent = "Its a tie!"
+            }
+            if(john>alice){
+                result.textContent = `John is winning!`
+            }
         })
         av.addEventListener("click",function(event){
             event.preventDefault()
             alice++
             va.textContent = ""
             va.textContent = `${alice}`
+            if(john==alice)
+            {
+                result.textContent = "Its a tie!"
+            }
+            if(john<alice){
+                result.textContent = `Alice is winning!`
+            }
         })
     </script>
 </body>
