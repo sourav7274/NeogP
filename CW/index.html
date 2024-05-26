@@ -4,52 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <style>
-        #error{
-            display: none;
-        }
-    </style>
 </head>
 <body>
-   <label for="colorI">Enter Color:</label>
-   <input type="text" placeholder="Example: #1abc9c" name="" id="colorI">
-   <button id="c1">Change Color Section 1</button>
-   <button id="c2">Change Color Section 2</button>   
-   <div id="error" class="mt-2 mb-1"></div>
-   <div id="fc1" class="mt-4">Section1</div>
-   <div id="fc2">Section2</div>
-
+   <button id="ic1">Increment Count 1</button>
+   <button id="ic2">Increment Count 2</button>
+   <div id="sic1"></div>
+   <div id="sic2"></div>
    <script>
-    const c1 = document.getElementById("c1")
-    const c2 = document.getElementById("c2")
-    const fc1 = document.getElementById("fc1")
-    const fc2 = document.getElementById("fc2")
-    const error = document.getElementById("error")
+        const ic1 = document.getElementById("ic1")
+        const ic2 = document.getElementById("ic2")
+        const sic1 = document.getElementById("sic1")
+        const sic2 = document.getElementById("sic2")
+        let va1 = 0
+        let va2 = 0
 
-    fc1.style.backgroundColor = "#a2d3e0"
-    fc2.style.backgroundColor = "#83ec81"
-
-    c1.addEventListener("click",function(event){
-        event.preventDefault()
-        const color = document.getElementById("colorI").value
-        if(color[0]!=="#")
-        {
-            error.style.display = "block"
-            error.textContent = "Invalid color format. Please enter a valid color (e.g.,"
-        }
-        fc1.style.backgroundColor = `${color}`
-    })
-    c2.addEventListener("click", function(event) {
-        event.preventDefault()
-        const color = document.getElementById("colorI").value
-        if(color[0]!=="#")
-        {
-            error.style.display = "block"
-            error.textContent = "Invalid color format. Please enter a valid color (e.g.,"
-        }
-        fc2.style.backgroundColor = color
-    })
+        ic1.addEventListener("click",function(event){
+            event.preventDefault()
+            sic1.textContent = ""
+            va1++
+            let pe = document.createElement("p")
+            pe.innerHTML = `Count 1: ${va1}`
+            sic1.appendChild(pe)
+        })
+        ic2.addEventListener("click",function(event){
+            event.preventDefault()
+            sic2.textContent = ""
+            va2++
+            let pe = document.createElement("p")
+            pe.innerHTML = `Count 2: ${va2}`
+            sic2.appendChild(pe)
+        })
    </script>
 </body>
 </html>
