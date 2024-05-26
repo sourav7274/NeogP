@@ -10,15 +10,18 @@
    <button id="ic2">Increment Count 2</button>
    <p id="sic1"></p>
    <p id="sic2"></p>
+   <p id="total"></p>
    <script>
         const ic1 = document.getElementById("ic1")
         const ic2 = document.getElementById("ic2")
         const sic1 = document.getElementById("sic1")
         const sic2 = document.getElementById("sic2")
+        const total = document.getElementById("total")
         let va1 = 0
         let va2 = 0
-        sic1.textContent = "Count 1: "
-        sic2.textContent = "Count 2: "
+        sic1.textContent = "Count 1: 0"
+        sic2.textContent = "Count 2: 0"
+        total.textContent = "Total Count: 0"
 
         ic1.addEventListener("click",function(event){
             event.preventDefault()
@@ -27,6 +30,7 @@
             let pe = document.createElement("p")
             pe.innerHTML = `Count 1: ${va1}`
             sic1.appendChild(pe)
+            total.textContent = `Total Count: ${va1+va2}`
         })
         ic2.addEventListener("click",function(event){
             event.preventDefault()
@@ -35,6 +39,7 @@
             let pe = document.createElement("p")
             pe.innerHTML = `Count 2: ${va2}`
             sic2.appendChild(pe)
+            total.textContent = `Total Count: ${va1+va2}`
         })
    </script>
 </body>
