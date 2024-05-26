@@ -8,12 +8,19 @@
 </head>
 <body class="container">
     <h1>Voting</h1>
-    <button class="btn btn-primary" id="jv">Vote for John:</button>
-    <button class="btn btn-success mx-3" id="av">Vote for Alice:</button>
-    <h2 class="mt-5">Vote Count for John</h2>
-    <p id="vj"></p>
-    <h2>Vote Count for Alice</h2>
-    <p id="va"></p>
+    <input type="radio" name="candi" value="john"> Vote for John
+    <input class="ms-3" type="radio" name="candi" value="alice"> Vote for Alice
+    <button class="mx-3 btn btn-primary" id="voteB">Vote</button>
+    <div class="row mt-4">
+        <div class="col">
+            <h2 >Vote Count for John</h2>
+            <p id="vj"></p>
+        </div>
+        <div class="col">
+            <h2>Vote Count for Alice</h2>
+            <p id="va"></p>
+        </div>
+    </div>
     <h2>Curret Winner:</h2>
     <p id="result"></p>
     <script>
@@ -22,32 +29,40 @@
         result = document.getElementById("result")
         vj.textContent = "0"
         va.textContent = "0"
-        result.textContent = "Its a tie!"
-        const jv = document.getElementById("jv")
-        const av = document.getElementById("av")
+        result.textContent = "No Votes yet!"
+        const voteB = document.getElementById("voteB")
         let john=0
         let alice=0
         const updateResult = () => {
             if (john === alice) {
                 result.textContent = `It's a tie with ${john} votes each!`
-            } else if (john > alice) {
+            } else if (john > alice) {               
                 result.textContent = `John is winning with ${john - alice} vote${john-alice>1?"s":""}!`
-            } else {
+               
+            } else {               
                 result.textContent = `Alice is winning with ${alice - john} vote${alice-john>1?"s":""}!`
+                
             }
         };
-
-        jv.addEventListener("click", () => {
-            john++
-            vj.textContent = john
-            updateResult()
+        voteB.addEventListener("click",function(){
+            let val = document.querySelector("input[name=candi]:checked").value
+            console.log(val)
+            if(val=="john")
+            {
+                john++
+                vj.textContent=""
+                vj.textContent = john
+                updateResult()
+            }
+            else
+            {
+                alice++
+                va.textContent = ""
+                va.textContent = alice
+                updateResult()
+            }
         })
-
-        av.addEventListener("click", () => {
-            alice++
-            va.textContent = alice
-            updateResult()
-        })
+        
     </script>
 </body>
 </html>
