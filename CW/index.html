@@ -8,8 +8,8 @@
 <body>
    <button id="ic1">Increment Count 1</button>
    <button id="ic2">Increment Count 2</button>
-   <div id="sic1"></div>
-   <div id="sic2"></div>
+   <p id="sic1"></p>
+   <p id="sic2"></p>
    <script>
         const ic1 = document.getElementById("ic1")
         const ic2 = document.getElementById("ic2")
@@ -17,6 +17,8 @@
         const sic2 = document.getElementById("sic2")
         let va1 = 0
         let va2 = 0
+        sic1.textContent = "Count 1: "
+        sic2.textContent = "Count 2: "
 
         ic1.addEventListener("click",function(event){
             event.preventDefault()
