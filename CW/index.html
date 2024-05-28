@@ -26,16 +26,24 @@
         <div class="col">
             <h2>Event on Weekdays:</h2>
             <ul id="showN" class="list-group"></ul>
+            <p id="wd"></p>
         </div>
         <div class="col">
             <h2>Event on Weekends:</h2>
             <ul id="showT" class="list-group"></ul>
+            <p id="wnd"></p>
         </div>
     </div>
     <script>
         const addB = document.getElementById("addB")
         const showN = document.getElementById("showN")
         const showT = document.getElementById("showT")
+        const wd = document.getElementById("wd")
+        const wnd = document.getElementById("wnd")
+        let week = 0
+        let end = 0
+        wnd.textContent = `Total Weekend Events: ${end}`
+        wd.textContent = `Total Weekday Events: ${week}`
         addB.addEventListener("click",function(event){
             event.preventDefault()
 
@@ -44,27 +52,33 @@
 
             if(time === "Friday" || time ==="Saturday" || time === "Sunday")
             {
+                wnd.textContent = ""
                 let liE = document.createElement("li")
                 liE.className = "list-group-item"
 
                 liE.innerHTML = `${time}:${name}`
 
                 showT.appendChild(liE)
+                end++
+                wnd.textContent = `Total Weekend Events: ${end}`
             }
             else
             {
-                let id = 0
+                wd.textContent =""
                 let liE = document.createElement("li")
                 liE.className = "list-group-item"
 
                 liE.innerHTML = `${time}:${name}
-                <button id=${id} class="btn btn-danger float-end">Delete</button>
+                <button class="btn btn-danger float-end">Delete</button>
                 `
                 liE.querySelector("button").addEventListener("click",function(){
                     liE.remove()
+                    week--
+                    wd.textContent = `Total Weekday Events: ${week}`
                 })
-                id++
+                week++
                 showN.appendChild(liE)
+                wd.textContent = `Total Weekday Events: ${week}`
             }
         })
     </script>
