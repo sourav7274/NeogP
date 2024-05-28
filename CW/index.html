@@ -16,7 +16,7 @@
         <option value="Monday">Monday</option>
         <option value="Tuesday">Tuesday</option>
         <option value="Wednesday">Wednesday</option>
-        <option value="Thrusday">Thrusday</option>
+        <option value="Thursday">Thursday</option>
         <option value="Friday">Friday</option>
         <option value="Saturday">Saturday</option>
         <option value="Sunday">Sunday</option>       
@@ -47,17 +47,23 @@
                 let liE = document.createElement("li")
                 liE.className = "list-group-item"
 
-                liE.textContent = `${time}:${name}`
+                liE.innerHTML = `${time}:${name}`
 
                 showT.appendChild(liE)
             }
             else
             {
+                let id = 0
                 let liE = document.createElement("li")
                 liE.className = "list-group-item"
 
-                liE.textContent = `${time}:${name}`
-
+                liE.innerHTML = `${time}:${name}
+                <button id=${id} class="btn btn-danger float-end">Delete</button>
+                `
+                liE.querySelector("button").addEventListener("click",function(){
+                    liE.remove()
+                })
+                id++
                 showN.appendChild(liE)
             }
         })
