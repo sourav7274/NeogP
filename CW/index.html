@@ -7,64 +7,64 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body class="container">
-    <h1>Event Planner</h1>
-    <label for="nameI">Enter Event:</label><br>
-    <input placeholder="Enter your event" type="text" class="form-control" id="nameI">
+    <h1>To-Do List</h1>
+    <label for="nameI">Enter task:</label><br>
+    <input placeholder="Enter your task" type="text" class="form-control" id="nameI">
     <br>
     <label for="">Select Day</label>
     <select class="form-control" id="timeI">
-        <option value="Monday">Monday</option>
-        <option value="Tuesday">Tuesday</option>
-        <option value="Wednesday">Wednesday</option>
-        <option value="Thursday">Thursday</option>
-        <option value="Friday">Friday</option>
-        <option value="Saturday">Saturday</option>
-        <option value="Sunday">Sunday</option>       
+        <option value="Today">Today</option>
+        <option value="Tommorow">Tommorow</option>
     </select><br>
     <button class="btn btn-primary mb-4" id="addB">Add Event</button>
     <div class="row">
         <div class="col">
-            <h2>Event on Weekdays:</h2>
+            <h2>Today's Tasks:</h2>
             <ul id="showN" class="list-group"></ul>
-            <p id="wd"></p>
+            <h2 class="mt-3">Task Summary</h2>
+            <p id="show"></p>
         </div>
         <div class="col">
-            <h2>Event on Weekends:</h2>
+            <h2>Tommorrow's Tasks:</h2>
             <ul id="showT" class="list-group"></ul>
-            <p id="wnd"></p>
         </div>
     </div>
     <script>
         const addB = document.getElementById("addB")
         const showN = document.getElementById("showN")
         const showT = document.getElementById("showT")
-        const wd = document.getElementById("wd")
-        const wnd = document.getElementById("wnd")
-        let week = 0
-        let end = 0
-        wnd.textContent = `Total Weekend Events: ${end}`
-        wd.textContent = `Total Weekday Events: ${week}`
+        const show = document.getElementById("show")
+        let tod = 0
+        let tom = 0
+        function update()
+        {
+            show.textContent = `Tasks Today: ${tod} | Tasks Tomorrow: ${tom}`
+            show.style.color = "black";
+
+            if (tod > tom) 
+            {
+                show.innerHTML += `<br>More Tasks Today`
+                show.style.color = "red"
+            }
+            else if(tod==tom)
+            {
+                
+            } 
+            else 
+            {
+                show.innerHTML += `<br>More Tasks Tomorrow`
+                show.style.color = "green";
+             }
+        }
+
         addB.addEventListener("click",function(event){
             event.preventDefault()
 
             const name = document.getElementById("nameI").value
             const time = document.getElementById("timeI").value
 
-            if(time === "Friday" || time ==="Saturday" || time === "Sunday")
+            if(time === "Today")
             {
-                wnd.textContent = ""
-                let liE = document.createElement("li")
-                liE.className = "list-group-item"
-
-                liE.innerHTML = `${time}:${name}`
-
-                showT.appendChild(liE)
-                end++
-                wnd.textContent = `Total Weekend Events: ${end}`
-            }
-            else
-            {
-                wd.textContent =""
                 let liE = document.createElement("li")
                 liE.className = "list-group-item"
 
@@ -73,14 +73,35 @@
                 `
                 liE.querySelector("button").addEventListener("click",function(){
                     liE.remove()
-                    week--
-                    wd.textContent = `Total Weekday Events: ${week}`
+                    tod--
+                    update()
                 })
-                week++
+
                 showN.appendChild(liE)
-                wd.textContent = `Total Weekday Events: ${week}`
+                tod++
+                update()
             }
+            else
+            {
+                let liE = document.createElement("li")
+                liE.className = "list-group-item"
+
+                liE.innerHTML = `${time}:${name}
+                <button class="btn btn-danger float-end">Delete</button>
+                `
+                liE.querySelector("button").addEventListener("click",function(){
+                    liE.remove()
+                    tom--
+                    update()
+                })
+                tom++
+                showT.appendChild(liE)
+                update()
+            }
+
         })
+
+
     </script>
 </body>
 </html>
