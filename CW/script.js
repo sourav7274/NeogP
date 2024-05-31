@@ -1,8 +1,8 @@
 const products  = [
-    {id:1,name:"laptop",price:50},
-    {id:2,name:"phone",price:10},
-    {id:3,name:"unga",price:150},
-    {id:4,name:"bunga",price:500}
+    {id:1,name:"Alice",position:"Developer"},
+    {id:2,name:"Bob",position:"Designer"},
+    {id:3,name:"Charlie",position:"Manager"},
+    {id:4,name:"David",position:"Tester"}
 ]
 
 const pdiv = document.getElementById("pId")
@@ -10,7 +10,7 @@ const pdiv = document.getElementById("pId")
 const productList = products.map((pro) => `<div>
  <strong>Id:</strong> ${pro.id}<br>
  <strong>Name:</strong>${pro.name}<br>
- <strong>Price:</strong>${pro.price}
+ <strong>Price:</strong>${pro.position}
  <hr>
 </div>`)
 
