@@ -1,16 +1,17 @@
 const products  = [
-    {id:1,name:"Alice",position:"Developer"},
-    {id:2,name:"Bob",position:"Designer"},
-    {id:3,name:"Charlie",position:"Manager"},
-    {id:4,name:"David",position:"Tester"}
+    {id:1,title:"The Shawshank Redemption",genre:"Drama",year:1994},
+    {id:2,title:"The GodFather",genre:"Crime",year:1972},
+    {id:3,title:"The Dark Knight",genre:"Action",year:2008},
+    {id:4,title:"Pupl Fiction",genre:"Crime",year:1994}
 ]
 
 const pdiv = document.getElementById("pId")
 
-const productList = products.map((pro) => `<div>
- <strong>Id:</strong> ${pro.id}<br>
- <strong>Name:</strong>${pro.name}<br>
- <strong>Price:</strong>${pro.position}
+const productList = products.map((movie) => `<div>
+ <strong>ID:</strong> ${movie.id}<br>
+ <strong>Title:</strong>${movie.title}<br>
+ <strong>Price:</strong>${movie.genre}<br>
+ <strong>Year:</strong>${movie.year}
  <hr>
 </div>`)
 
