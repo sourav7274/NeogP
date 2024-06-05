@@ -1,28 +1,28 @@
-const tasks = [
-    {id:1,title:"Task 1",status:"todo"},
-    {id:2,title:"Task 2",status:"inProgress"},
-    {id:3,title:"Task 3",status:"completed"},
-    {id:4,title:"Task 4",status:"todo"},
-]
 const show = document.getElementById("show")
-const statusI = document.getElementById("statusI")
-statusI.addEventListener("change",function(){
-    render(statusI.value)
-})
 
+const data = [
+    {id:1,name:"Alice",exp:2},
+    {id:2,name:"Bob",exp:9},
+    {id:3,name:"Charlie",exp:4},
+    {id:4,name:"John",exp:19}
+]
 
-function render(state)
+const expI = document.getElementById("expI")
+function render(val)
 {
-    const value = state? tasks.filter(t => t.status==state) : tasks
-    const list = value.map( t => `
+    const list = val ? data.filter(emp => emp.exp>=5) : data
+    const content= list.map(person => `
     <li>
-    <b>ID:</b>${t.id}<br>
-    <b>Title:</b>${t.title}<br>
-    <b>Status:</b>${t.status}<br>
-    <hr><br>
+    <b>ID:</b>${person.id}<br>
+    <b>Name:</b>${person.name}<br>
+    <b>Experience:</b>${person.exp} Years<br>
+    <hr>
     </li>
     `)
-    show.innerHTML = list.join("")
+
+    show.innerHTML = content.join(" ")
 }
 render(false)
-
+expI.addEventListener("change",function(){
+    render(expI.checked)
+})
