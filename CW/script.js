@@ -1,30 +1,36 @@
 const show = document.getElementById("show")
+const state = document.getElementsByName("status")
+const tasks = [
 
-const data = [
-   {id:1,title:"Movie 1",genre:"action"},
-   {id:2,title:"Movie 2",genre:"comedy"},
-   {id:3,title:"Movie 3",genre:"drama"},
-   {id:4,title:"Movie 4",genre:"action"},
-   {id:5,title:"Movie 5",genre:"comedy"},
-]
+    {id: 1, task: "Task 1", status: "todo"},
+  
+    {id: 2, task: "Task 2", status: "completed"},
+  
+    {id: 3, task: "Task 3", status: "inProgress"},
+  
+    {id: 4, task: "Task 4", status: "todo"},
+  
+    {id: 5, task: "Task 5", status: "completed"}
+  
+  ]
 
-const radioB = document.getElementsByName('genre')
-function render(val)
-{
-    const list = val === "all" ? data : data.filter(d => d.genre==val)
-    const movieHtml = list.map(d => `
-<li>
-    <b>ID:</b>${d.id}<br>
-    <b>Title:</b>${d.title}<br>
-    <b>Genre:</b>${d.genre}<br>
-    <hr>
-</li>
-`)
-show.innerHTML = movieHtml.join("")
-}
-render("all")
-radioB.forEach(b => {
-    b.addEventListener("change",function(){
+  function render(val)
+  {
+     const list = val === "all" ? tasks : tasks.filter(task => task.status==val)
+     const stuff = list.map(list => `
+     <li>
+     <b>ID:</b>${list.id}<br>
+     <b>Task:</b>${list.task}<br>
+     <b>Status:</b>${list.status}<br>
+     </li>
+     <hr>     
+     `)
+     show.innerHTML = stuff.join("")
+  }
+
+  render("all")
+state.forEach(s => {
+    s.addEventListener("change",function(){
         render(this.value)
     })
 })
