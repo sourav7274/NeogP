@@ -1,27 +1,39 @@
 const show = document.getElementById("show")
 const more = document.getElementById("more")
-const items = [
+const checkI = document.getElementById("checkI")
+const expenses = [
 
-  {id: 1, item: "Item 1", price: 10},
+  { id: 1, name: "Groceries", amount: 150 },
 
-  {id: 2, item: "Item 2", price: 20},
+  { id: 2, name: "Utilities", amount: 80 },
 
-  {id: 3, item: "Item 3", price: 15},
+  { id: 3, name: "Dining Out", amount: 120 },
 
-  {id: 4, item: "Item 4", price: 25}
+  { id: 4, name: "Transportation", amount: 50 }
 
-]
+];
 
-  const list = items.reduce((acc,curr) => {
+const render = (renderthing) => {
+  const thing = renderthing ? expenses.filter(e => e.amount>100):expenses
+  show.textContent =""
+  const list = thing.reduce((acc,curr) => {
     const liE = document.createElement("li")
-    liE.textContent = `${curr.item} -${curr.price}`
+    liE.innerHTML =
+     `
+    <b>Expense: </b>${curr.name}<br>
+    <b>Amount: </b>${curr.amount}<hr>
+    `
     show.appendChild(liE) 
-    acc.total +=curr.price
+    acc.total +=curr.amount
     return acc
   },{total:0})
+  
+    more.innerHTML = `
+    <p><b>Total Expenses: </b>$${list.total}</p>
 
-const avg = list.total/items.length
-more.innerHTML = `
-<p><b>Total Cost: </b>$${list.total}</p>
-<p><b>Average Cost: </b>$${avg}</p>
-`
+    `
+}
+render(false)
+checkI.addEventListener("change",function(){
+  render(checkI.checked)
+})
