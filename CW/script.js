@@ -1,25 +1,27 @@
 const show = document.getElementById("show")
-const avgrating = document.getElementById("avgrating")
-const movies = [
+const more = document.getElementById("more")
+const items = [
 
-    { id: 1, title: "Movie 1",rating:4.5 },
-  
-    { id: 2, title: "Movie 2", rating:3.8},
-  
-    { id: 3, title: "Movie 3", rating:4.2},
-  
-    { id: 4, title: "Movie 4", rating:3.5 },  
-  ]
+  {id: 1, item: "Item 1", price: 10},
 
-  const list = movies.reduce((acc,curr) => {
-    acc.total += curr.rating
+  {id: 2, item: "Item 2", price: 20},
 
+  {id: 3, item: "Item 3", price: 15},
+
+  {id: 4, item: "Item 4", price: 25}
+
+]
+
+  const list = items.reduce((acc,curr) => {
     const liE = document.createElement("li")
-    liE.textContent = `${curr.title} - Rating: ${curr.rating}`
-    show.appendChild(liE)
-    
+    liE.textContent = `${curr.item} -${curr.price}`
+    show.appendChild(liE) 
+    acc.total +=curr.price
     return acc
   },{total:0})
 
-  const avg = list.total/movies.length
-  avgrating.textContent = avg
+const avg = list.total/items.length
+more.innerHTML = `
+<p><b>Total Cost: </b>$${list.total}</p>
+<p><b>Average Cost: </b>$${avg}</p>
+`
