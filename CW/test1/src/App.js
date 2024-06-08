@@ -1,23 +1,49 @@
-import logo from './logo.svg';
+
 import './App.css';
 
+const MyComponent = () => {
+  return (<h1>Hello JSX!</h1>)
+}
+
+const name = "John"
+const Greeting = () => {
+  return(<h1>Hello {name}!</h1>)
+}
+
+const Link = () => {
+  const url = "https://exmaple.com"
+  return <a href={url} target='_blank'>Visit Exmaple website</a>
+}
+
+const Image = () => {
+  const img = "https://via.placeholder.com/150"
+  return <div><img src={img} alt="some_placeholder"/></div>  
+}
+
+const Profile = () => {
+  const details = {
+    name:"John",
+    age:19,
+    email:"somegmail",
+    bio:"XYZ"
+  }
+  return (
+    <div>
+      <p>Name : {details.name}</p>
+      <p>Age : {details.age}</p>
+      <p>Email : {details.email}</p>
+      <p>Bio : {details.bio}</p>
+    </div>
+  )
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+       <MyComponent />
+       <Greeting/>
+       <Link/>
+       <Image/>
+       <Profile/>
     </div>
   );
 }
