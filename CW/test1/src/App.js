@@ -1,112 +1,127 @@
 
 import './App.css';
 
-const BookINformation = () => {
-  const book = {
+const CarDetails = () => {
+  const car = {
 
-    title: "1984",
+    make: "Tesla",
 
-    author: "George Orwell",
+    model: "Model S",
 
-    genre: "Dystopian Fiction",
+    year: 2022,
 
-    year: 1949,
-
-  };
-  return (
-    <div>
-      <h2>Title : {book.title} </h2>
-      <p>Author: {book.author} </p>
-      <p>Genre: {book.genre} </p>
-      <p>Year:{book.year} </p>
-    </div>
-  )
-}
-
-const BlogDetails = () => {
-  const blog = {
-
-    title: "How to Start a Blog",
-
-    author: "Jane Smith",
-
-    date: "February 28, 2024",
-
-    likes: 150,
+    color: "Black",
 
   };
   return (
     <div>
-      <h2>Title : {blog.title} </h2>
-      <p>Author: {blog.author} </p>
-      <p>Genre: {blog.date} </p>
-      <p>Year:{blog.likes} </p>
+      <p>Make : {car.make} </p>
+      <p>Model: {car.model} </p>
+      <p>Year: {car.year} </p>
+      <p>Color:{car.color} </p>
     </div>
   )
 }
 
-const MovieDetails =() => {
-  const movieProfile = {
+const MusicProfile = () => {
+  const artist = {
 
-    title: "The Shawshank Redemption",
+    name: "Beyoncé",
 
-    director: "Frank Darabont",
+    genre: "R&B",
 
-    rating: 9.3,
+    albums: 8,
+
+    awards: ["Grammy Award", "MTV Video Music Award"],
 
   };
-  return(
+  return (
     <div>
-      <h2>Title: {movieProfile.title}</h2>
-      <p>Director: {movieProfile.director} </p>
-      <p>Rating: {movieProfile.rating} </p>
+      <p>Artist : {artist.name} </p>
+      <p>Genre: {artist.genre} </p>
+      <p>Albums: {artist.albums} </p>
+      <p>Awards:{artist.awards.join(',')} </p>
     </div>
   )
 }
 
-const ProductDetails =() => {
-  const product = {
+const RecipeInfo =() => {
+  const recipe = {
 
-    name: "Smartphone",
+    name: "Spaghetti Bolognese",
 
-    brand: "Samsung",
+    chef: {
 
-    price: 799.99,
+      name: "Jamie Oliver",
 
-  };
-  return(
-    <div>
-      <p>Name: {product.name} </p>
-      <p>Brand: {product.brand}  </p>
-      <p>Price: {product.price} </p>
-    </div>
-  )
-}
-
-const BookDetails =() =>{
-  const book = {
-
-    title: "The Hitchhiker's Guide to the Galaxy",
-  
-    author: {
-  
-      name: "Douglas Adams",
-  
       nationality: "British"
-  
+
     },
-  
-    publicationYear: 1979,
-  
-    genres: ["Science Fiction", "Comedy"]
-  
+
+    ingredients: ["Spaghetti", "Ground beef", "Tomato sauce", "Onion", "Garlic", "Herbs"],
+
+    cookingTime: 45
+
   };
   return(
     <div>
-      <h2>Title: {book.title} </h2>
-      <p>Author: {book.author.name}(Nationality: {book.author.nationality}) </p>
-      <p>Publication Year: {book.publicationYear} </p>
-      <p>Genre: {book.genres.join(",")} </p>
+      <h2>{recipe.name}</h2>
+      <p>Chef: {recipe.chef.name}(Nationality: {recipe.chef.nationality}) </p>
+      <p>Ingredients: {recipe.ingredients.join(",")} </p>
+      <p>Cooking Time: {recipe.cookingTime} minutes </p>
+    </div>
+  )
+}
+
+const MusicDetails =() => {
+  const album = {
+
+    title: "Abbey Road",
+
+    artist: {
+
+      name: "The Beatles",
+
+      nationality: "British"
+
+    },
+
+    releaseYear: 1969,
+
+    genres: ["Rock", "Pop"]
+
+  };
+  return(
+    <div>
+      <p>Title: {album.title} </p>
+      <p>Artist: {album.artist.name}(Nationality: {album.artist.nationality}) </p>
+      <p>Release Year: {album.releaseYear} </p>
+      <p>Genre: {album.genres.join(",")} </p>
+    </div>
+  )
+}
+
+const LaptopDetails =() =>{
+  const laptop = {
+
+    brand: "Apple",
+
+    model: "MacBook Pro",
+
+    screenSize: "13 inches",
+
+    price: 1299.99,
+
+    features: ["A15 Bionic chip", "Dual-camera system", "5G capable"]
+
+  };
+  return(
+    <div>
+      <p>Brand: {laptop.brand} </p>
+      <p>Model: {laptop.model} </p>
+      <p>Screen Size: {laptop.screenSize} </p>
+      <p>Price: {laptop.price} </p>
+      <p>Features: {laptop.features.join(',')}</p>
     </div>
   )
 }
@@ -114,16 +129,16 @@ const BookDetails =() =>{
 function App() {
   return (
     <div>
-      <h1>Book Information</h1>
-        <BookINformation/>
-      <h1>Blog Details</h1>
-        <BlogDetails/>
-      <h1>Movie Profile</h1>
-        <MovieDetails/>
-      <h1>Prodcut Details</h1>
-        <ProductDetails/>
-      <h1>Book Details</h1>
-        <BookDetails/>
+      <h1>Car Details</h1>
+        <CarDetails/>
+      <h1>Music Profile</h1>
+        <MusicProfile/>
+      <h1>Recipe Information</h1>
+        <RecipeInfo/>
+      <h1>Music Album</h1>
+        <MusicDetails/>
+      <h1>Laptop Details</h1>
+        <LaptopDetails/>
     </div>
   );
 }
