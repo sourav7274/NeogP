@@ -1,62 +1,88 @@
 
 import './App.css';
 
-const WelcomeMessage = () => {
-  return <h1>Wleocme to the World of JXS!</h1>  
-}
+const StudentDetails =() => {
+  const name = "Bob"
+  const age =20
+  const grade = "A"
 
-const GreetActor = () => {
-  let name = "Tom Hardy"
-  return <h2>Welcome,{name} fans!</h2>
-}
-
-const ExternalLink = () => {
-  const url = " https://www.reactjs.org"
-  return <a href={url} target='_blank' >Explore React Documentation</a>
-}
-
-const VideoPlayer = () => {
-  const videourl = "https://www.example.com/video.mp4"
-  return ( <div>
-  <video controls>
-    <source src={videourl} type='video/mp4'/>
-  </video>
-  </div>)
-}
-
-const MovieDetails =() => {
-  const movie = {
-
-    title: "Forrest Gump",
-
-    director: "Robert Zemeckis",
-
-    year: 1994,
-
-    rating: "PG-13",
-
-    duration: "2h 22min"
-
-  }
-
-  return (
+  return(
     <div>
-      <p><b>Title:</b>{movie.title}</p>
-      <p><b>Director:</b>{movie.director}</p>
-      <p><b>Year:</b>{movie.year}</p>
-      <p><b>Rating:</b>{movie.rating}</p>
-      <p><b>Duration:</b>{movie.duration}</p>
+      <h2>Name: {name}</h2>
+      <p>Age: {age} </p>
+      <p>Grade: {grade} </p>
     </div>
   )
 }
+
+const Product = () =>{
+  const product ={
+    name:"Laptop",
+    brand:"Dell",
+    price:20000
+  }
+  return(
+    <div>
+      <p>Name: {product.name}</p>
+      <p>Brand Name: {product.brand} </p>
+      <p>Price: INR{product.price}</p>
+    </div>
+  )
+}
+
+const UserProfile = () => {
+  const user ={
+    name:"John Doe",
+    age: 35,
+    address:{
+      street:"123 Strert",
+      city:"New York",
+      state:"West Bengal",
+      zipcode:"234546"
+    }
+  }
+
+  return(
+    <div>
+      <p>Name:{user.name} </p>
+      <p>Age:{user.age} </p>
+      <p>Address:{user.address.street},{user.address.city},{user.address.state},{user.address.zipcode} </p>
+      <p></p>
+    </div>
+  )
+}
+
+const MovieDetails = () =>{
+  const movie ={
+    title:"Inception",
+    releaseYear:2010,
+    director:{
+      name:"Christopher Nolan",
+      nationality:"British",
+    },
+    genre:["Sci-fi","Action","Thriller"]
+  }
+  return(
+    <div>
+      <p>title: {movie.title}</p>
+      <p>releaseYear: {movie.releaseYear}</p>
+      <p>director: {movie.director.name},{movie.director.nationality}</p>
+      <p>Genre: {movie.genre.join(",")}</p>
+    </div>
+  )
+}
+
 function App() {
   return (
     <div>
-      <WelcomeMessage/>
-      <GreetActor/>
-      <ExternalLink/>
-      <VideoPlayer/>
-      <MovieDetails/>
+    <h1>Student Details</h1>
+      <StudentDetails/>
+    <h1>Product Details</h1>
+      <Product/>
+     <h1>User Profile</h1> 
+      <UserProfile/>
+     <h1>Movie Details</h1>
+      <MovieDetails/> 
     </div>
   );
 }
