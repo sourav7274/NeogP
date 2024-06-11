@@ -1,54 +1,62 @@
 
 import './App.css';
 
-const Heading = () => {
-  return <h1>React Playground</h1>
+const WelcomeMessage = () => {
+  return <h1>Wleocme to the World of JXS!</h1>  
 }
-const name = "Alice Smith"
-const Greetings = () => {
-  return <h2>Hello,{name}</h2>
+
+const GreetActor = () => {
+  let name = "Tom Hardy"
+  return <h2>Welcome,{name} fans!</h2>
 }
+
 const ExternalLink = () => {
-  return <a target='_blank' href='https://www.reactexamples.com'>Visit React Examples</a>
+  const url = " https://www.reactjs.org"
+  return <a href={url} target='_blank' >Explore React Documentation</a>
 }
 
-const Avatar = () => {
-  return <div> 
-  <img src='https://placehold.co/200x200?text=Hello\nWorld' alt='someImgae' />
-  </div>
+const VideoPlayer = () => {
+  const videourl = "https://www.example.com/video.mp4"
+  return ( <div>
+  <video controls>
+    <source src={videourl} type='video/mp4'/>
+  </video>
+  </div>)
 }
-const Display =() => {
-  const user = {
 
-    name: "Alice Smith",
+const MovieDetails =() => {
+  const movie = {
 
-    age: 28,
+    title: "Forrest Gump",
 
-    email: "alice.smith@example.com",
+    director: "Robert Zemeckis",
 
-    bio: "Passionate about React and building innovative web applications."
+    year: 1994,
 
-  };
+    rating: "PG-13",
+
+    duration: "2h 22min"
+
+  }
+
   return (
     <div>
-       <h1>User Information</h1>
-       <p><b>Name:</b>{user.name}</p>
-       <p><b>Age:</b>{user.age}</p>
-       <p><b>Email:</b>{user.email}</p>
-       <p><b>Bio:</b>{user.bio}</p>
+      <p><b>Title:</b>{movie.title}</p>
+      <p><b>Director:</b>{movie.director}</p>
+      <p><b>Year:</b>{movie.year}</p>
+      <p><b>Rating:</b>{movie.rating}</p>
+      <p><b>Duration:</b>{movie.duration}</p>
     </div>
   )
 }
-
-
 function App() {
   return (
     <div>
-      <Heading/>
-      <Greetings/>
+      <WelcomeMessage/>
+      <GreetActor/>
       <ExternalLink/>
-      <Avatar/>
-      <Display/>
+      <VideoPlayer/>
+      <MovieDetails/>
     </div>
   );
 }
