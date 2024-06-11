@@ -1,73 +1,112 @@
 
 import './App.css';
 
-const StudentDetails =() => {
-  const name = "Bob"
-  const age =20
-  const grade = "A"
+const BookINformation = () => {
+  const book = {
 
-  return(
+    title: "1984",
+
+    author: "George Orwell",
+
+    genre: "Dystopian Fiction",
+
+    year: 1949,
+
+  };
+  return (
     <div>
-      <h2>Name: {name}</h2>
-      <p>Age: {age} </p>
-      <p>Grade: {grade} </p>
+      <h2>Title : {book.title} </h2>
+      <p>Author: {book.author} </p>
+      <p>Genre: {book.genre} </p>
+      <p>Year:{book.year} </p>
     </div>
   )
 }
 
-const Product = () =>{
-  const product ={
-    name:"Laptop",
-    brand:"Dell",
-    price:20000
-  }
-  return(
+const BlogDetails = () => {
+  const blog = {
+
+    title: "How to Start a Blog",
+
+    author: "Jane Smith",
+
+    date: "February 28, 2024",
+
+    likes: 150,
+
+  };
+  return (
     <div>
-      <p>Name: {product.name}</p>
-      <p>Brand Name: {product.brand} </p>
-      <p>Price: INR{product.price}</p>
+      <h2>Title : {blog.title} </h2>
+      <p>Author: {blog.author} </p>
+      <p>Genre: {blog.date} </p>
+      <p>Year:{blog.likes} </p>
     </div>
   )
 }
 
-const UserProfile = () => {
-  const user ={
-    name:"John Doe",
-    age: 35,
-    address:{
-      street:"123 Strert",
-      city:"New York",
-      state:"West Bengal",
-      zipcode:"234546"
-    }
-  }
+const MovieDetails =() => {
+  const movieProfile = {
 
+    title: "The Shawshank Redemption",
+
+    director: "Frank Darabont",
+
+    rating: 9.3,
+
+  };
   return(
     <div>
-      <p>Name:{user.name} </p>
-      <p>Age:{user.age} </p>
-      <p>Address:{user.address.street},{user.address.city},{user.address.state},{user.address.zipcode} </p>
-      <p></p>
+      <h2>Title: {movieProfile.title}</h2>
+      <p>Director: {movieProfile.director} </p>
+      <p>Rating: {movieProfile.rating} </p>
     </div>
   )
 }
 
-const MovieDetails = () =>{
-  const movie ={
-    title:"Inception",
-    releaseYear:2010,
-    director:{
-      name:"Christopher Nolan",
-      nationality:"British",
+const ProductDetails =() => {
+  const product = {
+
+    name: "Smartphone",
+
+    brand: "Samsung",
+
+    price: 799.99,
+
+  };
+  return(
+    <div>
+      <p>Name: {product.name} </p>
+      <p>Brand: {product.brand}  </p>
+      <p>Price: {product.price} </p>
+    </div>
+  )
+}
+
+const BookDetails =() =>{
+  const book = {
+
+    title: "The Hitchhiker's Guide to the Galaxy",
+  
+    author: {
+  
+      name: "Douglas Adams",
+  
+      nationality: "British"
+  
     },
-    genre:["Sci-fi","Action","Thriller"]
-  }
+  
+    publicationYear: 1979,
+  
+    genres: ["Science Fiction", "Comedy"]
+  
+  };
   return(
     <div>
-      <p>title: {movie.title}</p>
-      <p>releaseYear: {movie.releaseYear}</p>
-      <p>director: {movie.director.name},{movie.director.nationality}</p>
-      <p>Genre: {movie.genre.join(",")}</p>
+      <h2>Title: {book.title} </h2>
+      <p>Author: {book.author.name}(Nationality: {book.author.nationality}) </p>
+      <p>Publication Year: {book.publicationYear} </p>
+      <p>Genre: {book.genres.join(",")} </p>
     </div>
   )
 }
@@ -75,14 +114,16 @@ const MovieDetails = () =>{
 function App() {
   return (
     <div>
-    <h1>Student Details</h1>
-      <StudentDetails/>
-    <h1>Product Details</h1>
-      <Product/>
-     <h1>User Profile</h1> 
-      <UserProfile/>
-     <h1>Movie Details</h1>
-      <MovieDetails/> 
+      <h1>Book Information</h1>
+        <BookINformation/>
+      <h1>Blog Details</h1>
+        <BlogDetails/>
+      <h1>Movie Profile</h1>
+        <MovieDetails/>
+      <h1>Prodcut Details</h1>
+        <ProductDetails/>
+      <h1>Book Details</h1>
+        <BookDetails/>
     </div>
   );
 }
