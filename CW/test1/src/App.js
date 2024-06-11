@@ -1,49 +1,54 @@
 
 import './App.css';
 
-const MyComponent = () => {
-  return (<h1>Hello JSX!</h1>)
+const Heading = () => {
+  return <h1>React Playground</h1>
+}
+const name = "Alice Smith"
+const Greetings = () => {
+  return <h2>Hello,{name}</h2>
+}
+const ExternalLink = () => {
+  return <a target='_blank' href='https://www.reactexamples.com'>Visit React Examples</a>
 }
 
-const name = "John"
-const Greeting = () => {
-  return(<h1>Hello {name}!</h1>)
+const Avatar = () => {
+  return <div> 
+  <img src='https://placehold.co/200x200?text=Hello\nWorld' alt='someImgae' />
+  </div>
 }
+const Display =() => {
+  const user = {
 
-const Link = () => {
-  const url = "https://exmaple.com"
-  return <a href={url} target='_blank'>Visit Exmaple website</a>
-}
+    name: "Alice Smith",
 
-const Image = () => {
-  const img = "https://via.placeholder.com/150"
-  return <div><img src={img} alt="some_placeholder"/></div>  
-}
+    age: 28,
 
-const Profile = () => {
-  const details = {
-    name:"John",
-    age:19,
-    email:"somegmail",
-    bio:"XYZ"
-  }
+    email: "alice.smith@example.com",
+
+    bio: "Passionate about React and building innovative web applications."
+
+  };
   return (
     <div>
-      <p>Name : {details.name}</p>
-      <p>Age : {details.age}</p>
-      <p>Email : {details.email}</p>
-      <p>Bio : {details.bio}</p>
+       <h1>User Information</h1>
+       <p><b>Name:</b>{user.name}</p>
+       <p><b>Age:</b>{user.age}</p>
+       <p><b>Email:</b>{user.email}</p>
+       <p><b>Bio:</b>{user.bio}</p>
     </div>
   )
 }
+
+
 function App() {
   return (
     <div>
-       <MyComponent />
-       <Greeting/>
-       <Link/>
-       <Image/>
-       <Profile/>
+      <Heading/>
+      <Greetings/>
+      <ExternalLink/>
+      <Avatar/>
+      <Display/>
     </div>
   );
 }
