@@ -1,22 +1,20 @@
 
 import './App.css';
 
-const employee = {
+const smartphone = {
   id:1,
-  name:"John Doe",
-  position:"Software Developer",
-  department:"Engineering",
-  email:"johndoe@gmail.com"
+  catergory:"Electronics",
+  Price: 799.99,
+  Stock: 100
 }
 
-const EmployeeDetails = ({employee}) =>{
+const PhoneDetails = ({phone}) =>{
   return(
     <div>
-      <h2>Employee Details</h2>
-      <p>Name: {employee.name}</p>
-      <p>position: {employee.position}</p>
-      <p>Department: {employee.department} </p>
-      <p>Email: {employee.email}</p>
+      <h2>SmartPhone</h2>
+      <p>Category: {phone.catergory}</p>
+      <p>Price: {phone.Price}</p>
+      <p>Stock: {phone.Stock} </p>
     </div>
   )
 }
@@ -24,7 +22,7 @@ const EmployeeDetails = ({employee}) =>{
 const Footer = () =>{
   return(
     <footer>
-      <p>&copy; 2024 Company Name. All rights reserved</p>
+      <p>&copy; 2024 Our Company. All rights reserved</p>
     </footer>
   )
 }
@@ -32,11 +30,17 @@ const Footer = () =>{
 const Header = () =>{
   return(
     <header>
-       <h1>Welcome to our Company</h1>
+       <h1>Welcome to our Website</h1>
        <nav>
         <ul>
           <li>
-            <a href='/'>Name</a>
+            <a href='/'>Home</a>
+          </li>
+          <li>
+            <a href='/'>About</a>
+          </li>
+          <li>
+            <a href='/'>Contact</a>
           </li>
         </ul>
        </nav>
@@ -49,7 +53,7 @@ function App() {
   return (
     <di>
     <Header/>
-      <EmployeeDetails employee={employee} />
+      <PhoneDetails phone={smartphone} />
       <Footer/>
     </di>
   );
