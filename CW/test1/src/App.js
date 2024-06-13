@@ -1,20 +1,20 @@
 
 import './App.css';
 
-const smartphone = {
+const bookD = {
   id:1,
-  catergory:"Electronics",
-  Price: 799.99,
-  Stock: 100
+  author:"Jane Doe",
+  date:"March 1,2024",
+  des:"Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
 }
 
-const PhoneDetails = ({phone}) =>{
+const BookDetails = ({book}) =>{
   return(
     <div>
-      <h2>SmartPhone</h2>
-      <p>Category: {phone.catergory}</p>
-      <p>Price: {phone.Price}</p>
-      <p>Stock: {phone.Stock} </p>
+      <h2>The Importance of learning react</h2>
+      <p>Author: {book.author}</p>
+      <p>Date: {book.date}</p>
+      <p>Stock: {book.des} </p>
     </div>
   )
 }
@@ -30,7 +30,7 @@ const Footer = () =>{
 const Header = () =>{
   return(
     <header>
-       <h1>Welcome to our Website</h1>
+       <h1>Welcome to Our Blog</h1>
        <nav>
         <ul>
           <li>
@@ -53,7 +53,7 @@ function App() {
   return (
     <di>
     <Header/>
-      <PhoneDetails phone={smartphone} />
+      <BookDetails book={bookD} />
       <Footer/>
     </di>
   );
