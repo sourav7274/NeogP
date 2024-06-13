@@ -1,61 +1,48 @@
 
 import './App.css';
 
-const bookD = {
-  id:1,
-  author:"Jane Doe",
-  date:"March 1,2024",
-  des:"Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+const Add = () => {
+  const a= 2
+  const b= 4
+  return(
+    <p>Result of {a} + {b} = {a+b}</p>
+  )
 }
 
-const BookDetails = ({book}) =>{
+const TempCal = () => {
+  const cel = 30
+  return(
+    <p>Celcius {cel} degree Celcius is equal to {cel*9/5 + 32} Fahrenheit</p>
+  )
+}
+
+const Combied = () =>{
+  const a = 15
+  const b = 7
+  const c= 3
   return(
     <div>
-      <h2>The Importance of learning react</h2>
-      <p>Author: {book.author}</p>
-      <p>Date: {book.date}</p>
-      <p>Stock: {book.des} </p>
+      <p>{a} + {b} + {c} = {a+b+c}</p>
+      <p>{a} - {b} = {a-b}</p>
+      <p>{a} * {b} = {a*b}</p>
     </div>
   )
 }
 
-const Footer = () =>{
-  return(
-    <footer>
-      <p>&copy; 2024 Our Company. All rights reserved</p>
-    </footer>
-  )
+const Welcome =()=>{
+ const  fname = "John"
+ const  lanme = "Doe"
+  return <p>{`Welcome, ${fname} ${lanme} `}</p>
+  
 }
-
-const Header = () =>{
-  return(
-    <header>
-       <h1>Welcome to Our Blog</h1>
-       <nav>
-        <ul>
-          <li>
-            <a href='/'>Home</a>
-          </li>
-          <li>
-            <a href='/'>About</a>
-          </li>
-          <li>
-            <a href='/'>Contact</a>
-          </li>
-        </ul>
-       </nav>
-    </header>
-   
-  )
-}
-
 function App() {
   return (
-    <di>
-    <Header/>
-      <BookDetails book={bookD} />
-      <Footer/>
-    </di>
+    <div>
+      <Add/>
+      <TempCal/>
+      <Combied/>
+      <Welcome/>
+    </div>
   );
 }
 
