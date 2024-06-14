@@ -1,44 +1,61 @@
 
 import './App.css';
 
-const MathOPs = () => {
-  const a = 30
-  const b = 20
-  const getSum = (x,y) => {
-    return x+y
-  }
-  const getDiff = (x,y) => {
-    return x-y
-  }
-
-  return(
-    <div>
-      <p>{a} + {b} equals {getSum(a,b)}</p>
-      <p>{a} - {b} equals {getDiff(a,b)}</p>
-    </div>
-  )
-}
-
-const CallGreeting = () =>{
+const GenGreeting = () =>{
   const greeting = () =>{
-    return "Hello World"
+    return "Hello John!"
   }
   return <h1>{greeting()}</h1>
 }
 
-const DateFomrate = () => {
-  const getCurrentDate = () =>{
-    return new Date().toLocaleDateString()
-  }
-
-  return <h1>{getCurrentDate()}</h1>
+const CalculatArea = () =>{
+  const area = (a,b) => a*b
+   return (
+    <div>
+       <p>Rectangle area: {area(10,5)}</p>
+     
+    </div>   
+  )
 }
+
+const CalculatePeri = () =>{
+  const perimter = (a,b) => 2*(a+b)
+  return <p>Rectangle Perimter: {perimter(10,5)}</p>
+}
+
+const GenMessage = () =>{
+  const hrs = new Date().getHours()
+  let greet =""
+  if(hrs<12)
+    {
+      greet="Good Morning!"
+    }
+    else if(hrs>12 && hrs<18)
+      {
+        greet="Good Afternoon!"
+      }
+    else
+    {
+      greet="Good Evening!"
+    }
+
+    return <h1>{greet}</h1>
+}
+
+const CalcVolume = () =>{
+  const volume= (a,b) => Math.PI*a*a*b
+  return <p>Volume of Cylinder: {volume(3,5)}</p>
+}
+
 function App() {
   return (
     <div>
-     <MathOPs />
-     <CallGreeting/>
-     <DateFomrate/>
+     <GenGreeting/>
+     <CalculatArea/>
+     <CalculatePeri/>
+     <GenGreeting />
+    <GenMessage />
+    <CalcVolume />
     </div>
   );
 }
