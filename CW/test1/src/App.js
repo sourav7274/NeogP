@@ -1,35 +1,31 @@
 
 import './App.css';
 
-const UserStatus = ({isOnline}) => {
-  return isOnline?<p>User is Online</p> : <p>User is Offline</p>
+const CreditCardPayment = ({bill}) =>{
+  return bill>1000?<p>Please your credit card for payment</p> : <p>You can pay using cash or debit card</p>
+  }
+const ProductAvailability =({inStock}) =>{
+  return inStock? <p>Product is available order now!</p> :<p>Sorry,the product is out of stock</p>
+}
+const Trafficlight = ({color}) =>{
+  return color === "red" ? <p>Stop the lights are red!.</p>:<p>Go! The light is green.</p>
 }
 
-const DayOfWeek = ({isWeekend}) => {
-  return isWeekend ? <p>Enjoy Your Weekend</p> : <p>Have a great day</p>
+const MembershipStatus = ({isPremium}) =>{
+  return isPremium ? <p>Welcome,Premium Memeber</p>:<p>Upgrade to premium for exclusive benefits.</p>
 }
 
-const Shoppingcart = ({itemCount}) => {
-  return itemCount!==0 ? <p>Your have {itemCount} items in your cart</p>: <p>Your cart is empty</p>
-}
-const DiscountOffer =({isPrimeMember}) => {
-  return isPrimeMember ? <p>Your are eligible for a 20% discount</p>:<p>Become a prime member for exclusive discounts</p>
-}
-const ShowError = ({showErorr}) =>{
-  return (
-    <div>
-      {showErorr && <p>You have an error please try again.</p>}
-    </div>
-  )
+const WeatherReport = ({isSuny}) =>{
+  return isSuny ? <p>Its is a Sunny Day</p> :<p>It is not sunny today.</p>
 }
 function App() {
   return (
     <div> 
-      <UserStatus isOnline={true} />
-      <DayOfWeek isWeekend={true} />
-      <Shoppingcart itemCount={56} />
-      <DiscountOffer isPrimeMember={true} />
-      <ShowError showErorr={"jgbeiug"} />
+        <CreditCardPayment bill={500} />
+        <ProductAvailability inStock={true} />
+        <Trafficlight color={"htgjhd"} />
+        <MembershipStatus isPremium={false} />
+        <WeatherReport isSuny={true} />
     </div>
   );
 }
