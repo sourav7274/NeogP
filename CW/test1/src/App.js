@@ -1,43 +1,35 @@
 
 import './App.css';
 
-const Message = ({isLoggin}) => {
-  // if(isLoggin)
-  // {
-  //   return <p>Welcome back,User</p>
-  // }
-  // else{
-  //   return <p>Please Login to continue</p>
-  // }
-
-  return isLoggin ? <p>Welcome Back User!</p> : <p>Please Login to continue</p>
-} 
-
-const Greeting = ({isMorning}) => {
-  return <p>{isMorning ? "Good Morning": "Good Eveinig" }</p> 
+const UserStatus = ({isOnline}) => {
+  return isOnline?<p>User is Online</p> : <p>User is Offline</p>
 }
 
-const ShowNoti = ({noti}) => {
-  return <div>{noti && <p>{noti}</p>}</div>
+const DayOfWeek = ({isWeekend}) => {
+  return isWeekend ? <p>Enjoy Your Weekend</p> : <p>Have a great day</p>
 }
 
-const TicketPricing = ({passangerAge}) =>{
-  let price = 100
-
-  return(
+const Shoppingcart = ({itemCount}) => {
+  return itemCount!==0 ? <p>Your have {itemCount} items in your cart</p>: <p>Your cart is empty</p>
+}
+const DiscountOffer =({isPrimeMember}) => {
+  return isPrimeMember ? <p>Your are eligible for a 20% discount</p>:<p>Become a prime member for exclusive discounts</p>
+}
+const ShowError = ({showErorr}) =>{
+  return (
     <div>
-      {passangerAge > 60 ? <p>Ticket Price: {price - price*0.15}</p> : <p>Ticket Price: {price}</p>}
+      {showErorr && <p>You have an error please try again.</p>}
     </div>
   )
 }
-
 function App() {
   return (
-    <div>
-     <Message isLoggin={true} />
-     <Greeting isMorning={true} />
-     <ShowNoti noti="iugeugdfhg" />
-     <TicketPricing passangerAge={50} />
+    <div> 
+      <UserStatus isOnline={true} />
+      <DayOfWeek isWeekend={true} />
+      <Shoppingcart itemCount={56} />
+      <DiscountOffer isPrimeMember={true} />
+      <ShowError showErorr={"jgbeiug"} />
     </div>
   );
 }
