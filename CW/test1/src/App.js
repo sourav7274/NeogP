@@ -1,81 +1,121 @@
 
 import './App.css';
 
-const ProductList = ({products}) =>{
-  const productListing = products.map(product =>(
-    <div key={product.id}>
-      <h3>Name:{product.name}</h3>
-      <p>Price:{product.price}</p>
-    </div>
+const Cars = ({cars}) =>{
+  const carList = cars.map(car =>(
+    <div key={car.id}>
+       <h3>Brand:{car.Brand}</h3>
+       <p>Price:{car.price}</p>
+    </div>   
   ))
-
   return(
     <>
-      <h2>Products</h2>
-      {productListing}
+      <h2>Cars</h2>
+      {carList}
+      <hr/>
+    </>
+  )
+}
+const Hotels = ({hotels}) =>{
+  const hotelList = hotels.map(hotel =>(
+    <div  key={hotel.id}>
+       <h3>Brand:{hotel.name}</h3>
+       <p>Price:{hotel.location}</p>
+    </div>   
+  ))
+  return(
+    <>
+      <h2>Hotels</h2>
+      {hotelList}
+      <hr/>
+    </>
+  )
+}
+const Podcasts = ({podcasts}) =>{
+  const PodList = podcasts.map(pod =>(
+    <div  key={pod.id}>
+       <h3>Brand:{pod.title}</h3>
+       <p>Price:{pod.host}</p>
+    </div>   
+  ))
+  return(
+    <>
+      <h2>Podcats</h2>
+      {PodList}
+      <hr/>
+    </>
+  )
+}
+const Articles = ({articles}) =>{
+  const articleList = articles.map(article =>(
+    <div  key={article.id}>
+       <h3>Title:{article.title}</h3>
+       <p>Content:{article.content}</p>
+    </div>   
+  ))
+  return(
+    <>
+      <h2>Articles</h2>
+      {articleList}
+      <hr/>
+    </>
+  )
+}
+const Movies = ({movies}) =>{
+  const movieList = movies.map(movie =>(
+    <div  key={movie.id}>
+       <h3>Title:{movie.title}</h3>
+       <p>Director:{movie.director}</p>
+    </div>   
+  ))
+  return(
+    <>
+      <h2>Movies</h2>
+      {movieList}
       <hr/>
     </>
   )
 }
 
-const Restaurants = ({restaurants}) =>{
-  const restaurantsList = restaurants.map(restaurant => (
-    <div key={restaurant.id}>
-        <h3>Name:{restaurant.name}</h3>
-        <p>Cuisine:{restaurant.cuisine}</p>
-    </div>
-  ))
-
-  return(
-    <>
-      <h2>Restaurants</h2>
-      {restaurantsList}
-      <hr/>
-    </>
-  )
-}
-
-const Videos = ({videos}) =>{
-  const videoList = videos.map(video => (
-    <div key={video.id}>
-      <h3>Name:{video.name}</h3>
-      <p>Views:{video.views}</p>
-    </div>
-  ))
-
-  return(
-    <>
-      <h2>Videos</h2>
-      {videoList}
-    </>
-  )
-}
 
 function App() {
   
-  const products = [
-    {id:1,name:"Product 1",price:19.99},
-    {id:2,name:"Product 2",price:29.99},
-    {id:3,name:"Product 3",price:39.99},
+  const cars = [
+    {id:1,Brand:"Product 1",price:25000},
+    {id:2,Brand:"Product 2",price:35000},
+    {id:3,Brand:"Product 3",price:45000},
   ]
 
-  const restaurants = [
-    {id:1,name:"Restaurant 1",cuisine:"Italian"},
-    {id:2,name:"Restaurant 2",cuisine:"Mexican"},
-    {id:3,name:"Restaurant 3",cuisine:"Chineese"},
+  const hotels= [
+    {id:1,name:"Mariyat",location:"New York"},
+    {id:2,name:"Hilton",location:"Los Angeles"},
+    {id:3,name:"Sheraton",location:"Chicago"},
   ]
 
-  const videos = [
-    {id:1,name:"Video 1",views:2000},
-    {id:2,name:"Video 2",views:4000},
-    {id:3,name:"Video 3",views:5000},
+  const podcasts = [
+    {id:1,title:"Pdocast 1",host:"Host 1"},
+    {id:2,title:"Pdocast 2",host:"Host 2"},
+    {id:3,title:"Pdocast 3",host:"Host 3"},
+  ]
+  const articles = [
+    {id:1,title:"Article 1",content:"Content 1"},
+    {id:2,title:"Article 2",content:"Content 2"},
+    {id:3,title:"Article 3",content:"Content 3"},
+  ]
+
+  const movies = [
+    {id:1,title:"Movie 1",director:"Director 1"},
+    {id:2,title:"Movie 2",director:"Director 2"},
+    {id:3,title:"Movie 3",director:"Director 3"},
   ]
 
   return (
     <div>
-         <ProductList products={products} />
-         <Restaurants restaurants={restaurants}/>
-         <Videos videos={videos}/>
+      <Cars cars={cars}/>
+      <Hotels hotels={hotels}/>
+      <Podcasts podcasts={podcasts}/>
+      <Articles articles={articles}/>
+      <Movies movies={movies}/>
     </div>   
   )
 }
