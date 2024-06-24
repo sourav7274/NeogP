@@ -1,121 +1,87 @@
 
 import './App.css';
 
-const Laptops = ({laptops}) =>{
-  const laptopList = laptops.map(laptop =>(
-    <div key={laptop.id}>
-       <h3>{laptop.Brand}</h3>
-       <p>Price:${laptop.price}</p>
-    </div>   
+const ProductList = ({products}) =>{
+  
+  const filterProducts = products.filter(product => product.price>=20 && product.price<=50)
+  
+  const productListing = filterProducts.map(product =>(
+    <div key={product.id}>
+      <h3>Name:{product.name}</h3>
+      <p>Price:{product.price}</p>
+    </div>
   ))
   return(
     <>
-      <h2>Laptops</h2>
-      {laptopList}
-      <hr/>
-    </>
-  )
-}
-const Tspots = ({tspots}) =>{
-  const tspotList = tspots.map(tspot =>(
-    <div key={tspot.id}>
-       <h3>{tspot.name}</h3>
-       <p>Location:{tspot.location}</p>
-    </div>   
-  ))
-  return(
-    <>
-      <h2>Tourist Spots</h2>
-      {tspotList}
-      <hr/>
-    </>
-  )
-}
-const Podcasts = ({podcasts}) =>{
-  const PodList = podcasts.map(pod =>(
-    <div  key={pod.id}>
-       <h3>{pod.title}</h3>
-       <p>Duration:{pod.duration} minutes</p>
-    </div>   
-  ))
-  return(
-    <>
-      <h2>Podcast Episodes</h2>
-      {PodList}
-      <hr/>
-    </>
-  )
-}
-const Articles = ({articles}) =>{
-  const articleList = articles.map(article =>(
-    <div  key={article.id}>
-       <h3>{article.title}</h3>
-       <p>{article.description}</p>
-    </div>   
-  ))
-  return(
-    <>
-      <h2>News Articles</h2>
-      {articleList}
-      <hr/>
-    </>
-  )
-}
-const Games = ({games}) =>{
-  const gameList = games.map(game =>(
-    <div  key={game.id}>
-       <h3>{game.title}</h3>
-       <p>Genre:{game.genre}</p>
-    </div>   
-  ))
-  return(
-    <>
-      <h2>Games</h2>
-      {gameList}
+      <h2>Products</h2>
+      {productListing}
       <hr/>
     </>
   )
 }
 
+const Restaurants = ({restaurants}) =>{
+
+  const filterRes = restaurants.filter(res => res.cuisine==="Italian")
+
+  const restaurantsList = filterRes.map(restaurant => (
+    <div key={restaurant.id}>
+        <h3>Name:{restaurant.name}</h3>
+        <p>Cuisine:{restaurant.cuisine}</p>
+    </div>
+  ))
+
+  return(
+    <>
+      <h2>Restaurants</h2>
+      {restaurantsList}
+      <hr/>
+    </>
+  )
+}
+
+const Videos = ({videos}) =>{
+  const videoFIl = videos.filter(vid => vid.views>1000)
+  const videoList = videoFIl.map(video => (
+    <div key={video.id}>
+      <h3>Name:{video.name}</h3>
+      <p>Views:{video.views}</p>
+    </div>
+  ))
+
+  return(
+    <>
+      <h2>Videos</h2>
+      {videoList}
+    </>
+  )
+}
 
 function App() {
   
-  const laptops = [
-    {id:1,Brand:"Dell",price:999},
-    {id:2,Brand:"HP",price:899},
-    {id:3,Brand:"Lenovo",price:1099},
+  const products = [
+    {id:1,name:"Product 1",price:19.99},
+    {id:2,name:"Product 2",price:29.99},
+    {id:3,name:"Product 3",price:39.99},
   ]
 
-  const tspots= [
-    {id:1,name:"Grand Canyon",location:"Arizona,USA"},
-    {id:2,name:"Eiffel Tower",location:"Paris,France"},
-    {id:3,name:"Great Wall Of China",location:"Bejing,China"},
+  const restaurants = [
+    {id:1,name:"Restaurant 1",cuisine:"Italian"},
+    {id:2,name:"Restaurant 2",cuisine:"Mexican"},
+    {id:3,name:"Restaurant 3",cuisine:"Chineese"},
   ]
 
-  const podcasts = [
-    {id:1,title:"Episode 1",duration:30},
-    {id:2,title:"Episode 2",duration:40},
-    {id:3,title:"Episode 3",duration:60},
-  ]
-  const articles = [
-    {id:1,title:"News 1",description:"Description 1"},
-    {id:2,title:"News 2",description:"Description 2"},
-    {id:3,title:"News 3",description:"Description 3"},
-  ]
-
-  const games = [
-    {id:1,title:"Game 1",genre:"Action"},
-    {id:2,title:"Game 2",genre:"Adventure"},
-    {id:3,title:"Game 3",genre:"Strategy"},
+  const videos = [
+    {id:1,name:"Video 1",views:200},
+    {id:2,name:"Video 2",views:4000},
+    {id:3,name:"Video 3",views:5000},
   ]
 
   return (
     <div>
-      <Laptops laptops={laptops}/>
-      <Tspots tspots={tspots}/>
-      <Podcasts podcasts={podcasts}/>
-      <Articles articles={articles}/>
-      <Games games={games}/>
+         <ProductList products={products} />
+         <Restaurants restaurants={restaurants}/>
+         <Videos videos={videos}/>
     </div>   
   )
 }
