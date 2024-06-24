@@ -1,32 +1,32 @@
 
 import './App.css';
 
-const Cars = ({cars}) =>{
-  const carList = cars.map(car =>(
-    <div key={car.id}>
-       <h3>Brand:{car.Brand}</h3>
-       <p>Price:{car.price}</p>
+const Laptops = ({laptops}) =>{
+  const laptopList = laptops.map(laptop =>(
+    <div key={laptop.id}>
+       <h3>{laptop.Brand}</h3>
+       <p>Price:${laptop.price}</p>
     </div>   
   ))
   return(
     <>
-      <h2>Cars</h2>
-      {carList}
+      <h2>Laptops</h2>
+      {laptopList}
       <hr/>
     </>
   )
 }
-const Hotels = ({hotels}) =>{
-  const hotelList = hotels.map(hotel =>(
-    <div  key={hotel.id}>
-       <h3>Brand:{hotel.name}</h3>
-       <p>Price:{hotel.location}</p>
+const Tspots = ({tspots}) =>{
+  const tspotList = tspots.map(tspot =>(
+    <div key={tspot.id}>
+       <h3>{tspot.name}</h3>
+       <p>Location:{tspot.location}</p>
     </div>   
   ))
   return(
     <>
-      <h2>Hotels</h2>
-      {hotelList}
+      <h2>Tourist Spots</h2>
+      {tspotList}
       <hr/>
     </>
   )
@@ -34,13 +34,13 @@ const Hotels = ({hotels}) =>{
 const Podcasts = ({podcasts}) =>{
   const PodList = podcasts.map(pod =>(
     <div  key={pod.id}>
-       <h3>Brand:{pod.title}</h3>
-       <p>Price:{pod.host}</p>
+       <h3>{pod.title}</h3>
+       <p>Duration:{pod.duration} minutes</p>
     </div>   
   ))
   return(
     <>
-      <h2>Podcats</h2>
+      <h2>Podcast Episodes</h2>
       {PodList}
       <hr/>
     </>
@@ -49,29 +49,29 @@ const Podcasts = ({podcasts}) =>{
 const Articles = ({articles}) =>{
   const articleList = articles.map(article =>(
     <div  key={article.id}>
-       <h3>Title:{article.title}</h3>
-       <p>Content:{article.content}</p>
+       <h3>{article.title}</h3>
+       <p>{article.description}</p>
     </div>   
   ))
   return(
     <>
-      <h2>Articles</h2>
+      <h2>News Articles</h2>
       {articleList}
       <hr/>
     </>
   )
 }
-const Movies = ({movies}) =>{
-  const movieList = movies.map(movie =>(
-    <div  key={movie.id}>
-       <h3>Title:{movie.title}</h3>
-       <p>Director:{movie.director}</p>
+const Games = ({games}) =>{
+  const gameList = games.map(game =>(
+    <div  key={game.id}>
+       <h3>{game.title}</h3>
+       <p>Genre:{game.genre}</p>
     </div>   
   ))
   return(
     <>
-      <h2>Movies</h2>
-      {movieList}
+      <h2>Games</h2>
+      {gameList}
       <hr/>
     </>
   )
@@ -80,42 +80,42 @@ const Movies = ({movies}) =>{
 
 function App() {
   
-  const cars = [
-    {id:1,Brand:"Product 1",price:25000},
-    {id:2,Brand:"Product 2",price:35000},
-    {id:3,Brand:"Product 3",price:45000},
+  const laptops = [
+    {id:1,Brand:"Dell",price:999},
+    {id:2,Brand:"HP",price:899},
+    {id:3,Brand:"Lenovo",price:1099},
   ]
 
-  const hotels= [
-    {id:1,name:"Mariyat",location:"New York"},
-    {id:2,name:"Hilton",location:"Los Angeles"},
-    {id:3,name:"Sheraton",location:"Chicago"},
+  const tspots= [
+    {id:1,name:"Grand Canyon",location:"Arizona,USA"},
+    {id:2,name:"Eiffel Tower",location:"Paris,France"},
+    {id:3,name:"Great Wall Of China",location:"Bejing,China"},
   ]
 
   const podcasts = [
-    {id:1,title:"Pdocast 1",host:"Host 1"},
-    {id:2,title:"Pdocast 2",host:"Host 2"},
-    {id:3,title:"Pdocast 3",host:"Host 3"},
+    {id:1,title:"Episode 1",duration:30},
+    {id:2,title:"Episode 2",duration:40},
+    {id:3,title:"Episode 3",duration:60},
   ]
   const articles = [
-    {id:1,title:"Article 1",content:"Content 1"},
-    {id:2,title:"Article 2",content:"Content 2"},
-    {id:3,title:"Article 3",content:"Content 3"},
+    {id:1,title:"News 1",description:"Description 1"},
+    {id:2,title:"News 2",description:"Description 2"},
+    {id:3,title:"News 3",description:"Description 3"},
   ]
 
-  const movies = [
-    {id:1,title:"Movie 1",director:"Director 1"},
-    {id:2,title:"Movie 2",director:"Director 2"},
-    {id:3,title:"Movie 3",director:"Director 3"},
+  const games = [
+    {id:1,title:"Game 1",genre:"Action"},
+    {id:2,title:"Game 2",genre:"Adventure"},
+    {id:3,title:"Game 3",genre:"Strategy"},
   ]
 
   return (
     <div>
-      <Cars cars={cars}/>
-      <Hotels hotels={hotels}/>
+      <Laptops laptops={laptops}/>
+      <Tspots tspots={tspots}/>
       <Podcasts podcasts={podcasts}/>
       <Articles articles={articles}/>
-      <Movies movies={movies}/>
+      <Games games={games}/>
     </div>   
   )
 }
