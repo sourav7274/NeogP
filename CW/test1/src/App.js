@@ -1,279 +1,248 @@
 
 import './App.css';
 
-const Books = ({books,genre}) =>{
-  const details = books.filter(book=>book.genre===genre)
-  const list = details.map(d=>(
-    <div key={d.id}>
-    <h2>Title:{d.title}</h2>
-    <p>Genre:{d.genre}</p>
-  
-  </div>
-  ))
-   
+const Exercises = ({exercises}) =>{
+  const total = exercises.reduce((acc,curr) => acc+=curr.caloriesBurned,0)
  return(
   <div>
-    <h1>Book Detials</h1>
-    {list}
+    <p>Total calories burned: {total}</p>
     <hr/>
   </div>
  )
 }
 
-const Users = ({users,role}) =>{
-  const details = users.filter(user=>user.role===role)
-  const list = details.map(d => (
-    <div key={d.id}>
-       <p>Name:{d.name}</p>
-       <p>{d.role}</p>
-    </div>
-  ))
+const Songs = ({songs,rating}) =>{
+ const total = songs.reduce((acc,curr)=> curr.rating>rating?acc+=curr.duration:acc ,0) 
   return(
     <div>
-      <h2>User Details</h2>
-      {list}
+      <p>Total Duration is {total}</p>    
       <hr/>
     </div>
   )
 }
 
-const Products = ({products,price}) =>{
-  const details = products.filter(product=>product.price>=price)
-  const list = details.map(d => (
-    <div key={d.id}>
-       <p>Name:{d.name}</p>
-       <p>Price:{d.price}</p>
-       <p>Color:{d.features.color}</p>
-       <p>Is Water Proof:{d.features.isWaterProof? "Yes" : "No"}</p>
+const Books = ({books,title}) =>{
+  const details = books.find(book=>book.title===title)
+  return(
+    <div>
+      <h2>Book Details</h2>
+      <p>Title:{details.title}</p>
+       <p>Author:{details.author}</p>
+       <p>Genre:{details.genre}</p>
        <hr/>
     </div>
-  ))
+  )
+}
+const Songss = ({songss,title}) =>{
+  const details = songss.find(song=>song.title===title)
+  return(
+    <div>
+      <h2>Songs Details</h2> 
+       <p>Title:{details.title}</p>
+       <p>Artist:{details.artist}</p>
+       <p>Genre:{details.genre}</p>
+       <hr/>
+    </div>
+  )
+}
+const Cities = ({cities,name}) =>{
+  const details = cities.find(city=>city.name===name)
+  return(
+    <div>
+      <h2>City Details</h2>
+      <p>Name:{details.name}</p>
+      <p>Population:{details.population}</p>
+      <hr/>
+    </div>
+  )
+}
+
+const Products = ({products,id}) =>{
+  const details = products.find(pro =>pro.id===id)
   return(
     <div>
       <h2>Product Details</h2>
+      <p>Name:{details.name}</p>
+      <p>Price:{details.price}</p>
+      <hr/>
+    </div>
+  )
+}
+
+const Students = ({students,name}) =>{
+  const details = students.find(student => student.name===name)
+  return(
+    <div>
+      <h2>Student Details</h2>
+      <p>Name:{details.name}</p>
+      <p>Age:{details.age}</p>
+      <p>Science:{details.grades.science}</p>
+      <p>Maths{details.grades.math}:</p>
+      <p>English:{details.grades.english}</p>
+    </div>
+  )
+}
+
+const Orders = ({orders,name}) =>{
+  const details = orders.find(order => order.customer===name)
+  const list = details.products.map(p => (
+    <>
+      <p>Id:{p.id}</p>
+      <p>Name:{p.name}</p>
+      <p>Quantity:{p.quantity}</p>
+    </>
+  ))
+  return(
+    <div>
+      <h2>Order Details</h2>
+      <p>Customer:{details.customer}</p>
+      <p>Total Amount:{details.totalAmount}</p>
       {list}
-    </div>
-  )
-}
-const Cities = ({cities,population}) =>{
-  const details = cities.filter(city=>city.population>=population)
-  const list = details.map(d=>(
-    <div key={d.id}>
-      <p>Name:{d.name}</p>
-      <p>Population:{d.population}</p>
-      <hr/>
-    </div>
-  ))
-  return(
-    <div>
-      <h2>Cities Details</h2>      {list}
-
-    </div>
-  )
-}
-const Movies = ({movies,releaseYear}) =>{
-  const details = movies.filter(movie=>movie.releaseYear>=releaseYear)
-  const list = details.map(d=>(
-    <div key={d.id}>
-      <p>Title:{d.title}</p>
-      <p>Release Year:{d.releaseYear}</p>
-      <hr/>
-    </div>
-  ))
-  return(
-    <div>
-      <h2>Movie Details</h2>     
-       {list}
-    </div>
-  )
-}
-
-const Podcasts = ({podcasts,featured})=>{
-  const details = podcasts.filter(pod => pod.featured===featured)
-  const list  = details.map(d => (
-    <div key={d.id}>
-      <p>Title:{d.title}</p>
-      <p>host:{(d.host).join(",")}</p>
-      <p>Featured: {d.featured?"Yes":"No"}</p>
-      <hr/>
-    </div>
-  ))
-  return(
-    <div>
-      <h2>Podcasts Details</h2>
-      {list}
-    </div>
-  )
-}
-
-const Moviess = ({moviess,releaseYear}) =>{
-  const details = moviess.filter(movie => movie.releaseYear>=releaseYear)
-  const list = details.map(d=>(
-    <div key={d.id}>
-      <p>Title:{d.title}</p>
-      <p>Duration:{d.duration}</p>
-      <p>Release Year:{d.releaseYear}</p>
-      <hr/>
-    </div>
-  ))
-  return(
-    <div>
-      <h2>Movie Details</h2>
-      {list}
-    </div>
-  )
-}
-
-const Tasks = ({tasks,completed}) =>{
-  const details = tasks.filter(task => task.completed===completed)
-  const list = details.map(d=>(
-    <div key={d.id}>
-      <p>Description:{d.description}</p>
-      <p>Completed:{d.completed?"YES":"NO"}</p>
-      <hr/>
-    </div>
-  ))
-  return(
-    <div>
-      <h2>Task Details</h2>
-      {list}
-    </div>
-  )
-}
-
-const Vehicles = ({vehicles}) =>{
-  const total = vehicles.reduce((acc,curr)=>acc+=curr.distance,0)
-  return(
-    <div>
-      <h2>Total Distance is {total}kms</h2>
       <hr/>
     </div>
   )
 }
 
-const Sales = ({sales}) =>{
-  const total = sales.reduce((acc,curr)=>acc+=(curr.quantity*curr.price),0)
+const Employees = ({employees,id}) =>{
+  const details = employees.find(employee => employee.id===id)
   return(
     <div>
-      <h2>Total Revenue is {total}</h2>
+      <h2>Employee Details</h2>
+      <p>Id:{details.id}</p>
+      <p>Name:{details.name}</p>
+      <p>Position{details.position}:</p>
+      <p>Department Name:{details.department.name}</p>
+      <p>Department Location:{details.department.location}</p>
+      <hr/>
     </div>
+  )
+}
+
+const Store = ({store}) =>{
+  const total = store.categories.reduce((acc,curr) => curr.itemDetail.inStock? acc+=1 : acc ,0)
+  return(
+    <h2>Total Number of items in stock are: {total}</h2>
   )
 }
 
 function App() {
-  const sales = [
+  const store = {
 
-    { id: 1, product: "Widget A", price: 25, quantity: 10 },
+    name: "Tech Emporium",
   
-    { id: 2, product: "Gadget B", price: 50, quantity: 5 },
+    categories: [
   
-    { id: 3, product: "Tool C", price: 30, quantity: 8 },
+      { id: 1, name: "Electronics", itemDetail: { id: 101, product: "Laptop", inStock: true } },
+  
+      { id: 2, name: "Accessories", itemDetail: { id: 201, product: "Headphones", inStock: true } },
+  
+      { id: 3, name: "Electronics", itemDetail: { id: 301, product: "Heater", inStock: false } },
+  
+    ]
+  
+  };
+  
+  const students = [
+
+    { id: 1, name: "Alice", age: 20, grades: { math: 90, science: 85, english: 92 } },
+  
+    { id: 2, name: "Bob", age: 22, grades: { math: 78, science: 80, english: 85 } },
+  
+    { id: 3, name: "Charlie", age: 21, grades: { math: 95, science: 88, english: 94 } },
   
   ];
-  const vehicles = [
+  
+  
+  const products = [
 
-    { id: 1, name: "Car", distance: 150 },
+    { id: 1, name: "Laptop", price: 1200 },
   
-    { id: 2, name: "Bicycle", distance: 10 },
+    { id: 2, name: "Smartphone", price: 800 },
   
-    { id: 3, name: "Motorcycle", distance: 75 },
+    { id: 3, name: "Headphones", price: 60 },
   
   ];
-  const moviess = [
-
-    { id: 1, title: "The Matrix", duration: 136, releaseYear: 1999 },
-  
-    { id: 2, title: "Inception", duration: 148, releaseYear: 2010 },
-  
-    { id: 3, title: "Avatar", duration: 162, releaseYear: 2009 },
-  
-  ];
-  const podcasts = [
-
-    { id: 1, title: "Tech Talk", host: ["host 1"], featured: true },
-  
-    { id: 2, title: "Business Insights", host: ["host 2"], featured: false },
-  
-    { id: 3, title: "Science Hour", host: ["host 3", "host 4"], featured: true },
-  
-  ];
-  const movies = [
-
-    { id: 1, title: "Inception", releaseYear: 2010 },
-  
-    { id: 2, title: "La La Land", releaseYear: 2016 },
-  
-    { id: 3, title: "Interstellar", releaseYear: 2014 },
-  
-    { id: 4, title: "Dune 2", releaseYear: 2024 },
-  
-  ];
-
   const cities = [
 
     { id: 1, name: "New York", population: 8500000 },
   
-    { id: 2, name: "Los Angeles", population: 539900 },
+    { id: 2, name: "Paris", population: 2200000 },
   
-    { id: 3, name: "Chicago", population: 2700000 },
+    { id: 3, name: "Tokyo", population: 3770000 },
+  
+  ];
+
+  const songss = [
+
+    { id: 1, title: "Stairway to Heaven", artist: "Led Zeppelin", genre: "Rock" },
+  
+    { id: 2, title: "Bohemian Rhapsody", artist: "Queen", genre: "Rock" },
+  
+    { id: 3, title: "Rolling in the Deep", artist: "Adele", genre: "Pop" },
   
   ];
   
+  const exercises = [
+
+    { id: 1, name: "Running", caloriesBurned: 300 },
   
+    { id: 2, name: "Cycling", caloriesBurned: 200 },
+  
+    { id: 3, name: "Swimming", caloriesBurned: 400 },
+  
+  ];
+
+  const songs = [
+
+    { id: 1, title: "Song A", duration: 180, rating: 4.2 },
+  
+    { id: 2, title: "Song B", duration: 210, rating: 3.8 },
+  
+    { id: 3, title: "Song C", duration: 150, rating: 4.5 },
+  
+  ];
   const books = [
 
-    { id: 1, title: "Dune", genre: "Science Fiction" },
+    { id: 1, title: "To Kill a Mockingbird", author: "Harper Lee", genre: "Fiction" },
   
-    { id: 2, title: "Neuromancer", genre: "Science Fiction" },
+    { id: 2, title: "1984", author: "George Orwell", genre: "Dystopian" },
   
-    { id: 3, title: "Foundation", genre: "Sci-fi" },
+    { id: 3, title: "The Great Gatsby", author: "F. Scott Fitzgerald", genre: "Classic" },
+  
+  ];
+  
+  
+  const orders = [
+
+    { id: 1, customer: "John Doe", totalAmount: 150, products: [{ id: 101, name: "Widget", quantity: 2 }, { id: 102, name: "Gadget", quantity: 1 }] },
+  
+    { id: 2, customer: "Alice Smith", totalAmount: 200, products: [{ id: 103, name: "Tool", quantity: 1 }, { id: 104, name: "Device", quantity: 3 }] },
+  
+    { id: 3, customer: "Bob Johnson", totalAmount: 100, products: [{ id: 105, name: "Accessory", quantity: 5 }] },
+  
+  ];
+  const employees = [
+
+    { id: 1, name: "Jane Doe", position: "Software Engineer", department: { name: "Engineering", location: "Building A" } },
+  
+    { id: 2, name: "Sam Smith", position: "Marketing Manager", department: { name: "Marketing", location: "Building B" } },
+  
+    { id: 3, name: "Mike Johnson", position: "HR Specialist", department: { name: "Human Resources", location: "Building C" } },
   
   ];
 
-  const users = [
-
-  { id: 1, name: "Alice", role: "User" },
-
-  { id: 2, name: "Bob", role: "Admin" },
-
-  { id: 3, name: "Charlie", role: "User" },
-
-  { id: 4, name: "John", role: "Admin" },
-
-];
-const products = [
-
-  { id: 1, name: "Laptop", price: 1200, features: {color: "green", isWaterProof: false} },
-
-  { id: 2, name: "Smartphone", price: 800, features: {color: "blue", isWaterProof: true} },
-
-  { id: 3, name: "Headphones", price: 150, features: {color: "silver", isWaterProof: false} },
-
-];
-
-const tasks = [
-
-  { id: 1, description: "Complete project proposal", completed: true },
-
-  { id: 2, description: "Review client feedback", completed: false },
-
-  { id: 3, description: "Submit final report", completed: true },
-
-];
-
-  
   return (
     <div>
-     <Books books={books} genre="Science Fiction" />
-     <Users users={users} role="Admin"/>
-     <Products products={products} price={100} />
-     <Cities cities={cities} population={1000000} />
-     <Movies movies={movies} releaseYear={2015} />
-     <Podcasts podcasts={podcasts} featured={true} />
-     <Moviess moviess={moviess} releaseYear={2000} />
-     <Tasks tasks={tasks} completed={true}/>
-     <Vehicles vehicles={vehicles} /> 
-     <Sales sales={sales}/>
+     <Exercises exercises={exercises}/>
+     <Songs songs={songs} rating={3.9}/>
+     <Books books={books} title="The Great Gatsby" />
+     <Songss songss={songss} title="Bohemian Rhapsody" />
+     <Cities cities={cities} name="Paris" />
+     <Products products={products} id={3} />
+     <Students students={students} name="Charlie" />
+     <Orders orders={orders} name="Alice Smith"/>
+    <Employees employees={employees} id={1}/>
+    <Store store={store}/>
     </div>   
   )
 }
