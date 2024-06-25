@@ -1,198 +1,279 @@
 
 import './App.css';
 
-const Cars = ({cars,model}) =>{
-  const details = cars.find(car=>car.model===model)
+const Books = ({books,genre}) =>{
+  const details = books.filter(book=>book.genre===genre)
+  const list = details.map(d=>(
+    <div key={d.id}>
+    <h2>Title:{d.title}</h2>
+    <p>Genre:{d.genre}</p>
+  
+  </div>
+  ))
+   
+ return(
+  <div>
+    <h1>Book Detials</h1>
+    {list}
+    <hr/>
+  </div>
+ )
+}
+
+const Users = ({users,role}) =>{
+  const details = users.filter(user=>user.role===role)
+  const list = details.map(d => (
+    <div key={d.id}>
+       <p>Name:{d.name}</p>
+       <p>{d.role}</p>
+    </div>
+  ))
   return(
     <div>
-      <h2>Car Details</h2>
-      <p>Model:{details.model}</p>
-      <p>Make:{details.make}</p>
-      <p>Year:{details.year}</p>
+      <h2>User Details</h2>
+      {list}
       <hr/>
     </div>
   )
 }
 
-const Gyms = ({gyms,location}) =>{
-  const details = gyms.find(gym=>gym.location===location)
+const Products = ({products,price}) =>{
+  const details = products.filter(product=>product.price>=price)
+  const list = details.map(d => (
+    <div key={d.id}>
+       <p>Name:{d.name}</p>
+       <p>Price:{d.price}</p>
+       <p>Color:{d.features.color}</p>
+       <p>Is Water Proof:{d.features.isWaterProof? "Yes" : "No"}</p>
+       <hr/>
+    </div>
+  ))
   return(
     <div>
-      <h2>Gym Details</h2>
-      <p>Name:{details.name}</p>
-      <p>{details.location}</p>
-      <p>Rating:{details.rating}</p>
+      <h2>Product Details</h2>
+      {list}
+    </div>
+  )
+}
+const Cities = ({cities,population}) =>{
+  const details = cities.filter(city=>city.population>=population)
+  const list = details.map(d=>(
+    <div key={d.id}>
+      <p>Name:{d.name}</p>
+      <p>Population:{d.population}</p>
+      <hr/>
+    </div>
+  ))
+  return(
+    <div>
+      <h2>Cities Details</h2>      {list}
+
+    </div>
+  )
+}
+const Movies = ({movies,releaseYear}) =>{
+  const details = movies.filter(movie=>movie.releaseYear>=releaseYear)
+  const list = details.map(d=>(
+    <div key={d.id}>
+      <p>Title:{d.title}</p>
+      <p>Release Year:{d.releaseYear}</p>
+      <hr/>
+    </div>
+  ))
+  return(
+    <div>
+      <h2>Movie Details</h2>     
+       {list}
+    </div>
+  )
+}
+
+const Podcasts = ({podcasts,featured})=>{
+  const details = podcasts.filter(pod => pod.featured===featured)
+  const list  = details.map(d => (
+    <div key={d.id}>
+      <p>Title:{d.title}</p>
+      <p>host:{(d.host).join(",")}</p>
+      <p>Featured: {d.featured?"Yes":"No"}</p>
+      <hr/>
+    </div>
+  ))
+  return(
+    <div>
+      <h2>Podcasts Details</h2>
+      {list}
+    </div>
+  )
+}
+
+const Moviess = ({moviess,releaseYear}) =>{
+  const details = moviess.filter(movie => movie.releaseYear>=releaseYear)
+  const list = details.map(d=>(
+    <div key={d.id}>
+      <p>Title:{d.title}</p>
+      <p>Duration:{d.duration}</p>
+      <p>Release Year:{d.releaseYear}</p>
+      <hr/>
+    </div>
+  ))
+  return(
+    <div>
+      <h2>Movie Details</h2>
+      {list}
+    </div>
+  )
+}
+
+const Tasks = ({tasks,completed}) =>{
+  const details = tasks.filter(task => task.completed===completed)
+  const list = details.map(d=>(
+    <div key={d.id}>
+      <p>Description:{d.description}</p>
+      <p>Completed:{d.completed?"YES":"NO"}</p>
+      <hr/>
+    </div>
+  ))
+  return(
+    <div>
+      <h2>Task Details</h2>
+      {list}
+    </div>
+  )
+}
+
+const Vehicles = ({vehicles}) =>{
+  const total = vehicles.reduce((acc,curr)=>acc+=curr.distance,0)
+  return(
+    <div>
+      <h2>Total Distance is {total}kms</h2>
       <hr/>
     </div>
   )
 }
 
-const Travels = ({travels,destination}) =>{
-  const details = travels.find(travel=>travel.destination===destination)
+const Sales = ({sales}) =>{
+  const total = sales.reduce((acc,curr)=>acc+=(curr.quantity*curr.price),0)
   return(
     <div>
-      <h2>Travel Details</h2>
-      <p>Title:{details.destination}</p>
-      <p>{details.duration}</p>
-      <p>Activities:{(details.activities).join(",")}</p>
-      <hr/>
-    </div>
-  )
-}
-const Laptops = ({laptops,processor}) =>{
-  const details = laptops.find(laptop=>laptop.processor===processor)
-  return(
-    <div>
-      <h2>Laptops Details</h2>
-      <p>Brand:{details.brand}</p>
-      <p>{details.processor}</p>
-      <p>Ram:{details.ram}</p>
-      <hr/>
-    </div>
-  )
-}
-const Recipes = ({recipes,dish}) =>{
-  const details = recipes.find(recipe=>recipe.dish===dish)
-  return(
-    <div>
-      <h2>Recipe Details</h2>
-      <p>{details.dish}</p>
-      <p>{details.cuisine}</p>
-      <p>Ingredients:{(details.ingredients).join(',')}</p>
-      <hr/>
-    </div>
-  )
-}
-const Blogposts = ({blogPosts,title}) =>{
-  const details = blogPosts.find(blog=>blog.title===title)
-  return(
-    <div key={details.id}>
-      <h2>BlogPost Details</h2>
-      <p>Title:{details.title}</p>
-      <p>{details.content}</p>
-      <p>Category:{details.category}</p>
-      <hr/>
+      <h2>Total Revenue is {total}</h2>
     </div>
   )
 }
 
 function App() {
-  const recipes = [
+  const sales = [
 
-    {
+    { id: 1, product: "Widget A", price: 25, quantity: 10 },
+  
+    { id: 2, product: "Gadget B", price: 50, quantity: 5 },
+  
+    { id: 3, product: "Tool C", price: 30, quantity: 8 },
+  
+  ];
+  const vehicles = [
 
-      dish: "Recipe 1",
+    { id: 1, name: "Car", distance: 150 },
+  
+    { id: 2, name: "Bicycle", distance: 10 },
+  
+    { id: 3, name: "Motorcycle", distance: 75 },
+  
+  ];
+  const moviess = [
 
-      cuisine: "Italian",
+    { id: 1, title: "The Matrix", duration: 136, releaseYear: 1999 },
+  
+    { id: 2, title: "Inception", duration: 148, releaseYear: 2010 },
+  
+    { id: 3, title: "Avatar", duration: 162, releaseYear: 2009 },
+  
+  ];
+  const podcasts = [
 
-      ingredients: ["Tomatoes", "Pasta", "Cheese"],
+    { id: 1, title: "Tech Talk", host: ["host 1"], featured: true },
+  
+    { id: 2, title: "Business Insights", host: ["host 2"], featured: false },
+  
+    { id: 3, title: "Science Hour", host: ["host 3", "host 4"], featured: true },
+  
+  ];
+  const movies = [
 
-    },
-
-    {
-
-      dish: "Recipe 2",
-
-      cuisine: "Mexican",
-
-      ingredients: ["Beans", "Rice", "Avocado"],
-
-    },
-
-    {
-
-      dish: "Recipe 3",
-
-      cuisine: "Indian",
-
-      ingredients: ["Curry", "Rice", "Naan"],
-
-    },
-
+    { id: 1, title: "Inception", releaseYear: 2010 },
+  
+    { id: 2, title: "La La Land", releaseYear: 2016 },
+  
+    { id: 3, title: "Interstellar", releaseYear: 2014 },
+  
+    { id: 4, title: "Dune 2", releaseYear: 2024 },
+  
   ];
 
+  const cities = [
 
-  const laptops = [
-
-    { brand: "Laptop 1", processor: "Intel i5", ram: "8GB" },
-
-    { brand: "Laptop 2", processor: "AMD Ryzen 7", ram: "16GB" },
-
-    { brand: "Laptop 3", processor: "Apple M1", ram: "12GB" },
-
+    { id: 1, name: "New York", population: 8500000 },
+  
+    { id: 2, name: "Los Angeles", population: 539900 },
+  
+    { id: 3, name: "Chicago", population: 2700000 },
+  
   ];
-  const cars = [
+  
+  
+  const books = [
 
-    { model: "Car 1", make: "Make 1", year: 2022 },
-
-    { model: "Car 2", make: "Make 2", year: 2021 },
-
-    { model: "Car 3", make: "Make 3", year: 2023 },
-
-  ];
-
-  const gyms = [
-
-    { name: "Gym 1", location: "Location 1", rating: 4.7 },
-
-    { name: "Gym 2", location: "Location 2", rating: 4.2 },
-
-    { name: "Gym 3", location: "Location 3", rating: 4.5 },
-
-  ];
-  const travels = [
-
-    {
-
-      destination: "Travel 1",
-
-      duration: "5 days",
-
-      activities: ["Hiking", "Sightseeing"],
-
-    },
-
-    {
-
-      destination: "Travel 2",
-
-      duration: "7 days",
-
-      activities: ["Beach", "Shopping"],
-
-    },
-
-    {
-
-      destination: "Travel 3",
-
-      duration: "3 days",
-
-      activities: ["Cultural Tours", "Photography"],
-
-    },
-
+    { id: 1, title: "Dune", genre: "Science Fiction" },
+  
+    { id: 2, title: "Neuromancer", genre: "Science Fiction" },
+  
+    { id: 3, title: "Foundation", genre: "Sci-fi" },
+  
   ];
 
+  const users = [
 
-  const blogPosts = [
+  { id: 1, name: "Alice", role: "User" },
 
-    { id: 1, title: 'Blog Post 1', content: 'Content 1', category: 'Technology' },
+  { id: 2, name: "Bob", role: "Admin" },
 
-    { id: 2, title: 'Blog Post 2', content: 'Content 2', category: 'Food' },
+  { id: 3, name: "Charlie", role: "User" },
 
-    { id: 3, title: 'Blog Post 3', content: 'Content 3', category: 'Fashion' }
+  { id: 4, name: "John", role: "Admin" },
 
-  ];
+];
+const products = [
 
+  { id: 1, name: "Laptop", price: 1200, features: {color: "green", isWaterProof: false} },
+
+  { id: 2, name: "Smartphone", price: 800, features: {color: "blue", isWaterProof: true} },
+
+  { id: 3, name: "Headphones", price: 150, features: {color: "silver", isWaterProof: false} },
+
+];
+
+const tasks = [
+
+  { id: 1, description: "Complete project proposal", completed: true },
+
+  { id: 2, description: "Review client feedback", completed: false },
+
+  { id: 3, description: "Submit final report", completed: true },
+
+];
+
+  
   return (
     <div>
-     <Cars cars={cars} model="Car 2" />
-     <Gyms gyms={gyms} location="Location 2"/>
-     <Travels travels={travels} destination="Travel 3" />
-     <Laptops laptops={laptops} processor="Apple M1" />
-     <Recipes recipes={recipes} dish="Recipe 2" />
-     <Blogposts blogPosts={blogPosts} title="Blog Post 3" />
+     <Books books={books} genre="Science Fiction" />
+     <Users users={users} role="Admin"/>
+     <Products products={products} price={100} />
+     <Cities cities={cities} population={1000000} />
+     <Movies movies={movies} releaseYear={2015} />
+     <Podcasts podcasts={podcasts} featured={true} />
+     <Moviess moviess={moviess} releaseYear={2000} />
+     <Tasks tasks={tasks} completed={true}/>
+     <Vehicles vehicles={vehicles} /> 
+     <Sales sales={sales}/>
     </div>   
   )
 }
