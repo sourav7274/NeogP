@@ -5,15 +5,19 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 function App() {
   return (
   <main className="container py-3">
-    <h1>Featured Restaurants</h1>
-    <img src="https://img.freepik.com/free-photo/restaurant-interior_1127-3394.jpg?w=1380&t=st=1719397559~exp=1719398159~hmac=8143f54ce07e4a213375cc2c540b67d78c253f43f780244643804c6aa6f5b04e" alt="restaurant img" className="rounded img-fluid pb-2"/>
-    <h2>Taste Of Italy</h2>
-    <p>Italian | Rating: 4.5</p>
-    <p>123 Main Road,Avgtom,USA</p>
-    <img src="https://img.freepik.com/free-photo/restaurant-interior_1127-3392.jpg?w=1380&t=st=1719397704~exp=1719398304~hmac=f782e2b8b3bcbe4669ba1b119c95838ea906a1dc3967386214487d1faa368662" alt="restaurant img" className="rounded img-fluid pb-2"/>
-    <h2>Spice Village</h2>
-    <p>Indian | Rating: 4.3</p>
-    <p>456  Not-Main Road,Avgtom,USA</p>
+    <h1>Latest Lisings</h1>
+    <img src="https://images.pexels.com/photos/7245349/pexels-photo-7245349.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="stay img" className="rounded img-fluid pb-2"/>
+    <h2>Cozy Loft in the City Center</h2>
+    <p>Entire Villa left: 2 guets - 1 bderoom - 1 bed - 1 bath</p>
+    <p>Enjoy your stay in this stylish loft apartment located in the heart of the city. Close to restaurants, shops, and attractions, it's the perfect base foe exploring.
+    city,</p>
+    <p>$120 per night.</p>
+    <img src="https://images.pexels.com/photos/3155666/pexels-photo-3155666.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="stay img" className="rounded img-fluid pb-2"/>
+    <h2>BeachFront Villa with Stunning Views</h2>
+    <p>Entire Villa-6 guests-3 bedrooms - 3 beds - 2 baths</p>
+    <p>Relax and unwind in this beautiful beachfront villa. Wake up to panoramic ocean views, take a dip in the private pool, and enjoy seamless indoor-outdoor
+    living.</p>
+    <p>$300 per night</p>
   </main>
   );
 }
