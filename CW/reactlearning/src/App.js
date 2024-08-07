@@ -53,7 +53,7 @@ const UserProfile =({username,imgurl,bio,location}) =>{
       <p><b>Username: </b>{username}</p>
       {dis === true 
         ?<>
-        <img src={imgurl}/>
+        <img src={imgurl} alt='someing'/>
           <p><b>Bio: </b>{bio}</p>
           <p><b>Location: </b>{location}</p>
         </> 
