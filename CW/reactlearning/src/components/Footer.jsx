@@ -1,7 +1,7 @@
 const Footer =() =>{
     return(
         <footer className="bg-dark">
-            <p className="text-light container py-3">&copy; 2023 Taj Mahal Heritage.</p>
+            <p className="text-light container py-3">&copy; 2023 Virat Kohli Fan Club.</p>
         </footer>
     )
 }

@@ -4,8 +4,8 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import History from './pages/History'
-import Architecture from './pages/Architecture'
+import Records from './pages/Records'
+import Biography from './pages/Biography'
 
 const router = createBrowserRouter([
   {
@@ -13,12 +13,12 @@ const router = createBrowserRouter([
     element:<App/>
   },
   {
-    path:"/history",
-    element:<History/>
+    path:"/bio",
+    element:<Biography/>
   },
   {
-    path:"/architecture",
-    element:<Architecture/>
+    path:"/records",
+    element:<Records/>
   }
 ])
 
