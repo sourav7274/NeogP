@@ -4,8 +4,9 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Records from './pages/Records'
-import Biography from './pages/Biography'
+import Report from './pages/Report'
+import Employees from './pages/Employees'
+import EmployeeDetails from './pages/EmployeeDetails';
 
 const router = createBrowserRouter([
   {
@@ -13,12 +14,16 @@ const router = createBrowserRouter([
     element:<App/>
   },
   {
-    path:"/bio",
-    element:<Biography/>
+    path:"/employees",
+    element:<Employees/>
   },
   {
-    path:"/records",
-    element:<Records/>
+    path:"/report",
+    element:<Report/>
+  },
+  {
+    path:'/employees/:empid',
+    element:<EmployeeDetails/>
   }
 ])
 
