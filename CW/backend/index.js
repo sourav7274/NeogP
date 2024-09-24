@@ -304,15 +304,27 @@ const newRestaurant = {
 // updateMoviewithanything('Dilwale Dulhania Le Jayenge',{releaseYear: 2001})
 
 
-async function updateRestaurant(thing,data)
+// async function updateRestaurant(thing,data)
+// {
+//   try{
+//     const updateRes = await Hotel.findOneAndUpdate({phoneNumber:thing},data,{new:true})
+//     console.log(updateRes)
+//   } catch(error)
+//   {
+//     throw error
+//   }
+// }
+// //wont work becuase mutiple data was sent while seeding
+// updateRestaurant('+1299655890',{phoneNumber:"+1997687392"})
+
+async function deleteMovie(id)
 {
   try{
-    const updateRes = await Hotel.findOneAndUpdate({phoneNumber:thing},data,{new:true})
-    console.log(updateRes)
+    const delteMovie = await  Movie.findOneAndDelete({title:id})
   } catch(error)
   {
     throw error
   }
 }
-//wont work becuase mutiple data was sent while seeding
-updateRestaurant('+1299655890',{phoneNumber:"+1997687392"})
+
+deleteMovie('Kabhi Khushi Kabhie Gham')
