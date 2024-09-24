@@ -150,60 +150,129 @@ const newRestaurant = {
 
 // findByDirec("Karan Johar")
 
-const res1= {
-  name: "Somi",
-  cuisine: ["Greek"],
-  location: "11 Main Road, Gem",
-  rating: 4.3,
-  reviews: [],
-  website: "https://somi-example.com",
-  phoneNumber: "+1234997390",
-  openHours: "Tue-Sun: 11:00 AM - 10:00 PM",
-  priceRange: "$$ (11-30)",
-  reservationsNeeded: false,
-  isDeliveryAvailable: true,
-  menuUrl: "https://somi-example.com/menu",
-  photos: ["https://example.com/somi-photo1.jpg", "https://example.com/somi-photo2.jpg"],
-};
+// const res1= {
+//   name: "Somi",
+//   cuisine: ["Greek"],
+//   location: "11 Main Road, Gem",
+//   rating: 4.3,
+//   reviews: [],
+//   website: "https://somi-example.com",
+//   phoneNumber: "+1234997390",
+//   openHours: "Tue-Sun: 11:00 AM - 10:00 PM",
+//   priceRange: "$$ (11-30)",
+//   reservationsNeeded: false,
+//   isDeliveryAvailable: true,
+//   menuUrl: "https://somi-example.com/menu",
+//   photos: ["https://example.com/somi-photo1.jpg", "https://example.com/somi-photo2.jpg"],
+// };
 
-const res2 = {
-  name: "Yo China",
-  cuisine: ["Chinese", "Italian"],
-  location: "MG Road, Bangalore",
-  rating: 3.9,
-  reviews: [],
-  website: "https://yo-example.com",
-  phoneNumber: "+1288997392",
-  openHours: "Tue-Sun: 10:00 AM - 11:00 PM",
-  priceRange: "$$$ (31-60)",
-  reservationsNeeded: true,
-  isDeliveryAvailable: false,
-  menuUrl: "https://yo-example.com/menu",
-  photos: ["https://example.com/yo-photo1.jpg", "https://example.com/yo-photo2.jpg", "https://example.com/yo-photo3.jpg"]
-};
-async function seedRes(data)
-{
-    try{
-      const res = new Restaurant(data)
-      const saveres = await res.save()
-      console.log("Seeded",saveres)
-    } catch(error)
-    {
-      throw error
-    }
-}
+// const res2 = {
+//   name: "Yo China",
+//   cuisine: ["Chinese", "Italian"],
+//   location: "MG Road, Bangalore",
+//   rating: 3.9,
+//   reviews: [],
+//   website: "https://yo-example.com",
+//   phoneNumber: "+1288997392",
+//   openHours: "Tue-Sun: 10:00 AM - 11:00 PM",
+//   priceRange: "$$$ (31-60)",
+//   reservationsNeeded: true,
+//   isDeliveryAvailable: false,
+//   menuUrl: "https://yo-example.com/menu",
+//   photos: ["https://example.com/yo-photo1.jpg", "https://example.com/yo-photo2.jpg", "https://example.com/yo-photo3.jpg"]
+// };
+// async function seedRes(data)
+// {
+//     try{
+//       const res = new Restaurant(data)
+//       const saveres = await res.save()
+//       console.log("Seeded",saveres)
+//     } catch(error)
+//     {
+//       throw error
+//     }
+// }
 
 // seedRes(res2)
 
-async function readRes(name)
+// async function readRes(name)
+// {
+//   try{
+//     const allRes = await Restaurant.find({cuisine: name})
+//     console.log(allRes)
+//   } catch(error)
+//   {
+//     throw error
+//   }
+// }
+
+// readRes("Italian")
+
+
+const newHotel = {
+  name: "Lake View",
+  category: "Mid-Range",
+  location: "124 Main Street, Anytown",
+  rating: 3.2,
+  reviews: [],
+  website: "https://lake-view-example.com",
+  phoneNumber: "+1234555890",
+  checkInTime: "2:00 PM",
+  checkOutTime: "12:00 PM",
+  amenities: ["Laundry", "Boating"],
+  priceRange: "$$$ (31-60)",
+  reservationsNeeded: true,
+  isParkingAvailable: false,
+  isWifiAvailable: true,
+  isPoolAvailable: false,
+  isSpaAvailable: false,
+  isRestaurantAvailable: false,
+  photos: ["https://example.com/hotel1-photo1.jpg", "https://example.com/hotel1-photo2.jpg"],
+};
+const newHotel1 = {
+  name: "Sunset Resort",
+  category: "Resort",
+  location: "12 Main Road, Anytown",
+  rating: 4.0,
+  reviews: [],
+  website: "https://sunset-example.com",
+  phoneNumber: "+1299655890",
+  checkInTime: "2:00 PM",
+  checkOutTime: "11:00 AM",
+  amenities: ["Room Service", "Horse riding", "Boating", "Kids Play Area", "Bar"],
+  priceRange: "$$$$ (61+)",
+  reservationsNeeded: true,
+  isParkingAvailable: true,
+  isWifiAvailable: true,
+  isPoolAvailable: true,
+  isSpaAvailable: true,
+  isRestaurantAvailable: true,
+  photos: ["https://example.com/hotel2-photo1.jpg", "https://example.com/hotel2-photo2.jpg"],
+};
+
+async function seedData(data)
 {
   try{
-    const allRes = await Restaurant.find({cuisine: name})
-    console.log(allRes)
+    const hotel = new Hotel(data)
+    const seedHotel = await hotel.save()
+    console.log("Seeded to DB",seedHotel)
   } catch(error)
+  {
+    throw error
+  }
+ }
+// seedData(newHotel)
+//  seedData(newHotel1)
+
+async function readHotel(hName)
+{
+  try{
+    const data = await Hotel.find({phoneNumber: hName})
+    console.log(data)
+  } catch(error)  
   {
     throw error
   }
 }
 
-readRes("Italian")
+readHotel("+1299655890")

@@ -10,6 +10,12 @@ const hotelSchema = new mongoose.Schema({
         enum: ['Budget', 'Mid-Range', 'Luxury', 'Boutique', 'Resort','Other'],
         required: true
     }),
+    rating:({
+        type:Number,
+        min:0,
+        max:5,
+        default:0
+    }),
     reviews:[""],
     website: String,
     phoneNumber: String,
