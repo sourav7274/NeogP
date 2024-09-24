@@ -209,70 +209,110 @@ const newRestaurant = {
 // readRes("Italian")
 
 
-const newHotel = {
-  name: "Lake View",
-  category: "Mid-Range",
-  location: "124 Main Street, Anytown",
-  rating: 3.2,
-  reviews: [],
-  website: "https://lake-view-example.com",
-  phoneNumber: "+1234555890",
-  checkInTime: "2:00 PM",
-  checkOutTime: "12:00 PM",
-  amenities: ["Laundry", "Boating"],
-  priceRange: "$$$ (31-60)",
-  reservationsNeeded: true,
-  isParkingAvailable: false,
-  isWifiAvailable: true,
-  isPoolAvailable: false,
-  isSpaAvailable: false,
-  isRestaurantAvailable: false,
-  photos: ["https://example.com/hotel1-photo1.jpg", "https://example.com/hotel1-photo2.jpg"],
-};
-const newHotel1 = {
-  name: "Sunset Resort",
-  category: "Resort",
-  location: "12 Main Road, Anytown",
-  rating: 4.0,
-  reviews: [],
-  website: "https://sunset-example.com",
-  phoneNumber: "+1299655890",
-  checkInTime: "2:00 PM",
-  checkOutTime: "11:00 AM",
-  amenities: ["Room Service", "Horse riding", "Boating", "Kids Play Area", "Bar"],
-  priceRange: "$$$$ (61+)",
-  reservationsNeeded: true,
-  isParkingAvailable: true,
-  isWifiAvailable: true,
-  isPoolAvailable: true,
-  isSpaAvailable: true,
-  isRestaurantAvailable: true,
-  photos: ["https://example.com/hotel2-photo1.jpg", "https://example.com/hotel2-photo2.jpg"],
-};
+// const newHotel = {
+//   name: "Lake View",
+//   category: "Mid-Range",
+//   location: "124 Main Street, Anytown",
+//   rating: 3.2,
+//   reviews: [],
+//   website: "https://lake-view-example.com",
+//   phoneNumber: "+1234555890",
+//   checkInTime: "2:00 PM",
+//   checkOutTime: "12:00 PM",
+//   amenities: ["Laundry", "Boating"],
+//   priceRange: "$$$ (31-60)",
+//   reservationsNeeded: true,
+//   isParkingAvailable: false,
+//   isWifiAvailable: true,
+//   isPoolAvailable: false,
+//   isSpaAvailable: false,
+//   isRestaurantAvailable: false,
+//   photos: ["https://example.com/hotel1-photo1.jpg", "https://example.com/hotel1-photo2.jpg"],
+// };
+// const newHotel1 = {
+//   name: "Sunset Resort",
+//   category: "Resort",
+//   location: "12 Main Road, Anytown",
+//   rating: 4.0,
+//   reviews: [],
+//   website: "https://sunset-example.com",
+//   phoneNumber: "+1299655890",
+//   checkInTime: "2:00 PM",
+//   checkOutTime: "11:00 AM",
+//   amenities: ["Room Service", "Horse riding", "Boating", "Kids Play Area", "Bar"],
+//   priceRange: "$$$$ (61+)",
+//   reservationsNeeded: true,
+//   isParkingAvailable: true,
+//   isWifiAvailable: true,
+//   isPoolAvailable: true,
+//   isSpaAvailable: true,
+//   isRestaurantAvailable: true,
+//   photos: ["https://example.com/hotel2-photo1.jpg", "https://example.com/hotel2-photo2.jpg"],
+// };
 
-async function seedData(data)
-{
-  try{
-    const hotel = new Hotel(data)
-    const seedHotel = await hotel.save()
-    console.log("Seeded to DB",seedHotel)
-  } catch(error)
-  {
-    throw error
-  }
- }
+// async function seedData(data)
+// {
+//   try{
+//     const hotel = new Hotel(data)
+//     const seedHotel = await hotel.save()
+//     console.log("Seeded to DB",seedHotel)
+//   } catch(error)
+//   {
+//     throw error
+//   }
+//  }
 // seedData(newHotel)
 //  seedData(newHotel1)
 
-async function readHotel(hName)
+// async function readHotel(hName)
+// {
+//   try{
+//     const data = await Hotel.find({phoneNumber: hName})
+//     console.log(data)
+//   } catch(error)  
+//   {
+//     throw error
+//   }
+// }
+
+// readHotel("+1299655890")
+
+// async function updateMovie(id,data)
+// {
+//   try{
+//       const updatedMovie = await Movie.findByIdAndUpdate(id,data,{new:true})
+//       console.log(updatedMovie)
+//   } catch(error)
+//   {
+//     throw error
+//   }
+// }
+
+// updateMovie('66ecf1a71555fda9075b95ae',{releaseYear: 3002})
+
+// async function updateMoviewithanything(thing,data)
+// {
+//   try{
+//       const updatedMovie = await Movie.findOneAndUpdate({title: thing},data,{new: true})
+//       console.log(updatedMovie)
+//   } catch(error)
+//   {
+//     throw error
+//   }
+// }
+
+// updateMoviewithanything('Dilwale Dulhania Le Jayenge',{releaseYear: 2001})
+
+
+async function updateRestaurant(thing,data)
 {
   try{
-    const data = await Hotel.find({phoneNumber: hName})
-    console.log(data)
-  } catch(error)  
+    const updateRes = await Restaurant.findOneAndUpdate({phoneNumber:thing},data,{new:true})
+    console.log(updateRes)
+  } catch(error)
   {
     throw error
   }
 }
 
-readHotel("+1299655890")
+updateRestaurant('+1288997392',{isDeliveryAvailable:true})
