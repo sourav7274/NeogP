@@ -317,14 +317,26 @@ const newRestaurant = {
 // //wont work becuase mutiple data was sent while seeding
 // updateRestaurant('+1299655890',{phoneNumber:"+1997687392"})
 
-async function deleteMovie(id)
+// async function deleteMovie(id)
+// {
+//   try{
+//     const delteMovie = await  Movie.findOneAndDelete({title:id})
+//   } catch(error)
+//   {
+//     throw error
+//   }
+// }
+
+// deleteMovie('Kabhi Khushi Kabhie Gham')
+
+async function delteRes(thing)
 {
   try{
-    const delteMovie = await  Movie.findOneAndDelete({title:id})
+    const delteres = await Restaurant.findOneAndDelete({name:thing})
+    console.log("Deleted Succesfully")
   } catch(error)
   {
     throw error
   }
 }
-
-deleteMovie('Kabhi Khushi Kabhie Gham')
+delteRes('Yo China')
