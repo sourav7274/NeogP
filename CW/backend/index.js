@@ -137,15 +137,73 @@ const newRestaurant = {
 
 // allMovies()
 
-async function findByDirec(directorName)
+// async function findByDirec(directorName)
+// {
+//   try{
+//     const movie = await Movie.find({director: directorName})
+//     console.log(movie)
+//   } catch(error)
+//   {
+//     throw error
+//   }
+// }
+
+// findByDirec("Karan Johar")
+
+const res1= {
+  name: "Somi",
+  cuisine: ["Greek"],
+  location: "11 Main Road, Gem",
+  rating: 4.3,
+  reviews: [],
+  website: "https://somi-example.com",
+  phoneNumber: "+1234997390",
+  openHours: "Tue-Sun: 11:00 AM - 10:00 PM",
+  priceRange: "$$ (11-30)",
+  reservationsNeeded: false,
+  isDeliveryAvailable: true,
+  menuUrl: "https://somi-example.com/menu",
+  photos: ["https://example.com/somi-photo1.jpg", "https://example.com/somi-photo2.jpg"],
+};
+
+const res2 = {
+  name: "Yo China",
+  cuisine: ["Chinese", "Italian"],
+  location: "MG Road, Bangalore",
+  rating: 3.9,
+  reviews: [],
+  website: "https://yo-example.com",
+  phoneNumber: "+1288997392",
+  openHours: "Tue-Sun: 10:00 AM - 11:00 PM",
+  priceRange: "$$$ (31-60)",
+  reservationsNeeded: true,
+  isDeliveryAvailable: false,
+  menuUrl: "https://yo-example.com/menu",
+  photos: ["https://example.com/yo-photo1.jpg", "https://example.com/yo-photo2.jpg", "https://example.com/yo-photo3.jpg"]
+};
+async function seedRes(data)
+{
+    try{
+      const res = new Restaurant(data)
+      const saveres = await res.save()
+      console.log("Seeded",saveres)
+    } catch(error)
+    {
+      throw error
+    }
+}
+
+// seedRes(res2)
+
+async function readRes(name)
 {
   try{
-    const movie = await Movie.find({director: directorName})
-    console.log(movie)
+    const allRes = await Restaurant.find({cuisine: name})
+    console.log(allRes)
   } catch(error)
   {
     throw error
   }
 }
 
-findByDirec("Karan Johar")
+readRes("Italian")
