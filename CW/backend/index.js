@@ -80,35 +80,72 @@ const newRestaurant = {
 
 //   createMovie(newMovie)
 
-const newHotel = {
-    name: "New Hotel",
-    category: "Mid-Range",
-    location: "123 Main Street, Frazer Town",
-    rating: 4.0,
-    reviews: [],
-    website: "https://hotel-example.com",
-    phoneNumber: "+1234567890",
-    checkInTime: "2:00 PM",
-    checkOutTime: "12:00 PM",
-    amenities: ["Laundry", "Room Service"],
-    priceRange: "$$$ (31-60)",
-    reservationsNeeded: true,
-    isParkingAvailable: true,
-    isWifiAvailable: true,
-    isPoolAvailable: false,
-    isSpaAvailable: false,
-    isRestaurantAvailable: true,
-    photos: ["https://example.com/hotel-photo1.jpg", "https://example.com/hotel-photo2.jpg"],
-  };
+// const newHotel = {
+//     name: "New Hotel",
+//     category: "Mid-Range",
+//     location: "123 Main Street, Frazer Town",
+//     rating: 4.0,
+//     reviews: [],
+//     website: "https://hotel-example.com",
+//     phoneNumber: "+1234567890",
+//     checkInTime: "2:00 PM",
+//     checkOutTime: "12:00 PM",
+//     amenities: ["Laundry", "Room Service"],
+//     priceRange: "$$$ (31-60)",
+//     reservationsNeeded: true,
+//     isParkingAvailable: true,
+//     isWifiAvailable: true,
+//     isPoolAvailable: false,
+//     isSpaAvailable: false,
+//     isRestaurantAvailable: true,
+//     photos: ["https://example.com/hotel-photo1.jpg", "https://example.com/hotel-photo2.jpg"],
+//   };
 
-async function createHotel(data){
-    try{
-        const hotel = new Hotel(data)
-        const saveData = await hotel.save()
-        console.log("Done",saveData)
-    } catch(error)
-    {
-        throw error
-    }
+// async function createHotel(data){
+//     try{
+//         const hotel = new Hotel(data)
+//         const saveData = await hotel.save()
+//         console.log("Done",saveData)
+//     } catch(error)
+//     {
+//         throw error
+//     }
+// }
+// createHotel(newHotel)
+
+// async function readMovie(movieTitle)
+// {
+//   try{
+//     const movie = await Movie.findOne({title: movieTitle})
+//     console.log(movie)
+//   }catch(error){
+//     throw error
+//   }
+// }
+
+// readMovie("Bahubali: The Beginning")
+
+// async function allMovies(){
+//   try{
+//     const allMovies = await Movie.find()
+//     console.log(allMovies)
+//   } catch(error)
+//   {
+//     throw error
+//   }
+// }
+
+// allMovies()
+
+async function findByDirec(directorName)
+{
+  try{
+    const movie = await Movie.find({director: directorName})
+    console.log(movie)
+  } catch(error)
+  {
+    throw error
+  }
 }
-createHotel(newHotel)
+
+findByDirec("Karan Johar")
