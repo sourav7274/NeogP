@@ -307,12 +307,12 @@ const newRestaurant = {
 async function updateRestaurant(thing,data)
 {
   try{
-    const updateRes = await Restaurant.findOneAndUpdate({phoneNumber:thing},data,{new:true})
+    const updateRes = await Hotel.findOneAndUpdate({phoneNumber:thing},data,{new:true})
     console.log(updateRes)
   } catch(error)
   {
     throw error
   }
 }
-
-updateRestaurant('+1288997392',{isDeliveryAvailable:true})
+//wont work becuase mutiple data was sent while seeding
+updateRestaurant('+1299655890',{phoneNumber:"+1997687392"})
