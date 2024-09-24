@@ -332,11 +332,11 @@ const newRestaurant = {
 async function delteRes(thing)
 {
   try{
-    const delteres = await Restaurant.findOneAndDelete({name:thing})
+    const delteres = await Hotel.findByIdAndDelete(thing)
     console.log("Deleted Succesfully")
   } catch(error)
   {
     throw error
   }
 }
-delteRes('Yo China')
+delteRes('+1299655890')
