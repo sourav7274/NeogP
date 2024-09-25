@@ -3,23 +3,23 @@ require('dotenv').config()
 const app = express();
 
 app.get('/',(req,res) => {
-    res.send("Hello Express JS")
+    res.send("Hello from Express JS")
 })
 
-app.get('/products',(req,res) =>{
-    res.send("Browse on our products here")
+app.get('/signin',(req,res) =>{
+    res.send("This is Sign in Page")
 })
 
-app.get('/services',(req,res) => {
-    res.send("EXplore our services")
+app.get('/booking',(req,res) => {
+    res.send("Book your tickets")
 })
 
-app.get('/faq',(req,res) =>{
-    res.send("Frequently asked questions")
+app.get('/clothing/kids',(req,res) =>{
+    res.send("This is the kids wear page")
 })
 
-app.get('/gallery',(req,res) => {
-    res.send("View our gallery")
+app.get('/blog',(req,res) => {
+    res.send("This is the blog page")
 })
 
 const PORT = process.env.PORT || 3000;
