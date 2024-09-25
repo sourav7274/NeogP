@@ -19,6 +19,20 @@ const books = [
     { id: 1, title: 'Water the plants', day: 'Saturday' },
   
   ];
+  const movies = [
+
+    { id: 1, title: 'Inception', director: 'Christopher Nolan', year: 2010 },
+  
+    { id: 2, title: 'The Godfather', director: 'Francis Ford Coppola', year: 1972 }
+  
+  ];
+  const items = [
+
+    { id: 1, itemName: 'Spoon', color: 'Silver', quantity: 8},
+  
+   { id: 2, itemName: 'Fork', color: 'Silver', quantity: 8 }
+  
+  ];
 
 app.get('/',(req,res) => {
     res.send("Home page")
@@ -63,6 +77,42 @@ app.post('/todos',(req,res)=>{
         res.status(200).json({message:"Addedd Successfully"})
     }
 })
+
+
+app.post('/movies',(req,res)=>{
+    const newMovie = req.body
+
+    if(!newMovie.title || !newMovie.director || !newMovie.year)
+    {
+        res.status(400).json({error:"Add Details"})
+    }
+    else
+    {
+        movies.push(newMovie)
+        res.status(200).json({message:"Added Successfully"})
+    }
+})
+app.get('/movies',(req,res)=>{
+    res.send(movies)
+})
+
+app.post('/items',(req,res) =>{
+    const newItem = req.body
+    if(!newItem.itemName|| !newItem.color || !newItem.quantity)
+    {
+        res.status(400).json({error:"Add Details"})
+    }
+    else
+    {
+        items.push(newItem)
+        res.status(200).json({message:"Addedd Successfully"})
+    }
+})
+
+app.get('/items',(req,res) =>{
+    res.send(items)
+})
+
 
 app.get('/todos',(req,res) =>{
     res.send(todos)
