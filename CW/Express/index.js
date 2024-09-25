@@ -22,16 +22,20 @@ const cars = [
     { id: 15, make: "Volkswagen", model: "Golf", year: 2022 }
   ];
   
-const books = [
+  const books = [
 
     { id: 1, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', year: 1925 },
   
-    { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee', year: 1960 }
+    { id: 2, title: 'To Kill a Mockingbird', author: 'Harper Lee', year: 1960 },
+  
+    { id: 3, title: '1984', author: 'George Orwell', year: 1949 }
   
   ];
   const todos = [
 
     { id: 1, title: 'Water the plants', day: 'Saturday' },
+  
+    { id: 2, title: 'Go for a walk', day: 'Sunday' }
   
   ];
   const movies = [
@@ -154,6 +158,35 @@ app.delete('/cars/:id',(req,res) => {
         res.status(200).json({message:"Delteed Successulyy"})
     }
 })
+
+app.delete('/books/:id',(req,res) =>{
+    const bookID = req.params.id
+    const index = books.findIndex(book => book.id == bookID)
+    if(index === -1)
+    {
+        res.status(404).json({error:"Not Found"})
+    }
+    else
+    {
+        books.splice(index,1)
+        res.status(200).json({message:"Delted Success"})
+    }
+}) 
+
+app.delete('/todos/:id',(req,res) =>{
+    const totdoID = req.params.id
+    const index = todos.findIndex(todo => todo.id == totdoID)
+    if(index === -1)
+    {
+        res.status(404).json({error:"Not Found"})
+    }
+    else
+    {
+        todos.splice(index,1)
+        res.status(200).json({message:"Delete Success"})
+    }
+})
+
 
 const PORT = process.env.PORT || 3000;
 
