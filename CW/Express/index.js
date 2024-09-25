@@ -42,17 +42,20 @@ const cars = [
 
     { id: 1, title: 'Inception', director: 'Christopher Nolan', year: 2010 },
   
-    { id: 2, title: 'The Godfather', director: 'Francis Ford Coppola', year: 1972 }
+    { id: 2, title: 'The Godfather', director: 'Francis Ford Coppola', year: 1972 },
+  
+    { id: 3, title: 'The Shawshank Redemption', director: 'Frank Darabont', year: 1994 }
   
   ];
   const items = [
 
     { id: 1, itemName: 'Spoon', color: 'Silver', quantity: 8},
   
-   { id: 2, itemName: 'Fork', color: 'Silver', quantity: 8 }
+   { id: 2, itemName: 'Fork', color: 'Silver', quantity: 8 },
+  
+   { id: 3, itemName: 'Plate', color: 'Off-White', quantity: 6 }
   
   ];
-
 app.get('/',(req,res) => {
     res.send("Home page")
 })
@@ -81,6 +84,34 @@ app.post('/books',(req,res) =>{
     {
         books.push(newBook)
         res.status(200).json({message:"Book Added Successfully",book:newBook})
+    }
+})
+
+app.delete('/movies/:id',(req,res) =>{
+    const movieID = req.params.id
+    const index = movies.findIndex(movie => movie.id == movieID)
+    if(index === -1)
+    {
+        res.status(404).json({error:"Not Found"})
+    }
+    else
+    {
+        movies.splice(index,1)
+        res.status(200).json({message:"Delete Success"})
+    }
+})
+
+app.delete('/items/:id',(req,res) =>{
+    const itemID = req.params.id
+    const index = movies.findIndex(item => item.id == itemID)
+    if(index === -1)
+    {
+        res.status(404).json({error:"Not Found"})
+    }
+    else
+    {
+        items.splice(index,1)
+        res.status(200).json({message:"Delete Success"})
     }
 })
 
