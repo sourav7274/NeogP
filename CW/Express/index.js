@@ -219,6 +219,30 @@ app.delete('/todos/:id',(req,res) =>{
 })
 
 
+app.post("/cars/:id",(req,res) =>{
+    const id = req.params.id
+    const updateData = req.body
+    const carToUpdate = cars.find(car => car.id == id)
+
+    if(!carToUpdate)
+    {
+        res.status(404).json({error:"Not FOund"})
+    }
+    else
+    {
+        if(!updateData.model || !updateData.make || !updateData.year)
+        {
+            res.status(400).json({error:"Make Model Year are required"})
+        }
+        else
+        {
+            Object.assign(carToUpdate,updateData)
+            res.status(200).json({message:"Updated ",car: updateData})
+        }
+    }
+
+})
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () =>{
