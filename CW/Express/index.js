@@ -288,6 +288,52 @@ app.post('/todos/:id',(req,res) =>{
     }
 })
 
+app.post('/movies/:id',(req,res) =>{
+    const id = req.params.id
+    const updateData = req.body
+    const oldData = movies.find(todo => todo.id == id)
+
+    if(oldData)
+    {
+        if(!updateData.title || !updateData.year)
+        {
+            res.status(400).json({error:"Improper Request"})
+        }
+        else
+        {
+            Object.assign(oldData,updateData)
+            res.status(200).json({message:"Updated Successfullt", todos: oldData})
+        }
+    }
+    else
+    {
+        res.status(404).jsonp({error:"Not FOund"})
+    }
+})
+
+app.post('/items/:id',(req,res) =>{
+    const id = req.params.id
+    const updateData = req.body
+    const oldData = items.find(todo => todo.id == id)
+
+    if(oldData)
+    {
+        if(!updateData.itemName || !updateData.color || !updateData.quantity)
+        {
+            res.status(400).json({error:"Improper Request"})
+        }
+        else
+        {
+            Object.assign(oldData,updateData)
+            res.status(200).json({message:"Updated Successfullt", todos: oldData})
+        }
+    }
+    else
+    {
+        res.status(404).jsonp({error:"Not FOund"})
+    }
+})
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () =>{
