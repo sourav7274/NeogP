@@ -243,6 +243,51 @@ app.post("/cars/:id",(req,res) =>{
 
 })
 
+app.post('/books/:id',(req,res) =>{
+    const id = req.params.id
+    const updateData = req.body
+    const oldData  = books.find(book => book.id == id)
+    if(oldData)
+    {
+        if(!updateData.title  || !updateData.author || !updateData.year )
+            {
+                res.status(400).json({error:"Improper Updata"})
+            } 
+        else
+        {
+            Object.assign(oldData,updateData)
+            res.status(200).json({message:"Update Successfully"})
+        }
+    }
+    else
+    {
+        res.status(404).json({error:"Data not Found"})
+    }
+})
+
+app.post('/todos/:id',(req,res) =>{
+    const id = req.params.id
+    const updateData = req.body
+    const oldData = todos.find(todo => todo.id == id)
+
+    if(oldData)
+    {
+        if(!updateData.title || !updateData.day)
+        {
+            res.status(400).json({error:"Improper Request"})
+        }
+        else
+        {
+            Object.assign(oldData,updateData)
+            res.status(200).json({message:"Updated Successfullt", todos: oldData})
+        }
+    }
+    else
+    {
+        res.status(404).jsonp({error:"Not FOund"})
+    }
+})
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () =>{
