@@ -334,6 +334,73 @@ app.post('/items/:id',(req,res) =>{
     }
 })
 
+const albums = 
+  [
+
+    { id: 1, title: 'Abbey Road', artist: 'The Beatles', year: 1969 },
+  
+    { id: 2, title: 'The Dark Side of the Moon', artist: 'Pink Floyd', year: 1973 },
+  
+    { id: 3, title: 'Thriller', artist: 'Michael Jackson', year: 1982 }
+  
+  ];
+
+  app.get('/albums',(req,res) =>{
+        res.send(albums)
+  })
+
+  app.post('/albums',(req,res) =>{
+    const data = req.body
+
+    if(data.title || data.artist || data.year)
+    {
+        albums.push(data)
+        res.status(200).json({message:"Data Added"})
+    }
+    else
+    {
+        res.status(400).json({error:"Imporper Details"})
+    }   
+  })
+  app.delete('/albums/:id', (req,res) => {
+        const id = req.params.id
+        const index = albums.findIndex(al => al.id == id)
+
+        if(index != -1)
+        {
+            albums.splice(index,1)
+            res.status(200).json({message:"Data Deleted"})
+        }
+        else
+        {
+            res.status(404).json({error:"Data not Found"})
+        }
+  })
+
+  app.post('/albums/:id',(req,res) =>{
+    const id = req.params.id
+    const updateData = req.body
+
+    const oldData = albums.find(al => al.id == id)
+
+    if(oldData)
+    {
+        if(updateData.title || updateData.year)
+        {
+            Object.assign(oldData,updateData)
+            res.status(200).json({message:"Data Updated"})
+        }
+        else
+        {
+            res.status(400).json({error:"Improper Data"})
+        }
+    }
+    else
+    {
+        res.status(400).json({error:"Data not Found"})
+    }
+  })
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () =>{
