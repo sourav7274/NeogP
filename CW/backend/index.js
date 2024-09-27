@@ -169,21 +169,6 @@ async function findByDirec(directorName)
 //   photos: ["https://example.com/somi-photo1.jpg", "https://example.com/somi-photo2.jpg"],
 // };
 
-// const res2 = {
-//   name: "Yo China",
-//   cuisine: ["Chinese", "Italian"],
-//   location: "MG Road, Bangalore",
-//   rating: 3.9,
-//   reviews: [],
-//   website: "https://yo-example.com",
-//   phoneNumber: "+1288997392",
-//   openHours: "Tue-Sun: 10:00 AM - 11:00 PM",
-//   priceRange: "$$$ (31-60)",
-//   reservationsNeeded: true,
-//   isDeliveryAvailable: false,
-//   menuUrl: "https://yo-example.com/menu",
-//   photos: ["https://example.com/yo-photo1.jpg", "https://example.com/yo-photo2.jpg", "https://example.com/yo-photo3.jpg"]
-// };
 // async function seedRes(data)
 // {
 //     try{
@@ -198,40 +183,66 @@ async function findByDirec(directorName)
 
 // seedRes(res2)
 
-// async function readRes(name)
-// {
-//   try{
-//     const allRes = await Restaurant.find({cuisine: name})
-//     console.log(allRes)
-//   } catch(error)
-//   {
-//     throw error
-//   }
-// }
+async function readRes(name)
+{
+  try{
+    const allRes = await Restaurant.find({cuisine: name})
+    console.log(allRes)
+    return allRes
+  } catch(error)
+  {
+    throw error
+  }
+}
 
-// readRes("Italian")
+async function readAllRes()
+{
+  try{
+    const res = await Restaurant.find()
+    console.log(res)
+    return res
+  } catch(error)
+  {
+    throw error
+  }
+}
 
+async function readResPhone(number)
+{
+  try{
+    const res = await Restaurant.find({phoneNumber:number})
+    console.log(res)
+    return res
+  }
+  catch{
+    throw error
+  }
+}
 
-// const newHotel = {
-//   name: "Lake View",
-//   category: "Mid-Range",
-//   location: "124 Main Street, Anytown",
-//   rating: 3.2,
-//   reviews: [],
-//   website: "https://lake-view-example.com",
-//   phoneNumber: "+1234555890",
-//   checkInTime: "2:00 PM",
-//   checkOutTime: "12:00 PM",
-//   amenities: ["Laundry", "Boating"],
-//   priceRange: "$$$ (31-60)",
-//   reservationsNeeded: true,
-//   isParkingAvailable: false,
-//   isWifiAvailable: true,
-//   isPoolAvailable: false,
-//   isSpaAvailable: false,
-//   isRestaurantAvailable: false,
-//   photos: ["https://example.com/hotel1-photo1.jpg", "https://example.com/hotel1-photo2.jpg"],
-// };
+async function readResCuisisne(name)
+{
+  try{
+    const res = await Restaurant.find({cuisine:name})
+    console.log(res)
+    return res
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+async function readResLocation(name)
+{
+  try{
+    const res = await Restaurant.find({location:name})
+    console.log(res)
+    return res
+  } catch(error)
+  {
+      throw error
+  }
+}
+
 // const newHotel1 = {
 //   name: "Sunset Resort",
 //   category: "Resort",
@@ -264,7 +275,6 @@ async function findByDirec(directorName)
 //     throw error
 //   }
 //  }
-// seedData(newHotel)
 //  seedData(newHotel1)
 
 // async function readHotel(hName)
@@ -458,6 +468,85 @@ app.get('/movies/director/:directorName', async (req,res) =>{
     }
   } catch{
     res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
+
+app.get('/restaurants',async (req,res) =>{
+  try{  
+    const restaurant = await readAllRes()
+    if(restaurant)
+    {
+      res.json(restaurant)
+    }
+    else
+    {
+      res.status(404).json({error:"Not found"})
+    }
+  } catch(error){
+    res.status(500).json({error:"Unable to fetch",message: error.message})
+  }
+})
+
+app.get('/restaurants/:resName',async (req,res) =>{
+  try{  
+    const restaurant = await readRes(req.params.resName)
+    if(restaurant)
+    {
+      res.json(restaurant)
+    }
+    else
+    {
+      res.status(404).json({error:"Not found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
+app.get('/restaurants/directory/:phoneNumber',async (req,res) =>{
+  try{
+    const restaurant = await readResPhone(req.params.phoneNumber)
+    if(restaurant)
+    {
+      res.json(restaurant)
+    }
+    else
+    {
+      res.status(404).json({error:"Not Found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to Fetch"})
+  }
+})
+app.get('/restaurants/cuisine/:cuisineName',async (req,res) =>{
+  try{
+    const restaurant = await readResCuisisne(req.params.cuisineName)
+    if(restaurant)
+    {
+      res.json(restaurant)
+    }
+    else
+    {
+      res.status(404).json({error:"Not Found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to Fetch"})
+  }
+})
+app.get('/restaurants/location/:restaurantLocation',async (req,res) =>{
+  try{
+    const restaurant = await readResLocation(req.params.restaurantLocation)
+    if(restaurant)
+    {
+      res.json(restaurant)
+    }
+    else
+    {
+      res.status(404).json({error:"Not Found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to Fetch"})
   }
 })
 
