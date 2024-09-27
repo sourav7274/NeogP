@@ -277,16 +277,64 @@ async function readResLocation(name)
 //  }
 //  seedData(newHotel1)
 
-// async function readHotel(hName)
-// {
-//   try{
-//     const data = await Hotel.find({phoneNumber: hName})
-//     console.log(data)
-//   } catch(error)  
-//   {
-//     throw error
-//   }
-// }
+async function readHotel(hName)
+{
+  try{
+    const data = await Hotel.find({phoneNumber: hName})
+    console.log(data)
+    return data
+  } catch(error)  
+  {
+    throw error
+  }
+}
+
+async function readAllHotel()
+{
+  try{
+    const data = await Hotel.find()
+    console.log(data)
+    return data
+  } catch(error)  
+  {
+    throw error
+  }
+}
+
+async function readHotelPhone(hName)
+{
+  try{
+    const data = await Hotel.find({phoneNumber: hName})
+    console.log(data)
+    return data
+  } catch(error)  
+  {
+    throw error
+  }
+}
+async function readHotelRating(hNum)
+{
+  try{
+    const data = await Hotel.find({rating: hNum})
+    console.log(data)
+    return data
+  } catch(error)  
+  {
+    throw error
+  }
+}
+async function readHotelCategory(hName)
+{
+  try{
+    const data = await Hotel.find({category: hName})
+    console.log(data)
+    return data
+  } catch(error)  
+  {
+    throw error
+  }
+}
+
 
 // readHotel("+1299655890")
 
@@ -549,6 +597,85 @@ app.get('/restaurants/location/:restaurantLocation',async (req,res) =>{
     res.status(500).json({error:"Unable to Fetch"})
   }
 })
+
+app.get('/hotels',async (req,res) =>{
+  try{
+    const hotel = await readAllHotel()
+    if(hotel)
+    {
+        res.json(hotel)
+    }
+    else
+    {
+      res.status(404).json({error:"Not Found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
+app.get('/hotels/:hotelName',async (req,res) =>{
+  try{
+    const hotel = await readHotel(req.params.hotelName)
+    if(hotel)
+    {
+        res.json(hotel)
+    }
+    else
+    {
+      res.status(404).json({error:"Not Found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
+app.get('/hotels/directory/:phoneNumber',async (req,res) =>{
+  try{
+    const hotel = await readHotelPhone(req.params.phoneNumber)
+    if(hotel)
+    {
+        res.json(hotel)
+    }
+    else
+    {
+      res.status(404).json({error:"Not Found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+app.get('/hotels/rating/:hotelRating',async (req,res) =>{
+  try{
+    const hotel = await readHotelRating(req.params.hotelRating)
+    if(hotel)
+    {
+        res.json(hotel)
+    }
+    else
+    {
+      res.status(404).json({error:"Not Found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+app.get('/hotels/category/:hotelCategory',async (req,res) =>{
+  try{
+    const hotel = await readHotelCategory(req.params.hotelCategory)
+    if(hotel)
+    {
+        res.json(hotel)
+    }
+    else
+    {
+      res.status(404).json({error:"Not Found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
 
 const PORT = 3000
 app.listen(PORT,() =>{
