@@ -1,4 +1,8 @@
 const {initialDatabase} = require('./db/db.connect')
+const express = require('express')
+const app = express()
+
+app.use(express.json())
 
 const fs = require("fs")
 const Movie = require('./models/movie.models')
@@ -9,6 +13,7 @@ const { title } = require('process')
 const Restaurant = require('./models/hw/latres.models')
 
 const Hotel = require('./models/hw/hotel.models')
+const { error } = require('console')
 initialDatabase()
 
 const jsonData = fs.readFileSync('movies.json','utf-8')
@@ -113,42 +118,40 @@ const newRestaurant = {
 // }
 // createHotel(newHotel)
 
-// async function readMovie(movieTitle)
-// {
-//   try{
-//     const movie = await Movie.findOne({title: movieTitle})
-//     console.log(movie)
-//   }catch(error){
-//     throw error
-//   }
-// }
+async function readMovie(movieTitle)
+{
+  try{
+    const movie = await Movie.findOne({title: movieTitle})
+    return movie
+  }catch(error){
+    throw error
+  }
+}
 
-// readMovie("Bahubali: The Beginning")
+async function readAllMovies()
+{
+  try{
+    const movie = await Movie.find()
+    return movie
+  }
+  catch(error){
+      throw error
+  }
+}
 
-// async function allMovies(){
-//   try{
-//     const allMovies = await Movie.find()
-//     console.log(allMovies)
-//   } catch(error)
-//   {
-//     throw error
-//   }
-// }
 
-// allMovies()
+async function findByDirec(directorName)
+{
+  try{
+    const movie = await Movie.find({director: directorName})
+    return movie
+  } catch(error)
+  {
+    throw error
+  }
+}
 
-// async function findByDirec(directorName)
-// {
-//   try{
-//     const movie = await Movie.find({director: directorName})
-//     console.log(movie)
-//   } catch(error)
-//   {
-//     throw error
-//   }
-// }
 
-// findByDirec("Karan Johar")
 
 // const res1= {
 //   name: "Somi",
@@ -407,3 +410,58 @@ const newRestaurant = {
 // }
 
 // readCars("Coupe")
+
+app.get('/movies/:title',async (req,res) =>{
+  try{
+      const movie = await readMovie(req.params.title)
+      if(movie)
+      {
+        res.json(movie)
+      }
+      else{
+        res.status(404).json({error:"Movie Not Found"})
+      }
+  }
+  catch(error)
+  {
+    res.status(500).json({error:"Failed to fetch movie"})
+  }
+})
+
+app.get('/allMovies', async (req,res) =>{
+  try{
+    const movies = await readAllMovies()
+    if(movies)
+    {
+      res.json(movies)
+    }
+    else
+    {
+      res.status(404).json({error:"Not Found"})
+    }
+  }
+  catch{
+    res.status(500).json({error:"Failed to fetch movie"})
+  }
+})
+
+app.get('/movies/director/:directorName', async (req,res) =>{
+  try{
+    const movie = await findByDirec(req.params.directorName)
+    if(movie)
+    {
+      res.json(movie)
+    }
+    else
+    {
+      res.status(404).json({error:"Movie not Found"})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
+const PORT = 3000
+app.listen(PORT,() =>{
+  console.log(`Server is listening on ${PORT}`)
+})
