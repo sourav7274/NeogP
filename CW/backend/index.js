@@ -683,6 +683,25 @@ app.get('/hotels/category/:hotelCategory',async (req,res) =>{
   }
 })
 
+async function deleteMovie(movieId)
+{
+  try{
+    const deleteMovie = Movie.findByIdAndDelete(movieId)
+    return deleteMovie
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.delete('/movies/:id',async(req,res) =>{
+  try{
+    const delteMovie = await deleteMovie(req.params.id)
+    res.status(200).json({message:"Delete Successfull"})
+  } catch{
+    res.json(500).json({error:"Failed to delete movie"})
+  }
+})
 
 const PORT = 3000
 app.listen(PORT,() =>{
