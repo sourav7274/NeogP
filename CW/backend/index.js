@@ -84,38 +84,46 @@ const newMovie = {
     }
   })
 
-// const newHotel = {
-//     name: "New Hotel",
-//     category: "Mid-Range",
-//     location: "123 Main Street, Frazer Town",
-//     rating: 4.0,
-//     reviews: [],
-//     website: "https://hotel-example.com",
-//     phoneNumber: "+1234567890",
-//     checkInTime: "2:00 PM",
-//     checkOutTime: "12:00 PM",
-//     amenities: ["Laundry", "Room Service"],
-//     priceRange: "$$$ (31-60)",
-//     reservationsNeeded: true,
-//     isParkingAvailable: true,
-//     isWifiAvailable: true,
-//     isPoolAvailable: false,
-//     isSpaAvailable: false,
-//     isRestaurantAvailable: true,
-//     photos: ["https://example.com/hotel-photo1.jpg", "https://example.com/hotel-photo2.jpg"],
-//   };
+const newHotel = {
+    name: "New Hotel",
+    category: "Mid-Range",
+    location: "123 Main Street, Frazer Town",
+    rating: 4.0,
+    reviews: [],
+    website: "https://hotel-example.com",
+    phoneNumber: "+1234567890",
+    checkInTime: "2:00 PM",
+    checkOutTime: "12:00 PM",
+    amenities: ["Laundry", "Room Service"],
+    priceRange: "$$$ (31-60)",
+    reservationsNeeded: true,
+    isParkingAvailable: true,
+    isWifiAvailable: true,
+    isPoolAvailable: false,
+    isSpaAvailable: false,
+    isRestaurantAvailable: true,
+    photos: ["https://example.com/hotel-photo1.jpg", "https://example.com/hotel-photo2.jpg"],
+  };
 
-// async function createHotel(data){
-//     try{
-//         const hotel = new Hotel(data)
-//         const saveData = await hotel.save()
-//         console.log("Done",saveData)
-//     } catch(error)
-//     {
-//         throw error
-//     }
-// }
-// createHotel(newHotel)
+async function createHotel(data){
+    try{
+        const hotel = new Hotel(data)
+        const saveData = await hotel.save()
+         return saveData
+    } catch(error)
+    {
+        throw error
+    }
+}
+
+app.post('/hotel',async (req,res) =>{
+  try{
+    const saveHotel = await createHotel(req.body)
+    res.status(201).json({message:"New Entry "})
+  }catch{
+    res.status(500).json({error:"Unable to send data"})
+  }
+})
 
 async function readMovie(movieTitle)
 {
