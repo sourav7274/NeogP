@@ -48,21 +48,6 @@ app.post('/restaurants',async (req,res) =>{
   }
 })
 
-const newMovie = {
-    title: "New Movie",
-    releaseYear: 195,
-    genre: ["Romance"],
-    director: "Aditya Somnya",
-    actors: ["Shah Rukh", "Kajol"],
-    language: "English",
-    country: "India",
-    rating: 6.8,
-    plot: "A young man.",
-    awards: "Multiple  Awards",
-    posterUrl: "https://example.com/poster.jpg",
-    trailerUrl: "https://example.com/trailer.mp4"
-  }
-
   async function createMovie(newMovie)
   {
     try{
@@ -83,27 +68,6 @@ const newMovie = {
       res.status(500).json({error:"failed to add movie"})
     }
   })
-
-const newHotel = {
-    name: "New Hotel",
-    category: "Mid-Range",
-    location: "123 Main Street, Frazer Town",
-    rating: 4.0,
-    reviews: [],
-    website: "https://hotel-example.com",
-    phoneNumber: "+1234567890",
-    checkInTime: "2:00 PM",
-    checkOutTime: "12:00 PM",
-    amenities: ["Laundry", "Room Service"],
-    priceRange: "$$$ (31-60)",
-    reservationsNeeded: true,
-    isParkingAvailable: true,
-    isWifiAvailable: true,
-    isPoolAvailable: false,
-    isSpaAvailable: false,
-    isRestaurantAvailable: true,
-    photos: ["https://example.com/hotel-photo1.jpg", "https://example.com/hotel-photo2.jpg"],
-  };
 
 async function createHotel(data){
     try{
@@ -722,6 +686,25 @@ app.delete('/restaurant/:rId',async (req,res) =>{
   }
 })
 
+async function deleteHotel2(id)
+{
+  try{
+    const delteHotel =  Hotel.findByIdAndDelete(id)
+    return delteHotel
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.delete("/hotelss/:hId",async (req,res) =>{
+  try{
+    const deleteHotel = await deleteHotel2(req.params.hId)
+    res.status(200).json({message:"Deleted Successully"})
+  } catch{
+    res.status(500).json({error:"Unable to delte"})
+  }
+})
 
 const PORT = 3000
 app.listen(PORT,() =>{
