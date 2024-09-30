@@ -28,34 +28,25 @@ const bookData  = JSON.parse(jsonBookData)
 const jsonCarData = fs.readFileSync('cars.json','utf-8')
 const carData = JSON.parse(jsonCarData)
 
-const newRestaurant = {
-    name: "Cha Cha",
-    cuisine: ["Spanish"],
-    location: "123 Main Street, Anytown",
-    rating: 4.0,
-    reviews: [],
-    website: "https://example.com",
-    phoneNumber: "+1234567890",
-    openHours: "Mon-Sun: 11:00 AM - 10:00 PM",
-    priceRange: "$$ (11-30)",
-    reservationsNeeded: true,
-    isDeliveryAvailable: true,
-    menuUrl: "https://example.com/menu",
-    photos: ["https://example.com/photo1.jpg", "https://example.com/photo2.jpg"],
-  };
+async function createRestaurant(newRestaurant){
+    try{
+        const restaurant = new Restaurant(newRestaurant)
+        const saveRes = await restaurant.save()
+        return saveRes
+    } catch(error)
+    {
+        throw error
+    }
+}
 
-// async function createRestaurant(newRestaurant){
-//     try{
-//         const restaurant = new Restaurant(newRestaurant)
-//         const saveRes = await restaurant.save()
-//         console.log("New Restaurant Data",saveRes)
-//     } catch(error)
-//     {
-//         throw error
-//     }
-// }
-
-// createRestaurant(newRestaurant)
+app.post('/restaurants',async (req,res) =>{
+  try{  
+    const saveRes = await createRestaurant(req.body)
+    res.status(201).json({message:"Data added"})
+  } catch{
+    res.status(500).json({error:"Unable to send data"})
+  }
+})
 
 const newMovie = {
     title: "New Movie",
