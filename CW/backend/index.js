@@ -307,20 +307,52 @@ async function readHotelCategory(hName)
 }
 
 
-// readHotel("+1299655890")
+async function updateMovienew(id,data)
+{
+  try{
+      const updatedMovie = await Movie.findByIdAndUpdate(id,data,{new:true})
+      return updatedMovie
+  } catch(error)
+  {
+    throw error
+  }
+}
 
-// async function updateMovie(id,data)
-// {
-//   try{
-//       const updatedMovie = await Movie.findByIdAndUpdate(id,data,{new:true})
-//       console.log(updatedMovie)
-//   } catch(error)
-//   {
-//     throw error
-//   }
-// }
+app.post('/movies/update/:id' ,async (req,res) =>{
+  try{
+    const updatedmovie = await updateMovienew(req.params.id,req.body)
+    if(updatedmovie)
+    {
+      res.status(200).json({message:"UPOdate done",data: updatedmovie})
+    }
+    else
+    {
+      res.status(404).json({error:"Update not  found"})
+    }
+  } catch{
+    res.status(500).json({error:"Failed to update"})
+  }
+})
 
-// updateMovie('66ecf1a71555fda9075b95ae',{releaseYear: 3002})
+async function uodateRes(id,data)
+{
+  try{
+    const resu = await Restaurant.findByIdAndUpdate(id,data,{new:true})
+    return resu
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.post('/res/:id',async (req,res) =>{
+  try{
+    const updateR = await uodateRes(req.params.id,req.body)
+    res.status(200).json({message:"Update Succesffuly",data:updateR})
+  } catch{
+    res.status(500).json({error:"Issue occured"})
+  }
+})
 
 // async function updateMoviewithanything(thing,data)
 // {
@@ -349,29 +381,6 @@ async function readHotelCategory(hName)
 // //wont work becuase mutiple data was sent while seeding
 // updateRestaurant('+1299655890',{phoneNumber:"+1997687392"})
 
-// async function deleteMovie(id)
-// {
-//   try{
-//     const delteMovie = await  Movie.findOneAndDelete({title:id})
-//   } catch(error)
-//   {
-//     throw error
-//   }
-// }
-
-// deleteMovie('Kabhi Khushi Kabhie Gham')
-
-// async function delteRes(thing)
-// {
-//   try{
-//     const delteres = await Hotel.findByIdAndDelete(thing)
-//     console.log("Deleted Succesfully")
-//   } catch(error)
-//   {
-//     throw error
-//   }
-// }
-// delteRes('+1299655890')
 
 // const carDatas = {
 //   brand: "Ford",
@@ -424,8 +433,7 @@ async function readHotelCategory(hName)
 //   }
 // }
 
-// // seedCar(carDatas)
-// // seedCar(carDatas1)
+
 
 // async function readCars(name)
 // {
