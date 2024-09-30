@@ -354,6 +354,26 @@ app.post('/res/:id',async (req,res) =>{
   }
 })
 
+async function updateHotelById(id,data)
+{
+  try{
+    const hooo = Hotel.findByIdAndUpdate(id,data,{new:true})
+    return hooo
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.post('/ho/:id',async(req,res) =>{
+  try{
+    const hos = await updateHotelById(req.params.id,req.body)
+    res.status(200).json({message:"DOne",data:hos})
+   } catch{
+    res.status(500).json({error:"Unable to put data"})
+   }
+})
+
 // async function updateMoviewithanything(thing,data)
 // {
 //   try{
