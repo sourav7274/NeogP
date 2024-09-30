@@ -703,6 +703,26 @@ app.delete('/movies/:id',async(req,res) =>{
   }
 })
 
+async function deleteRes(id)
+{
+  try{
+    const delteRes = Restaurant.findByIdAndDelete(id)
+    return delteRes
+  } catch(error){
+    throw error
+  }
+}
+
+app.delete('/restaurant/:rId',async (req,res) =>{
+  try{
+    const delteRes = await deleteRes(req.params.rId)
+    res.status(200).json({message:"Delete Successull"})
+  } catch{  
+    res.status(500).json({error:"Unable to send"})
+  }
+})
+
+
 const PORT = 3000
 app.listen(PORT,() =>{
   console.log(`Server is listening on ${PORT}`)
