@@ -57,33 +57,41 @@ const newRestaurant = {
 
 // createRestaurant(newRestaurant)
 
-// const newMovie = {
-//     title: "New Movie",
-//     releaseYear: 195,
-//     genre: ["Romance"],
-//     director: "Aditya Somnya",
-//     actors: ["Shah Rukh", "Kajol"],
-//     language: "English",
-//     country: "India",
-//     rating: 6.8,
-//     plot: "A young man.",
-//     awards: "Multiple  Awards",
-//     posterUrl: "https://example.com/poster.jpg",
-//     trailerUrl: "https://example.com/trailer.mp4"
-//   }
+const newMovie = {
+    title: "New Movie",
+    releaseYear: 195,
+    genre: ["Romance"],
+    director: "Aditya Somnya",
+    actors: ["Shah Rukh", "Kajol"],
+    language: "English",
+    country: "India",
+    rating: 6.8,
+    plot: "A young man.",
+    awards: "Multiple  Awards",
+    posterUrl: "https://example.com/poster.jpg",
+    trailerUrl: "https://example.com/trailer.mp4"
+  }
 
-//   async function createMovie(newMovie)
-//   {
-//     try{
-//         const movie = new Movie(newMovie)
-//         const saveMovie = await movie.save()
-//         console.log("New movie Data", saveMovie)
-//     }catch(error){
-//         throw error
-//     }
-//   }
+  async function createMovie(newMovie)
+  {
+    try{
+        const movie = new Movie(newMovie)
+        const saveMovie = await movie.save()
+        return saveMovie
+    }catch(error){
+        throw error
+    }
+  }
 
-//   createMovie(newMovie)
+  app.post('/movies',async (req,res) =>{
+    try{
+     const saveMovie = await createMovie(req.body)
+      res.status(201).json({message:"Movie added "})
+    } catch(error)
+    {
+      res.status(500).json({error:"failed to add movie"})
+    }
+  })
 
 // const newHotel = {
 //     name: "New Hotel",

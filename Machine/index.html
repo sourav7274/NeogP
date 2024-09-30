@@ -6,81 +6,27 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Product Inventory Form </h1>
-    <br>
-    <label for="mci"><b>Inventory Manager Contact</b></label><br>
-    <input type="number" name="" id="mci"><br><br>
-    <label for="pn"><b>Product Number</b></label><br>
-    <input type="text" name="" id="pn"><br><br>
-    <label for=pname""><b>Product Name</b></label><br>
-    <input type="text" name="" id="pname"><br><br>
-    <label for="pb"><b>Product Brand</b></label><br>
-    <input type="text" name="" id="pb"><br><br>
-    <label for="pq"><b>Product Quantity</b></label><br>
-    <input type="number" name="" id="pq"><br><br>
-    <label for=""><b>Product Category</b></label><br>
-    <input type="radio" name="cat" id="Western Clothing" value="Western Clothing">Western Clothing<br>
-    <input type="radio" name="cat" id="Ethinic CLothing" value="Ethinic CLothing">Ethinic CLothing<br>
-    <input type="radio" name="cat" id="Sports Clothing" value="Sports Clothing">Sports Clothing<br>
-    <input type="radio" name="cat" id="Others" value="Others">Others<br><br>
-    <label for="pd"><b>Product Description</b></label><br>
-    <textarea name="" cols="50" rows="5" id="pd"></textarea><br><br>
-    <label for="sf">Storage Facility</label><br>
-    <select name="" id="sf">
-        <option value="FAC01">FAC01</option>
-        <option value="FAC02">FAC02</option>
-        <option value="FAC03">FAC03</option>
-        <option value="FAC04">FAC04</option>
-    </select><br><br>
-    <label for=""><b>Product Size</b></label><br>
-    <input type="checkbox" name="size" id="Extra Small" value="XS">Extra Small<br>
-    <input type="checkbox" name="size" id="Small" value="S">Small<br>
-    <input type="checkbox" name="size" id="Medium" value="M">Medium<br>
-    <input type="checkbox" name="size" id="Large" value="L">Large<br>
-    <input type="checkbox" name="size" id="Extra Large" value="XL">Extra Large<br>
-    <input type="checkbox" name="size" id="Double Extra Large" value="XXL">Double Extra Large<br>
-    <input type="checkbox" name="size" id="Triple Extra Large" value="XXXL">Triple Extra Large<br>
-    <input type="checkbox" name="size" id="Others" value="Others">Others<br><br>
-    <button id="addB">Submit Details</button>
-    <br>
-    <br>
-    <br>
-    <div id="show"></div>
+    <h1>My Prodcts</h1>
+    <input type="checkbox" id=""> Show Expensive Products with black color
+    <ul id="display"></ul>
+    
+    
+    
+<script>
+    const display = document.getElementById("display")
 
-    <script>
-        const addB = document.getElementById("addB")
-        const show = document.getElementById("show")
-        const fsize = []
-        addB.addEventListener("click",function(event){
-            event.preventDefault()
-            const mci = document.getElementById("mci")
-            const pn = document.getElementById("pn")
-            const pname  = document.getElementById("pname")
-            const pb = document.getElementById("pb")
-            const pq  = document.getElementById("pq")
-            const pd  = document.getElementById("pd")
-            const sf  = document.getElementById("sf")
-            const catI = document.querySelector("input[name=cat]").value
-            const sizeI = document.querySelectorAll("input[name=size]:checked")
-            for(let i=0;i<sizeI.length;i++)
-            {
-                fsize.push(sizeI[i].value)
-            }
-            console.log(fsize.join(','))
+const products = [
+    {id: 1, name: "Laptop", price: 24000, color: "red"},
+    {id: 2, name: "Smartphone", price: 17000, color: "black"},
+    {id: 3, name: "Tablet", price: 4500, color: "silver"},
+    {id: 4, name: "Headphones", price: 5000, color: "black"},
+    {id: 5, name: "Speaker", price: 10000, color: "silver"},
+    {id: 6, name: "TV", price: 15000, color: "black"},
+    {id: 7, name: "Earphones", price: 3000, color: "white"},
+    {id: 8, name: "Smartwatch", price: 25000, color: "black"},
+];
+    display.innerHTML = products.map(pro => (<li>{dfhfsh}</li>))
 
-            show.innerHTML = `
-            <h2>Product Details</h2>
-            <p><b>Manager Contact: </b>${mci.value}</p>
-            <p><b>Product Number: </b>${pn.value}</p>
-            <p><b>Product Name: </b>${pname.value}</p>
-            <p><b>Product Brand: </b>${pb.value}</p>
-            <p><b>Product Quantity: </b>${pq.value}</p>
-            <p><b>Product Category: </b>${catI}</p>
-            <p><b>Product Description: </b>${pd.value}</p>
-            <p><b>Storage Facility Number: </b>${sf.value}</p>
-            <p><b>Product Sizes: </b>${fsize.join(",")}</p>
-            `
-        })
-    </script>
+</script>
 </body>
 </html>
