@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "./CW/backend/index.js"
+      "dest": "/CW/backend/index.js"
     }
   ]
 }
