@@ -12,6 +12,8 @@ const Car = require('./models/hw/cars.models')
 const { title } = require('process')
 const Restaurant = require('./models/hw/latres.models')
 
+const Recipe = require('./models/recipe.models')
+
 const Hotel = require('./models/hw/hotel.models')
 const { error } = require('console')
 initialDatabase()
@@ -27,6 +29,198 @@ const bookData  = JSON.parse(jsonBookData)
 
 const jsonCarData = fs.readFileSync('cars.json','utf-8')
 const carData = JSON.parse(jsonCarData)
+
+//BE4_Assignment_2
+async function deleteRecipeByID(id)
+{
+  try{
+    const data = await Recipe.findByIdAndDelete(id)
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.delete('/recipes/:id',async (req,res) =>{
+  try{
+    const delteData = await deleteRecipeByID(req.params.id)
+    res.status(200).json({message:"Delete Successfull"})
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
+async function updateRecipeByTitle(name,data)
+{
+  try{
+    const updateData = await Recipe.findOneAndUpdate({title:name},data,{new:true})
+    return updateData
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.post('/recipe/title/:name',async (req,res) =>{
+  try{
+    const recipe = await updateRecipeByTitle(req.params.name,req.body)
+    res.status(200).json({message:'Update successfull',data:recipe})
+  } catch{
+    res.status(500).json({error:"Unable to seed"})
+  }
+})
+
+async function updateRecipeById(id,data)
+{
+  try{
+    const thing = await Recipe.findByIdAndUpdate(id,data,{new:true})
+    return thing
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.post('/recipes/:id',async (req,res) =>{
+  try{
+    const data = await updateRecipeById(req.params.id,req.body)
+    res.status(200).json({message:"Update Successfull",data:data})
+  } catch(error){
+    console.log(error)
+    res.status(500).json({error:"Unable to fetch data"})
+  }
+})
+
+async function getRecipeByDiff(name)
+{
+  try{
+    const data = await Recipe.find({difficulty:name})
+    return data
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.get('/recipe/diff/:name',async (req,res) =>{
+  try{
+    const recipe = await getRecipeByDiff(req.params.name)
+    if(recipe.length!=0)
+    {
+      res.status(200).json({message:"Success",data:recipe})
+    }
+    else{
+      res.status(404).json({error:"Not FOund",display:error})
+    }
+  } catch(error){
+    console.log(error)
+    res.status(500).json({error:"Unable to Fetch"})
+  }
+})
+
+async function getRecipeByAuthor(name)
+{
+  try{
+    const data = await Recipe.find({author:name})
+    return data
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.get('/recipe/author/:name',async (req,res) =>{
+  try{
+    const recipe = await getRecipeByAuthor(req.params.name)
+    res.status(200).json({message:"Success",data:recipe})
+  } catch{
+    res.status(500).json({error:"Unable to Fetch"})
+  }
+})
+
+async function getRecipeByTitle(name)
+{
+  try{
+    const data = await Recipe.find({title:name})
+    return data
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.get('/recipe/title/:name',async (req,res) =>{
+  try{
+    const recipe = await getRecipeByTitle(req.params.name)
+    res.status(200).json({message:"Success",data:recipe})
+  } catch{
+    res.status(500).json({error:"Unable to Fetch"})
+  }
+})
+
+async function getRecipeById(id)
+{
+  try{
+    const data = await Recipe.findById(id)
+    return data
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.get('/recipe/:id',async (req,res) =>{
+  try{
+    const recipe = await getRecipeById(req.params.id)
+    res.status(200).json({message:"Success",data:recipe})
+  } catch{
+    res.status(500).json({error:"Unable to Fetch"})
+  }
+})
+
+async function getRecipe()
+{
+  try{
+    const recipe = await Recipe.find()
+    return recipe
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.get('/recipe',async (req,res) =>{
+  try{
+    const data = await getRecipe()
+    res.status(200).json({message:"Data Fetched",data:data})
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
+
+async function createRecipe(data)
+{
+  try{
+    const newRecipe = new Recipe(data)
+    const saveRecipe = await newRecipe.save()
+    return saveRecipe
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.post('/recipes',async (req,res) =>{
+  try{
+    const saveData = await createRecipe(req.body)
+    res.status(201).json({message:"Saved",data:saveData})
+  } catch{
+    res.status(500).json({error:"Unable to send data"})
+  }
+})
+
+
 
 //BE4_Assignment
 
