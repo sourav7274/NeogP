@@ -49,6 +49,11 @@ app.delete('/recipes/:id',async (req,res) =>{
     res.status(500).json({error:"Unable to fetch"})
   }
 })
+app.get('/api/test', (req, res) => {
+  console.log("Test endpoint hit");
+  res.json({ message: 'Test endpoint works!' });
+});
+
 
 async function updateRecipeByTitle(name,data)
 {
