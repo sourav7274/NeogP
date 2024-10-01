@@ -28,6 +28,218 @@ const bookData  = JSON.parse(jsonBookData)
 const jsonCarData = fs.readFileSync('cars.json','utf-8')
 const carData = JSON.parse(jsonCarData)
 
+//BE4_Assignment
+
+async function addBook(book)
+{
+  try{
+    const newBook = new Book(book)
+    const saveBook = await newBook.save()
+    return saveBook
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+app.post('/books',async (req,res) =>{
+  try{
+    const savyBook = await addBook(req.body)
+    res.status(201).json({message:"Addedd Successfull",savyBook:savyBook})
+  } catch(error){
+    console.log(error)
+    res.status(500).json({error:"Unable to send"})
+  }
+})
+
+async function getallBook()
+{
+  try{
+    const book  = await  Book.find()
+    return book
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+async function getBookByTitle(name)
+{
+  try{
+    const book  = await  Book.find({title:name})
+    return book
+  } catch(error)
+  {
+    throw error
+  }
+}
+async function getBookByAuthor(name)
+{
+  try{
+    const book  = await  Book.find({author:name})
+    return book
+  } catch(error)
+  {
+    throw error
+  }
+}
+async function getBookByGenre(name)
+{
+  try{
+    const book  = await  Book.find({genre:name})
+    return book
+  } catch(error)
+  {
+    throw error
+  }
+}
+async function getBookByYear(year)
+{
+  try{
+    const book  = await  Book.find({publishedYear:year})
+    return book
+  } catch(error)
+  {
+    throw error
+  }
+}
+async function updateBookbyID(id,data)
+{
+  try{
+    const updateBook = await Book.findByIdAndUpdate(id,data,{new:true})
+    return updateBook
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+async function updateBookByTitle(name,data)
+{
+  try{
+    const updateBook = await Book.findOneAndUpdate({title:name},data,{new:true})
+    return updateBook
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+async function deleteBook(id)
+{
+  try{
+    const deleteBok = await Book.findByIdAndDelete(id)
+  } catch(error)
+  {
+    throw error
+  }
+}
+
+
+app.get('/books',async (req,res) =>{
+  try{
+    const book = await getallBook()
+    if(data)
+    {
+      res.status(200).json({message:"Success",data:book})
+    }
+    else{
+      res.status(404).json({error:"Unable to find "})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to get"})
+  }
+})
+
+app.get('/books/title/:title',async (req,res) =>{
+  try{
+    const book = await getBookByTitle(req.params.title)
+    if(book.length!=0)
+    {
+      res.status(200).json({message:"Success",data:book})
+    }
+    else{
+      res.status(404).json({error:"Unable to find "})
+    }
+  } catch(error){
+    console.log(error)
+    res.status(500).json({error:"Unable to get"})
+  }
+})
+
+app.get('/books/author/:author',async (req,res) =>{
+  try{
+    const data = await getBookByAuthor(req.params.author)
+    if(data.length!=0)
+    {
+      res.status(200).json({messagee:"Success",data:data})
+    }
+    else{
+      res.status(404).json({error:"Unable to find "})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to get"})
+  }
+})
+
+app.get('/books/genre/:genre',async (req,res) =>{
+  try{
+    const data = await getBookByGenre(req.params.genre)
+    if(data.length!=0)
+    {
+      res.status(200).json({messagee:"Success",data:data})
+    }
+    else{
+      res.status(404).json({error:"Unable to find "})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to get"})
+  }
+})
+
+app.get('/books/publish/:year',async (req,res) =>{
+  try{
+    const data = await getBookByYear(req.params.year)
+    if(data.length!=0)
+    {
+      res.status(200).json({messagee:"Success",data:data})
+    }
+    else{
+      res.status(404).json({error:"Unable to find "})
+    }
+  } catch{
+    res.status(500).json({error:"Unable to get"})
+  }
+})
+
+app.post('/books/:id',async (req,res) =>{
+  try{
+    const updateData = await updateBookbyID(req.params.id,req.body)
+    res.json({message:"Update Successfull",data:updateData})
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
+app.post('/books/title/:name',async (req,res) =>{
+  try{
+    const updateData = await updateBookByTitle(req.params.name,req.body)
+    res.json({message:"Update Successfull",data:updateData})
+  } catch{
+    res.status(500).json({error:"Unable to fetch"})
+  }
+})
+
+app.delete('/books/:id',async (req,res) =>{
+  try{
+    const delBook = await deleteBook(req.params.id)
+    res.status(200).json({message:"Delete Successfull"})
+  } catch{
+    res.status(500).json({error:"Unuable to get Data"})
+  }
+})
+
+
 async function createRestaurant(newRestaurant){
     try{
         const restaurant = new Restaurant(newRestaurant)
