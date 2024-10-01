@@ -18,18 +18,6 @@ const Hotel = require('./models/hw/hotel.models')
 const { error } = require('console')
 initialDatabase()
 
-const jsonData = fs.readFileSync('movies.json','utf-8')
-const moviesData = JSON.parse(jsonData)
-
-const jsonProfileData = fs.readFileSync('profiles.json','utf-8')
-const profileData = JSON.parse(jsonProfileData)
-
-const jsonBookData = fs.readFileSync('books.json','utf-8')
-const bookData  = JSON.parse(jsonBookData)
-
-const jsonCarData = fs.readFileSync('cars.json','utf-8')
-const carData = JSON.parse(jsonCarData)
-
 //BE4_Assignment_2
 async function deleteRecipeByID(id)
 {
