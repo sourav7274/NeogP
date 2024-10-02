@@ -1055,4 +1055,8 @@ app.delete("/hotelss/:hId",async (req,res) =>{
   }
 })
 
+app.get('/test', (req, res) => {
+  res.json({ message: 'Test route working' });
+});
+
 module.exports = app;
