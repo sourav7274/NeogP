@@ -595,26 +595,6 @@ async function readResLocation(name)
   }
 }
 
-// const newHotel1 = {
-//   name: "Sunset Resort",
-//   category: "Resort",
-//   location: "12 Main Road, Anytown",
-//   rating: 4.0,
-//   reviews: [],
-//   website: "https://sunset-example.com",
-//   phoneNumber: "+1299655890",
-//   checkInTime: "2:00 PM",
-//   checkOutTime: "11:00 AM",
-//   amenities: ["Room Service", "Horse riding", "Boating", "Kids Play Area", "Bar"],
-//   priceRange: "$$$$ (61+)",
-//   reservationsNeeded: true,
-//   isParkingAvailable: true,
-//   isWifiAvailable: true,
-//   isPoolAvailable: true,
-//   isSpaAvailable: true,
-//   isRestaurantAvailable: true,
-//   photos: ["https://example.com/hotel2-photo1.jpg", "https://example.com/hotel2-photo2.jpg"],
-// };
 
 // async function seedData(data)
 // {
@@ -781,46 +761,6 @@ app.post('/ho/:id',async(req,res) =>{
 // }
 // //wont work becuase mutiple data was sent while seeding
 // updateRestaurant('+1299655890',{phoneNumber:"+1997687392"})
-
-
-// const carDatas = {
-//   brand: "Ford",
-//   model: "Mustang",
-//   year: 2019,
-//   bodyStyle: "Convertible",
-//   fuelType: "Gasoline",
-//   transmission: "Automatic",
-//   engine: "5.0L V8",
-//   mileage: 25000,
-//   color: "Red",
-//   price: 3500000,
-//   condition: "Used",
-//   description: "Exciting Ford Mustang convertible with powerful V8 engine.",
-//   photos: [
-//     "https://example.com/mustang-photo1.jpg",
-//     "https://example.com/mustang-photo2.jpg",
-//     "https://example.com/mustang-photo3.jpg"
-//   ]
-// };
-// const carDatas1 = {
-//   brand: "Honda",
-//   model: "Civic",
-//   year: 2018,
-//   bodyStyle: "Coupe",
-//   fuelType: "Gasoline",
-//   transmission: "Manual",
-//   engine: "1.5L Turbocharged Inline-4",
-//   mileage: 40000,
-//   color: "Black",
-//   price: 1800000,
-//   condition: "Used",
-//   description: "Sporty Civic coupe with low mileage and manual transmission.",
-//   photos: [
-//     "https://example.com/civic-photo1.jpg",
-//     "https://example.com/civic-photo2.jpg",
-//     "https://example.com/civic-photo3.jpg"
-//   ]
-// };
 
 // async function seedCar(data)
 // {
@@ -1115,7 +1055,4 @@ app.delete("/hotelss/:hId",async (req,res) =>{
   }
 })
 
-const PORT = 3000
-app.listen(PORT,() =>{
-  console.log(`Server is listening on ${PORT}`)
-})
+module.exports = app;
