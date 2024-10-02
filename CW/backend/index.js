@@ -918,7 +918,7 @@ app.get('/restaurants/location/:restaurantLocation',async (req,res) =>{
   }
 })
 
-app.get('/hotels',async (req,res) =>{
+app.get('/api/hotels',async (req,res) =>{
   try{
     const hotel = await readAllHotel()
     if(hotel)
