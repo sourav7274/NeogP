@@ -1055,6 +1055,10 @@ app.delete("/hotelss/:hId",async (req,res) =>{
   }
 })
 
+app.get('/', (req, res) => {
+  res.json({ message: 'Welcome to the API' });
+});
+
 app.get('/test', (req, res) => {
   res.json({ message: 'Test route working' });
 });
