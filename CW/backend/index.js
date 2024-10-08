@@ -28,7 +28,7 @@ async function deleteRecipeByID(id)
     throw error
   }
 }
-
+console.log('Application starting...');
 app.delete('/api/recipes/:id',async (req,res) =>{
   try{
     const delteData = await deleteRecipeByID(req.params.id)
