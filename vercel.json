@@ -1,15 +1,2 @@
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "CW/backend/index.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "CW/backend/index.js"
-    }
-  ]
-}
+
+{ "version": 2, "builds": [{ "src": "CW/backend/index.js", "use": "@vercel/node" }], "rewrites": [{ "source": "/(.*)", "destination": "CW/backend/index.js" }] }
