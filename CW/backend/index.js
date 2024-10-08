@@ -913,6 +913,7 @@ app.get('/api/restaurants/location/:restaurantLocation',async (req,res) =>{
     {
       res.status(404).json({error:"Not Found"})
     }
+    
   } catch{
     res.status(500).json({error:"Unable to Fetch"})
   }
@@ -1061,6 +1062,12 @@ app.get('/', (req, res) => {
 
 app.get('/test', (req, res) => {
   res.json({ message: 'Test route working' });
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
 
 module.exports = app;
