@@ -4,29 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .container{
+            margin: 3rem 5rem 
+        }
+        .heading{
+            background-color:rgb(94, 94, 94) ;
+            color: white;
+            padding: 2rem  41%;
+        }
+        .navBar{
+            background-color: rgb(116, 116, 116);
+            color: white;
+            list-style: none;
+            border: 1px solid;
+            font-size: 20px;
+            padding:2rem 35% 2rem 35% ;
+        }
+        .inline{
+            display: inline;
+        }
+        .anchor{
+            text-decoration: none;
+        }
+        .title{
+            padding: 2rem  40%;
+            font-size: 40px;
+            border: 1px solid;
+        }
+        .content{
+            padding: 2rem;
+            border: 1px solid;
+            font-size: 20px;
+        }
+        .list{
+            border: 1px solid;
+            padding: 2rem;
+            list-style: none
+        }
+        .footer{
+            border: 1px solid ;
+            padding: 2rem;
+            background-color:rgb(94, 94, 94) ;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>My Prodcts</h1>
-    <input type="checkbox" id=""> Show Expensive Products with black color
-    <ul id="display"></ul>
-    
-    
-    
-<script>
-    const display = document.getElementById("display")
-
-const products = [
-    {id: 1, name: "Laptop", price: 24000, color: "red"},
-    {id: 2, name: "Smartphone", price: 17000, color: "black"},
-    {id: 3, name: "Tablet", price: 4500, color: "silver"},
-    {id: 4, name: "Headphones", price: 5000, color: "black"},
-    {id: 5, name: "Speaker", price: 10000, color: "silver"},
-    {id: 6, name: "TV", price: 15000, color: "black"},
-    {id: 7, name: "Earphones", price: 3000, color: "white"},
-    {id: 8, name: "Smartwatch", price: 25000, color: "black"},
-];
-    display.innerHTML = products.map(pro => (<li>{dfhfsh}</li>))
-
-</script>
+    <div class="container">
+        <h1 class="heading" >BLOG TITLE</h1>
+        <ul class="navBar">
+            <li style="margin: 0 80px 0 2px;" class="inline">Home</li>
+            <li style="margin: 0 80px 0 2px;" class="inline">Categories</li>
+            <li style="margin: 0 2px 0 2px;" class="inline">About</li>
+        </ul>
+        <p class="title">Blog Post Title</p>
+        <p class="content">Blog  Post Content Preview</p>
+        <ul class="list">
+            <li style="margin-top: 10px;" >Post 1</li> <hr>
+            <li>Post 2</li> <hr>
+            <li>Post 3</li> <hr>
+        </ul>
+        <ul class="footer">
+            <li class="inline" style="margin: 0 50px 0 530px ;"><a class="anchor" style="color:white;" href="/">Contact</a></li>
+            <li class="inline" style="margin: 0 240px 0  50px ;" ><a class="anchor" style="color:white;" href="/">Privacy Policy</a></li>
+        </ul>
+    </div>
 </body>
 </html>
