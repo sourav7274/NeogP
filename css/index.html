@@ -3,133 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+    <style>
+        #q1{
+            background-color: black;
+            color: white;
+        }
+        #q2{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #q2 button{
+            background-color:rgb(3, 124, 255) ;
+            padding: 5px 90px;
+            color: white;
+            margin-bottom:0 ;
+        }
+        .f{
+            color: rgb(3, 124, 255);
+        }
+        #q3{
+            width: 450px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div class="box">
-        <div style="top: 30%;" class="small-box"></div>
-    </div>
-    <hr>
-    <div class="box">
-        <div style="top: 30%; left: 30%;" class="small-box"></div>
-    </div>
-    <hr>
-    <div>
-        <nav>
-            <ul class="nav">
-                <li class="nav-item">Home</li>
-                <li class="nav-item">about</li>
-                <li class="nav-item">Products</li>
-                <li class="nav-item">cart</li>
-                <li class="nav-item">wishlist</li>
-            </ul>
-        </nav>
-    </div>
-    <hr>
-    <div>
-        <div style="border: 1px solid black; height: 250px; width: 200px; position: relative;">
-            <div style="top: 5%; left: 10%" class="circle"></div>
-            <p style="top: 20%; left: 30%;position:absolute;">150 x 150</p>
-            <h1 style="position: absolute; top: 60%; left: 15%;">Jhon Doe</h1>
-            <h3 style="position: absolute; top: 80%; left: 15%;">Web Developer</h3>
+    <div class="card">
+        <div class="input">
+            <p>Name:</p>
+            <input type="text" name="" id="">
         </div>
-    </div>
-    <hr>
-    <div class="card" style="max-width: 170px;">
-        <h5>FULL STACK COURSE</h5>
-        <img src="https://via.placeholder.com/150" alt="someImg">
-        <p style="padding:0 8px">Discover the neoG Full Stack Development
-            Course, offering expert-led training in
-            MERN stack. Build real-world projects and
-            boost your web development career.
-        </p>
-        <button style="padding: 5px 40px; border: none; background-color:rgb(245, 245, 220) ;">Enroll Now</button>
-    </div>
-    <hr>
-    <div class="card" style="flex-direction: row; max-width: 400px;height: auto;">
-        <div style="height: 150px; width: 150px;position: static; margin:15px 25px 15px 15px ; flex-shrink: 0;" class="small-box"></div>
-        <div style="display: flex; flex-direction: column; flex-wrap: wrap; margin: 0px 15px 15px 5px;">
-            <h3>Product</h3>
-            <p style="text-wrap: wrap;">Product Desciption goes here. It's a brief summary of the product features.</p>
-            <button>Buy Now</button>
-        </div>  
-    </div>
-    <hr>
-    <div style="max-width: 400px; background-color: whitesmoke; border: 1px solid black;position: relative;">
-        <p style="margin-left: 25px;">"This product is amazing! Highly recommeneded."</p>
-        <div style="height: 50px; width: 50px;position: static;margin-left: 15px; margin-bottom: 25px;" class="circle"></div>
-        <p style="position: absolute; top: 40%; left: 20%;">Jane Doe</p>
-    </div>
-    <hr>
-    <div style="width: 200px;" class="card">
-        <h3>BASIC</h3>
-        <h2 style="color: rgb(249, 143, 0);margin-top: 0;padding-top: 0;" >$10.99/month</h2>
-        <hr>
-        <p style="flex: wrap;margin:0 15px;">Our Basic plan is perfect for small teams</p>
+        <div class="input">
+            <p>Email</p>
+            <input type="text" name="" id="">
+        </div>
+        <div class="input">
+            <p>Message</p>
+            <textarea cols="33" rows="5" name="" id=""></textarea>
+        </div>
         <br>
-        <p>5 Projects</p>
-        <p>10GB Storage</p>
-        <p>Priamry Support</p>
-        <p>Unlimited Users</p>
-      <button style="background-color:rgb(249, 143, 0); color: white;border: none;margin-bottom: 10px; padding: 8px;">Buy Plan</button>
+        <button id="q1" class="input">Submit</button>
     </div>
-    <div style="display: flex;flex-direction: row;  gap: 20px; padding: 15px;" class="card">
-        <div style="width: 200px;" class="card">
-            <h3>BASIC</h3>
-            <h2 style="color: rgb(249, 143, 0);margin-top: 0;padding-top: 0;" >$10.99/month</h2>
-            <hr>
-            <p style="flex: wrap;margin:0 15px;">Our Basic plan is perfect for small teams</p>
-            <br>
-            <p>5 Projects</p>
-            <p>10GB Storage</p>
-            <p>Priamry Support</p>
-            <p>Unlimited Users</p>
-          <button style="background-color:rgb(249, 143, 0); color: white;border: none;margin-bottom: 10px; padding: 8px;">Buy Plan</button>
+    <br>
+    <div id="q2" class="card">
+        <h3>Login</h3>
+        <div class="input">
+            <p><b>Email</b></p>
+            <input type="text" >
         </div>
-        <div style="width: 200px;" class="card">
-            <h3>BASIC</h3>
-            <h2 style="color: rgb(249, 143, 0);margin-top: 0;padding-top: 0;" >$10.99/month</h2>
-            <hr>
-            <p style="flex: wrap;margin:0 15px;">Our Basic plan is perfect for small teams</p>
-            <br>
-            <p>5 Projects</p>
-            <p>10GB Storage</p>
-            <p>Priamry Support</p>
-            <p>Unlimited Users</p>
-          <button style="background-color:rgb(249, 143, 0); color: white;border: none;margin-bottom: 10px; padding: 8px;">Buy Plan</button>
+        <div class="input">
+            <p><b>Password</b></p>
+            <input type="text" >
         </div>
-        <div style="width: 200px;" class="card">
-            <h3>BASIC</h3>
-            <h2 style="color: rgb(249, 143, 0);margin-top: 0;padding-top: 0;" >$10.99/month</h2>
-            <hr>
-            <p style="flex: wrap;margin:0 15px;">Our Basic plan is perfect for small teams</p>
-            <br>
-            <p>5 Projects</p>
-            <p>10GB Storage</p>
-            <p>Priamry Support</p>
-            <p>Unlimited Users</p>
-          <button style="background-color:rgb(249, 143, 0); color: white;border: none;margin-bottom: 10px; padding: 8px;">Buy Plan</button>
-        </div>
+        <br>
+        <button id="q2" class="input">Submit</button>
+        <p class="f">Forgot password?</p>
     </div>
-    <hr>
-    <div style="color: white;background-color: rgb(240, 129, 128);display: flex; flex-wrap: wrap;">
-        <div style="flex: 1 1 200px;margin: 15px 15px 10px 45px; max-width: 200px;">
-            <p>Privacy policy</p>
-            <p>Terms</p>
-            <p>Legal</p>
-        </div>
-        <div style="flex: 1 1 200px;margin: 15px 15px 10px 45px; max-width: 200px;">
-            <p>ABout</p>
-            <p>Team</p>
-            <p>Contact</p>
-        </div>
-        <div style="flex: 1 1 200px;margin: 15px 15px 10px 45px; max-width: 200px;">
-            <p>Photos</p>
-            <p>Testimonial</p>
-        </div>
-        <div style="flex: 1 1 200px;margin: 15px 15px 10px 45px;">
-            <p >2024 Design Studio. All rights reserved.</p>
+    <br>
+    <div id="q3" class="card">
+        <h1>Photo Gallery</h1>
+        <ul>
+            <li class="active"><button>All</button></li>
+            <li>Nature</li>
+            <li>Birds</li>
+            <li>Animals</li>
+        </ul>
+        <div class="imgs">
+            <div class="box">
+                <p>Nature</p>
+            </div>
+            <div class="box">
+                <p>Birds</p>
+            </div>
+            <div class="box">
+                <p>Animals</p>
+            </div>
         </div>
     </div>
 </body>
