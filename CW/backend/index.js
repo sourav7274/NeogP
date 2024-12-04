@@ -2,14 +2,14 @@ const {initialDatabase} = require('./db/db.connect')
 const express = require('express')
 const app = express()
 const cors = require("cors");
-
+const jwt = require("jsonwebtoken")
 
 app.use(express.json())
 app.use(cors());
 const fs = require("fs")
 const Movie = require('./models/movie.models')
 const Profile = require('./models/twitterProfile.models')
-const Books = require('./models/books.model')
+// const Books = require('./models/books.model')
 const Car = require('./models/hw/cars.models')
 const { title } = require('process')
 const Restaurant = require('./models/hw/latres.models')
@@ -19,6 +19,43 @@ const Recipe = require('./models/recipe.models')
 const Hotel = require('./models/hw/hotel.models')
 const { error } = require('console')
 initialDatabase()
+
+// FULL stack ++
+
+const secret_key = "supersecret"
+const JWT_SECRET = "ursecret"
+
+const verifyJWT = (req,res,next) =>{
+  const token = req.headers["Autohorization"]
+  if(!token)
+  {
+    return res.status(401).json({message:"No token was provided"})
+  }
+  try{
+    console.log(token)
+  } catch(error) {
+  return res.status(402).json({message:"Invalid Token"})
+  }
+}
+
+app.post('/admin/login',(req,res) =>{
+  const {secret} = req.body
+
+  if (secret == secret_key)
+  {
+    const token = jwt.sign({role:"admin"},JWT_SECRET,{expiresIn:"24h"})
+    res.json({token})
+  }
+  else
+  {
+    res.json({message:"Invalid Secret"})
+  }
+})
+
+
+app.get("/admin/api/data",verifyJWT, (req,res) =>{
+  res.json({message:"Protected route accessible"})
+})
 
 //BE4_Assignment_2
 async function deleteRecipeByID(id)
